@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : tile_pe
+Version: S-2021.06-SP5-1
+Date   : Sun May 25 01:57:16 2025
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db)
+
+Number of ports:                           77
+Number of nets:                           516
+Number of cells:                          399
+Number of combinational cells:            366
+Number of sequential cells:                32
+Number of macros/black boxes:               0
+Number of buf/inv:                         32
+Number of references:                      23
+
+Combinational area:                530.404000
+Buf/Inv area:                       18.088000
+Noncombinational area:             171.570005
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                   701.974006
+Total area:                 undefined
+1
