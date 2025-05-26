@@ -32,9 +32,7 @@ module mesh_2d_array #(
     wire [DW-1:0]     x_in     [0:ROWS-1][0:COLS-1];
     wire [DW-1:0]     x_out    [0:ROWS-1][0:COLS-1];
     wire [2*DW-1:0]   acc_in   [0:ROWS-1][0:COLS-1];
-    wire [2*DW-1:0]   acc_out  [0:ROWS-1][0:COLS-1];
-    wire [2*DW-1:0]   result   [0:ROWS-1];
-    wire              result_valid [0:ROWS-1];
+    wire [2*DW-1:0]   acc_out  [0:ROWS-1][0:COLS-1]; 
 
     generate
         for (r = 0; r < ROWS; r = r + 1) begin: ROW

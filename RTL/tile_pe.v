@@ -1,4 +1,4 @@
-// Yue yang
+// 11:19pm.5/22/2025.Updated tile_pe.v with Config Bus
 module tile_pe #(
     parameter DW = 8,
     parameter ROW_W = 4, // ROW_W = Log2(Row)
