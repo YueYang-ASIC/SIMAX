@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Mon May 26 23:19:33 2025
+#@ # Date:   Tue May 27 16:56:45 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8498,8 +8498,8 @@ source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
 #@ # -- End source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
-source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/PE_SYN/.synopsys_dc.setup
-#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/PE_SYN/.synopsys_dc.setup
+source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/Top_SYN/.synopsys_dc.setup
+#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/Top_SYN/.synopsys_dc.setup
 
 #@ # .synopsys_dc.setup 
 #@ #
@@ -8592,12 +8592,12 @@ source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD
 #@ set edifout_target_system  "cadence"
 #@ set edifout_instantiate_ports  "true"
 #@ 
-#@ # -- End source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/PE_SYN/.synopsys_dc.setup
+#@ # -- End source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/Top_SYN/.synopsys_dc.setup
 
-source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/PE_SYN/dc-tile_pe.tcl
-#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/PE_SYN/dc-tile_pe.tcl
+source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/Top_SYN/dc-top.tcl
+#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/Top_SYN/dc-top.tcl
 
-#@ # dc-tile_pe.tcl script 
+#@ # dc-top.tcl script 
 #@ #
 #@ # 2018/02/15  Added *_ANALYZE_SECTION comments to new Makefile can automatically
 #@ #             add .v files to dc-*.tcl. Also updated some comments.
@@ -8637,21 +8637,21 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ #   report_power -net
 #@ #   report_power -hier
 #@ #   set_max_delay
-#@ #   write -format db -output tile_pe.db
+#@ #   write -format db -output top.db
 #@ #
 #@ # Doesn't work quite the way I expect
-#@ #   NameDesign = tile_pe    Set variable ok, but how to concatenate?
-#@ #   write_rtl -format verilog -output tile_pe.vg
+#@ #   NameDesign = top    Set variable ok, but how to concatenate?
+#@ #   write_rtl -format verilog -output top.vg
 #@ 
 #@ 
 #@ #===== Set: make sure you change design name elsewhere in this file
-#@ set NameDesign "tile_pe"
+#@ set NameDesign "top"
 #@ 
 #@ #===== Set some timing parameters
 #@ set CLK "clk"
 #@ 
 #@ #===== All values are in units of ns for NanGate 45 nm library
-#@ set clk_period      0.78
+#@ set clk_period      1.24
 #@ 
 #@ set clock_skew      [expr {$clk_period} * 0.05 ]
 #@ set input_setup     [expr {$clk_period} * 0.97 ]
@@ -8660,6 +8660,9 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ 
 #@ # It appears one "analyze" command is needed for each .v file. This works best
 #@ # (only?) with one command line per module.
+#@ analyze -format verilog mesh_2d_array.v
+#@ analyze -format verilog top.v
+#@ analyze -format verilog fsm_controller.v
 #@ analyze -format verilog tile_pe.v
 #@ 
 #@ elaborate $NameDesign
@@ -8693,17 +8696,17 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ # compile -map_effort medium    # May help, or maybe not
 #@ 
 #@ #===== Reports
-#@ write -format verilog -output tile_pe.vg -hierarchy $NameDesign
-#@ write_sdc	tile_pe.sdc
-#@ write_sdf	tile_pe.sdf
+#@ write -format verilog -output top.vg -hierarchy $NameDesign
+#@ write_sdc	top.sdc
+#@ write_sdf	top.sdf
 #@ 
 #@ 
-#@ report_area               > tile_pe.area
-#@ report_cell               > tile_pe.cell
-#@ report_hierarchy          > tile_pe.hier
-#@ report_net                > tile_pe.net
-#@ report_power              > tile_pe.pow
-#@ report_timing -nworst 10  > tile_pe.tim
+#@ report_area               > top.area
+#@ report_cell               > top.cell
+#@ report_hierarchy          > top.hier
+#@ report_net                > top.net
+#@ report_power              > top.pow
+#@ report_timing -nworst 10  > top.tim
 #@ 
 #@ check_timing
 #@ check_design

@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Ultra(TM) in wire load mode
 // Version   : S-2021.06-SP5-1
-// Date      : Sun May 25 01:57:16 2025
+// Date      : Mon May 26 23:19:40 2025
 /////////////////////////////////////////////////////////////
 
 
@@ -60,28 +60,6 @@ module tile_pe ( clk, rst_n, core_row, core_col, cfg_addr, cfg_data, cfg_valid,
          n453, n454, n455, n456, n457, n459, n460;
   wire   [7:0] weight_reg;
 
-  DFFR_X1 \x_reg_out_reg[7]  ( .D(n47), .CK(clk), .RN(rst_n), .Q(x_reg_out[7]), 
-        .QN(n451) );
-  DFFR_X1 \x_reg_out_reg[5]  ( .D(n45), .CK(clk), .RN(rst_n), .Q(x_reg_out[5]), 
-        .QN(n453) );
-  DFFR_X1 \x_reg_out_reg[4]  ( .D(n44), .CK(clk), .RN(rst_n), .Q(x_reg_out[4]), 
-        .QN(n455) );
-  DFFR_X1 \x_reg_out_reg[2]  ( .D(n42), .CK(clk), .RN(rst_n), .Q(x_reg_out[2]), 
-        .QN(n452) );
-  DFFR_X1 \x_reg_out_reg[1]  ( .D(n41), .CK(clk), .RN(rst_n), .Q(n461), .QN(
-        n457) );
-  DFFR_X1 \weight_reg_reg[7]  ( .D(n39), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[7]), .QN(\DP_OP_10J1_122_5009/n285 ) );
-  DFFR_X1 \weight_reg_reg[5]  ( .D(n37), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[5]), .QN(n456) );
-  DFFR_X1 \weight_reg_reg[4]  ( .D(n36), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[4]), .QN(n454) );
-  DFFR_X1 \weight_reg_reg[3]  ( .D(n35), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[3]), .QN(\DP_OP_10J1_122_5009/n289 ) );
-  DFFR_X1 \weight_reg_reg[1]  ( .D(n33), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[1]), .QN(n65) );
-  DFFR_X1 \weight_reg_reg[0]  ( .D(n32), .CK(clk), .RN(rst_n), .Q(
-        weight_reg[0]), .QN(\DP_OP_10J1_122_5009/n292 ) );
   DFFR_X1 \acc_reg_out_reg[15]  ( .D(n48), .CK(clk), .RN(rst_n), .Q(
         acc_reg_out[15]) );
   DFFR_X1 \acc_reg_out_reg[13]  ( .D(n50), .CK(clk), .RN(rst_n), .Q(
@@ -110,6 +88,28 @@ module tile_pe ( clk, rst_n, core_row, core_col, cfg_addr, cfg_data, cfg_valid,
         acc_reg_out[1]) );
   DFFR_X1 \acc_reg_out_reg[0]  ( .D(n63), .CK(clk), .RN(rst_n), .Q(
         acc_reg_out[0]) );
+  DFFR_X1 \x_reg_out_reg[7]  ( .D(n47), .CK(clk), .RN(rst_n), .Q(x_reg_out[7]), 
+        .QN(n451) );
+  DFFR_X1 \x_reg_out_reg[5]  ( .D(n45), .CK(clk), .RN(rst_n), .Q(x_reg_out[5]), 
+        .QN(n453) );
+  DFFR_X1 \x_reg_out_reg[4]  ( .D(n44), .CK(clk), .RN(rst_n), .Q(x_reg_out[4]), 
+        .QN(n455) );
+  DFFR_X1 \x_reg_out_reg[2]  ( .D(n42), .CK(clk), .RN(rst_n), .Q(x_reg_out[2]), 
+        .QN(n452) );
+  DFFR_X1 \x_reg_out_reg[1]  ( .D(n41), .CK(clk), .RN(rst_n), .Q(n461), .QN(
+        n457) );
+  DFFR_X1 \weight_reg_reg[7]  ( .D(n39), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[7]), .QN(\DP_OP_10J1_122_5009/n285 ) );
+  DFFR_X1 \weight_reg_reg[5]  ( .D(n37), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[5]), .QN(n456) );
+  DFFR_X1 \weight_reg_reg[4]  ( .D(n36), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[4]), .QN(n454) );
+  DFFR_X1 \weight_reg_reg[3]  ( .D(n35), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[3]), .QN(\DP_OP_10J1_122_5009/n289 ) );
+  DFFR_X1 \weight_reg_reg[1]  ( .D(n33), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[1]), .QN(n65) );
+  DFFR_X1 \weight_reg_reg[0]  ( .D(n32), .CK(clk), .RN(rst_n), .Q(
+        weight_reg[0]), .QN(\DP_OP_10J1_122_5009/n292 ) );
   DFFS_X1 \x_reg_out_reg[3]  ( .D(n112), .CK(clk), .SN(rst_n), .Q(
         \DP_OP_10J1_122_5009/n281 ), .QN(x_reg_out[3]) );
   DFFS_X1 \weight_reg_reg[6]  ( .D(n448), .CK(clk), .SN(rst_n), .Q(
