@@ -134,7 +134,7 @@ delay_32 = thirtytwoxthirtytwo_data["delay"]
 
 plt.figure(figsize=(10, 8))
 
-plt.subplot(2, 2, 1)
+plt.subplot(1, 2, 1)
 plt.plot(x, delay_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, delay_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, delay_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -151,7 +151,7 @@ area_8 = eightxeight_data["area"]
 area_16 = sixteenxsixteen_data["area"]
 area_32 = thirtytwoxthirtytwo_data["area"]
 
-plt.subplot(2, 2, 2)
+plt.subplot(1, 2, 2)
 plt.plot(x, area_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, area_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, area_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -161,12 +161,14 @@ plt.ylabel('Area (um^2)')
 plt.title('Area vs Node Size for Different Dimensions')
 plt.legend()
 
+plt.show()
+
 dynamic_power_4 = fourxfour_data["power_dyn"]
 dynamic_power_8 = eightxeight_data["power_dyn"]
 dynamic_power_16 = sixteenxsixteen_data["power_dyn"]
 dynamic_power_32 = thirtytwoxthirtytwo_data["power_dyn"]
 
-plt.subplot(2, 2, 3)
+plt.subplot(1, 2, 1)
 plt.plot(x, dynamic_power_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, dynamic_power_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, dynamic_power_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -182,7 +184,7 @@ leakage_power_8 = eightxeight_data["leakage"]
 leakage_power_16 = sixteenxsixteen_data["leakage"]
 leakage_power_32 = thirtytwoxthirtytwo_data["leakage"]
 
-plt.subplot(2, 2, 4)
+plt.subplot(1, 2, 2)
 plt.plot(x, leakage_power_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, leakage_power_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, leakage_power_16, label='16x16', marker='o', color='green', linestyle=':')
