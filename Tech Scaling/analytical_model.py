@@ -2,14 +2,18 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Reference values at 45nm (normalized)
-ref_delay = 1.0       # normalized FO4 delay
-ref_power_dyn = 1.0   # normalized dynamic power
-ref_leakage = 1.0     # normalized leakage
-ref_area = 1.0        # normalized gate area
-ref_vdd = 1.0         # normalized Vdd
+# Define technology nodes and corresponding voltages
+nodes_nm = [45, 32, 28, 22, 16, 14, 7, 3]  # in nm
+voltages = [1.0, 0.9, 0.9, 0.9, 0.9, 0.8, 0.65, 0.5]  # in V
 
-# Initialize a dictionary to store reference values
+# Assume reference values at 45nm
+ref_node = 45  # nm
+ref_voltage = 1.0  # V
+ref_delay = 1.0  # normalized
+ref_leakage = 1.0  # normalized leakage
+ref_freq = 1 / ref_delay  # normalized
+ref_power_dyn = 1
+
 fourxfour = {
     "dimension": "4x4",
     "delay": 1.42,
@@ -42,99 +46,47 @@ thirtytwoxthirtytwo = {
     "area": 589456.011,
 }
 
-fourxfour_data = {
-    "dimension": "4x4",
-    "nodes": [45, 32, 28, 22, 16],
-    "vdd": [1.0, 0.9, 0.9, 0.8, 0.7],
-    "delay": [],
-    "power_dyn": [],
-    "leakage": [],
-    "area": []
-}
-
-eightxeight_data = {
-    "dimension": "8x8",
-    "nodes": [45, 32, 28, 22, 16],
-    "vdd": [1.0, 0.9, 0.9, 0.8, 0.7],
-    "delay": [],
-    "power_dyn": [],
-    "leakage": [],
-    "area": []
-}
-
-sixteenxsixteen_data = {
-    "dimension": "16x16",
-    "nodes": [45, 32, 28, 22, 16],
-    "vdd": [1.0, 0.9, 0.9, 0.8, 0.7],
-    "delay": [],
-    "power_dyn": [],
-    "leakage": [],
-    "area": []
-}
-
-thirtytwoxthirtytwo_data = {
-    "dimension": "32x32",
-    "nodes": [45, 32, 28, 22, 16],
-    "vdd": [1.0, 0.9, 0.9, 0.8, 0.7],
-    "delay": [],
-    "power_dyn": [],
-    "leakage": [],
-    "area": []
-}
-
-# Dimension list
 dimensions = [fourxfour, eightxeight, sixteenxsixteen, thirtytwoxthirtytwo]
-dimensions_data = [fourxfour_data, eightxeight_data, sixteenxsixteen_data, thirtytwoxthirtytwo_data]
 
-# Scaling trends (rough approximations)
-vdd_scaling = [1.0, 0.9, 0.9, 0.8, 0.7]  # Vdd typically drops
-nodes_nm = [45, 32, 28, 22, 16]
-
+# Use simple scaling models
 data = []
-for i, object in enumerate(dimensions):
-    dimension_object = dimensions_data[i]
-    ref_delay = object["delay"]
-    ref_power_dyn = object["power_dyn"]
-    ref_leakage = object["leakage"]
-    ref_area = object["area"]
-    
-    data.append({
-        "Dimension (row x column)": object["dimension"]
-    })
 
-    # Calculate scaled values
-    for i in range(len(nodes_nm)):
-        L = nodes_nm[i]
-        Vdd = vdd_scaling[i]
+for object in dimensions:
+    dimension = object["dimension"]
 
-        delay = ref_delay * L * Vdd
-        power_dyn = ref_power_dyn * L * Vdd**2 / delay
-        leakage = ref_leakage * np.exp(1.2 * (1 - Vdd)) * Vdd  # Exponential leakage model
-        area = ref_area * L**2
+    for node, vdd in zip(nodes_nm, voltages):
+        scale_L = node / ref_node
+        leakage = ref_leakage * np.exp(1.2 * (1 - vdd)) * vdd  # Exponential leakage model
+        delay = ref_delay * scale_L * (vdd / ref_voltage)
+        area = scale_L**2
+        power_dyn = ref_power_dyn * scale_L * (vdd / ref_voltage)**2 / delay
         
         data.append({
-            "Node (nm)": L,
-            "Vdd (V)": round(Vdd, 3),
-            "Delay (ns)": round(delay, 3),
-            "Area (um^2)": round(area, 3),
-            "Dynamic Power (mW)": round(power_dyn, 3),
-            "Leakage Power (mW)": round(leakage, 3)
+            "Dimension": dimension,
+            "Node (nm)": node,
+            "Vdd (V)": vdd,
+            "Area (um^2)": round(area * object["area"], 4),
+            "Gate Delay (ns)": round(delay * object["delay"], 4),
+            "Leakage Power (mW)": round(leakage * object["leakage"], 4),
+            "Dynamic Power (mW)": round(power_dyn * object["power_dyn"], 4),
         })
-        
-        dimension_object["delay"].append(round(delay, 3))
-        dimension_object["power_dyn"].append(round(power_dyn, 3))
-        dimension_object["leakage"].append(round(leakage, 3))
-        dimension_object["area"].append(round(area, 3))
 
-x = fourxfour_data["nodes"]
-delay_4 = fourxfour_data["delay"]
-delay_8 = eightxeight_data["delay"]
-delay_16 = sixteenxsixteen_data["delay"]
-delay_32 = thirtytwoxthirtytwo_data["delay"]
+df = pd.DataFrame(data)
+file_path = f"data/analytical_model_results.xlsx"
+df.to_excel(file_path, index=False)
+
+# Plot Node Size
 
 plt.figure(figsize=(10, 8))
 
-plt.subplot(1, 2, 1)
+delay_4 = df[df['Dimension'] == '4x4']['Gate Delay (ns)'].values
+delay_8 = df[df['Dimension'] == '8x8']['Gate Delay (ns)'].values
+delay_16 = df[df['Dimension'] == '16x16']['Gate Delay (ns)'].values
+delay_32 = df[df['Dimension'] == '32x32']['Gate Delay (ns)'].values
+x = nodes_nm
+
+print(delay_4)
+
 plt.plot(x, delay_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, delay_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, delay_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -145,13 +97,15 @@ plt.ylabel('Delay (ns)')
 plt.legend()
 plt.title('Delay vs Node Size for Different Dimensions')
 
+plt.show()
 
-area_4 = fourxfour_data["area"]
-area_8 = eightxeight_data["area"]
-area_16 = sixteenxsixteen_data["area"]
-area_32 = thirtytwoxthirtytwo_data["area"]
+plt.figure(figsize=(10, 8))
 
-plt.subplot(1, 2, 2)
+area_4 = df[df['Dimension'] == '4x4']['Area (um^2)'].values
+area_8 = df[df['Dimension'] == '8x8']['Area (um^2)'].values
+area_16 = df[df['Dimension'] == '16x16']['Area (um^2)'].values
+area_32 = df[df['Dimension'] == '32x32']['Area (um^2)'].values
+
 plt.plot(x, area_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, area_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, area_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -163,12 +117,11 @@ plt.legend()
 
 plt.show()
 
-dynamic_power_4 = fourxfour_data["power_dyn"]
-dynamic_power_8 = eightxeight_data["power_dyn"]
-dynamic_power_16 = sixteenxsixteen_data["power_dyn"]
-dynamic_power_32 = thirtytwoxthirtytwo_data["power_dyn"]
+dynamic_power_4 = df[df['Dimension'] == '4x4']['Dynamic Power (mW)'].values
+dynamic_power_8 = df[df['Dimension'] == '8x8']['Dynamic Power (mW)'].values
+dynamic_power_16 = df[df['Dimension'] == '16x16']['Dynamic Power (mW)'].values
+dynamic_power_32 = df[df['Dimension'] == '32x32']['Dynamic Power (mW)'].values
 
-plt.subplot(1, 2, 1)
 plt.plot(x, dynamic_power_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, dynamic_power_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, dynamic_power_16, label='16x16', marker='o', color='green', linestyle=':')
@@ -178,32 +131,18 @@ plt.ylabel('Dynamic Power (mW)')
 plt.title('Dynamic Power vs Node Size for Different Dimensions')
 plt.legend()
 
+plt.show()
 
-leakage_power_4 = fourxfour_data["leakage"]
-leakage_power_8 = eightxeight_data["leakage"]
-leakage_power_16 = sixteenxsixteen_data["leakage"]
-leakage_power_32 = thirtytwoxthirtytwo_data["leakage"]
-
-plt.subplot(1, 2, 2)
+leakage_power_4 = df[df['Dimension'] == '4x4']['Leakage Power (mW)'].values
+leakage_power_8 = df[df['Dimension'] == '8x8']['Leakage Power (mW)'].values
+leakage_power_16 = df[df['Dimension'] == '16x16']['Leakage Power (mW)'].values
+leakage_power_32 = df[df['Dimension'] == '32x32']['Leakage Power (mW)'].values
 plt.plot(x, leakage_power_4, label='4x4', marker='o', color='blue', linestyle=':')
 plt.plot(x, leakage_power_8, label='8x8', marker='o', color='orange', linestyle=':')
 plt.plot(x, leakage_power_16, label='16x16', marker='o', color='green', linestyle=':')
 plt.plot(x, leakage_power_32, label='32x32', marker='o', color='red', linestyle=':')
-plt.xlabel('Node Size (nm)')
 plt.ylabel('Leakage Power (mW)')
 plt.title('Leakage Power vs Node Size for Different Dimensions')
 plt.legend()
 
 plt.show()
-
-
-
-        
-        
-    
-
-
-
-df = pd.DataFrame(data)
-file_path = "data/Scaling_Model_45nm.xlsx"
-df.to_excel(file_path, index=False)
