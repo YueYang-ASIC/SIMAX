@@ -59,7 +59,7 @@ Set them via `parameter` values in `top.v`:
 8. Remove generated outputs `make NAME=top cleanall`
 
 ---
-### Results (SIMAX 4 x 4 as an example)
+### Results 
 #### Timing : Only fix setup violation; Hold violation will be fixed in P&R
   <img src="figs/qor_timing_hold_vio.png" alt="Timing" width="250">
 
