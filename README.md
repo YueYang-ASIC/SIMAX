@@ -59,23 +59,26 @@ Set them via `parameter` values in `top.v`:
 
 ---
 ### Results
+<p align="center">
+  <img src="figs/qor_timing.png" alt="Timing" width="200">
+</p>
+
+
+ 
+
 *Figure 1.* Timing.
 
-<a   align="center" >
-  <img src="figs/qor_timing.png" alt="Timing" width="400">
-</a>
 
+<p  align="center">
+  <img src="figs/qor_area.png" alt="Area" width="200">
+</p>
 *Figure 2.* Area.
 
-<a  align="center">
-  <img src="figs/qor_area.png" alt="Area" width="400">
-</a>
-
+<p   align="center">
+  <img src="figs/power_rpt.png" alt="Power" width="200">
+</p>
 *Figure 3.* Power.
 
-<a   align="center">
-  <img src="figs/power_rpt.png" alt="Power" width="400">
-</a>
  
 
 
