@@ -1,7 +1,8 @@
+# Version 1.0 Yue Yang 8-15-2025
 set_db init_power_nets VDD
 set_db init_ground_nets VSS
 read_mmmc top.mmmc
-read_physical -lef ../lef/NangateOpenCellLibrary.lef
+read_physical -lef ../../lef/NangateOpenCellLibrary.lef
 read_netlist top.vg
 init_design
 set_io_flow_flag 0
@@ -14,4 +15,5 @@ finish_floorplan -auto_halo
 check_floorplan -place -power_domain -feed_through -partition_clone -report_density -multi_layer_pin -partition_in_partition -bus_guide -out_file top.checkFPlan
 check_timing_library_consistency
 set_db design_process_node 45
+save_global top.globals
 

@@ -1,0 +1,1103 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2021 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v21.18-s099_1, built Tue Jul 18 13:03:50 PDT 2023
+Options:	-stylus 
+Date:		Fri Aug 15 13:39:09 2025
+Host:		coe-ece-taco (x86_64 w/Linux 4.18.0-553.58.1.el8_10.x86_64) (56cores*112cpus*Intel(R) Xeon(R) w9-3495X 107520KB)
+OS:		Red Hat Enterprise Linux 8.10 (Ootpa)
+
+License:
+		[13:39:09.445385] Configured Lic search path (21.01-s002): 5280@renoir.engr.ucdavis.edu
+
+		invs	Innovus Implementation System	21.1	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use set_multi_cpu_usage to set your required CPU count.
+
+
+**WARN: (IMPOPT-801):	Genus executable not found in PATH. Install Genus, add the path to the genus executable in the PATH variable and rerun Innovus.
+Create and set the environment variable TMPDIR to /tmp/innovus_temp_4007927_coe-ece-taco_lunayang_LabBmE.
+
+Change the soft stacksize limit to 0.2%RAM (255 mbytes). Set global soft_stack_size_limit to change the value.
+
+**INFO:  MMMC transition support version v31-84 
+
+@innovus 1> source _1_init.tcl 
+#@ Begin verbose source (pre): source _1_init.tcl 
+@file 1: # Version 1.0 Yue Yang 8-15-2025
+@@file 2: set_db init_power_nets VDD
+@@file 3: set_db init_ground_nets VSS
+@@file 4: read_mmmc top.mmmc
+#@ Begin verbose source top.mmmc (pre)
+@file 1: # Version:1.0 MMMC View Definition File
+@file 2: # Do Not Remove Above Line
+@file 3:
+@file 4: # Library sets
+@@file 5: create_library_set -name nangate_libset_fast \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_fast_ccs.lib]
+@file 8:
+@@file 9: create_library_set -name nangate_libset_typical \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_typical_ccs.lib]
+@file 12:
+@@file 13: create_library_set -name nangate_libset_worst \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_worst_low_ccs.lib]
+@file 16:
+@file 17: # Timing conditions
+@@file 18: create_timing_condition -name nangate_tc_fast \
+   -library_sets [list nangate_libset_fast]
+@file 20:
+@@file 21: create_timing_condition -name nangate_tc_typical \
+   -library_sets [list nangate_libset_typical]
+@file 23:
+@@file 24: create_timing_condition -name nangate_tc_worst \
+   -library_sets [list nangate_libset_worst]
+@file 26:
+@file 27: # RC corner
+@@file 28: create_rc_corner -name nangate_rc_typical \
+   -pre_route_res 1 \
+   -post_route_res 1 \
+   -pre_route_cap 1 \
+   -post_route_cap 1 \
+   -post_route_cross_cap 1 \
+   -pre_route_clock_res 0 \
+   -pre_route_clock_cap 0
+@file 36:
+@file 37: # Delay corners
+@@file 38: create_delay_corner -name nangate_delay_corner_fast \
+   -timing_condition nangate_tc_fast \
+   -rc_corner nangate_rc_typical
+@file 41:
+@@file 42: create_delay_corner -name nangate_delay_corner_typical \
+   -timing_condition nangate_tc_typical \
+   -rc_corner nangate_rc_typical
+@file 45:
+@@file 46: create_delay_corner -name nangate_delay_corner_worst \
+   -timing_condition nangate_tc_worst \
+   -rc_corner nangate_rc_typical
+@file 49:
+@file 50: # Constraint mode
+@@file 51: create_constraint_mode -name nangate_constraint_mode \
+   -sdc_files [list top.sdc]
+@file 53:
+@file 54: # Analysis views
+@@file 55: create_analysis_view -name nangate_view_setup \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_worst
+@file 58:
+@@file 59: create_analysis_view -name nangate_view_hold \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_fast
+@file 62:
+@file 63: # Set analysis views
+@@file 64: set_analysis_view -setup [list nangate_view_setup] -hold [list nangate_view_hold]
+@file 65:
+#@ End verbose source top.mmmc
+Reading nangate_libset_worst timing library '/home/lunayang/Documents/SIMAX/lib/NangateOpenCellLibrary_worst_low_ccs.lib' ...
+Read 134 cells in library 'NangateOpenCellLibrary' 
+Reading nangate_libset_fast timing library '/home/lunayang/Documents/SIMAX/lib/NangateOpenCellLibrary_fast_ccs.lib' ...
+Read 134 cells in library 'NangateOpenCellLibrary' 
+@@file 5: read_physical -lef ../../lef/NangateOpenCellLibrary.lef
+
+Loading LEF file ../../lef/NangateOpenCellLibrary.lef ...
+Set DBUPerIGU to M2 pitch 380.
+
+##  Check design process and node:  
+##  Both design process and tech node are not set.
+
+@@file 6: read_netlist top.vg
+#% Begin Load netlist data ... (date=08/15 13:39:59, mem=1028.6M)
+*** Begin netlist parsing (mem=1119.3M) ***
+Created 134 new cells from 2 timing libraries.
+Reading netlist ...
+Backslashed names will retain backslash and a trailing blank character.
+Reading verilog netlist 'top.vg'
+
+*** Memory Usage v#1 (Current mem = 1119.328M, initial mem = 495.000M) ***
+*** End netlist parsing (cpu=0:00:00.0, real=0:00:00.0, mem=1119.3M) ***
+#% End Load netlist data ... (date=08/15 13:39:59, total cpu=0:00:00.0, real=0:00:00.0, peak res=1038.5M, current mem=1038.5M)
+Top level cell is top.
+Hooked 268 DB cells to tlib cells.
+Starting recursive module instantiation check.
+No recursion found.
+Building hierarchical netlist for Cell top ...
+*** Netlist is unique.
+** info: there are 269 modules.
+** info: there are 1141 stdCell insts.
+
+*** Memory Usage v#1 (Current mem = 1175.742M, initial mem = 495.000M) ***
+@@file 7: init_design
+Start create_tracks
+Generated pitch 1.68 in metal10 is different from 1.6 defined in technology file in preferred direction.
+Generated pitch 0.84 in metal8 is different from 0.8 defined in technology file in preferred direction.
+Generated pitch 0.84 in metal7 is different from 0.8 defined in technology file in preferred direction.
+Extraction setup Started 
+Initializing multi-corner RC extraction with 1 active RC Corners ...
+**WARN: (IMPEXT-2773):	The via resistance between layers M0 and M1 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M1 and M2 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M2 and M3 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M3 and M4 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M4 and M5 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M5 and M6 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M6 and M7 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M7 and M8 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M8 and M9 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M9 and M10 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M1 is not defined in the cap table. Therefore, the LEF value 0.38 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M2 is not defined in the cap table. Therefore, the LEF value 0.25 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M3 is not defined in the cap table. Therefore, the LEF value 0.25 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M4 is not defined in the cap table. Therefore, the LEF value 0.21 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M5 is not defined in the cap table. Therefore, the LEF value 0.21 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M6 is not defined in the cap table. Therefore, the LEF value 0.21 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M7 is not defined in the cap table. Therefore, the LEF value 0.075 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M8 is not defined in the cap table. Therefore, the LEF value 0.075 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M9 is not defined in the cap table. Therefore, the LEF value 0.03 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M10 is not defined in the cap table. Therefore, the LEF value 0.03 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+Summary of Active RC-Corners : 
+ 
+ Analysis View: nangate_view_setup
+    RC-Corner Name        : nangate_rc_typical
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 25 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PostRoute Clock coupling capacitance Factor : 1 {1 1 1} 
+ 
+ Analysis View: nangate_view_hold
+    RC-Corner Name        : nangate_rc_typical
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 25 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PostRoute Clock coupling capacitance Factor : 1 {1 1 1} 
+Updating RC grid for preRoute extraction ...
+Initializing multi-corner resistance tables ...
+*Info: initialize multi-corner CTS.
+Reading timing constraints file 'top.sdc' ...
+Current (total cpu=0:00:16.3, real=0:00:50.0, peak res=1346.7M, current mem=1346.7M)
+**WARN: (TCLCMD-1461):	Skipped unsupported command: set_units (File top.sdc, Line 8).
+
+**WARN: (TCLNL-330):	set_input_delay on clock root 'clk' is not supported. You should use the -source option to set_clock_latency to provide this offset. You can also use the global timing_allow_input_delay_on_clock_source to allow set_input_delay assertion to have an effect on clock source paths beginning at this clock root. (File top.sdc, Line 44).
+
+INFO (CTE): Reading of timing constraints file top.sdc completed, with 2 WARNING
+WARNING (CTE-25): Line: 9 of File top.sdc : Skipped unsupported command: set_max_area
+
+
+Ending "Constraint file reading stats" (total cpu=0:00:00.0, real=0:00:00.0, peak res=1367.3M, current mem=1367.3M)
+Current (total cpu=0:00:16.4, real=0:00:50.0, peak res=1367.3M, current mem=1367.3M)
+Total number of combinational cells: 93
+Total number of sequential cells: 29
+Total number of tristate cells: 6
+Total number of level shifter cells: 0
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+Total number of physical cells: 6
+List of usable buffers: BUF_X1 BUF_X2 BUF_X4 BUF_X8 BUF_X16 BUF_X32 CLKBUF_X1 CLKBUF_X2 CLKBUF_X3
+Total number of usable buffers: 9
+List of unusable buffers:
+Total number of unusable buffers: 0
+List of usable inverters: INV_X1 INV_X2 INV_X4 INV_X8 INV_X16 INV_X32
+Total number of usable inverters: 6
+List of unusable inverters:
+Total number of unusable inverters: 0
+List of identified usable delay cells:
+Total number of identified usable delay cells: 0
+List of identified unusable delay cells:
+Total number of identified unusable delay cells: 0
+No delay cells were detected in the set of buffers. Buffers will be used to fix hold violations.
+@@file 8: set_io_flow_flag 0
+@@file 9: create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.998244226723 0.699994 10.0 10.0 10.0 10.0
+Adjusting coreMargin left    to finFet grid (PlacementGrid) : after adjusting :10.07
+Adjusting coreMargin bottom  to finFet grid (PlacementGrid) : after adjusting :10.08
+Adjusting coreMargin right   to finFet grid (PlacementGrid) : after adjusting :10.07
+Adjusting coreMargin top     to finFet grid (PlacementGrid) : after adjusting :10.08
+Adjusting core size to PlacementGrid : width :59.09 height : 58.8
+Start create_tracks
+Generated pitch 1.68 in metal10 is different from 1.6 defined in technology file in preferred direction.
+Generated pitch 0.84 in metal8 is different from 0.8 defined in technology file in preferred direction.
+Generated pitch 0.84 in metal7 is different from 0.8 defined in technology file in preferred direction.
+@@file 10: set_db finish_floorplan_active_objs {core macro}
+@@file 11: set_db finish_floorplan_drc_region_objs {macro macro_halo hard_blockage min_gap core_spacing}
+@@file 12: set_db finish_floorplan_add_blockage_direction xy
+@@file 13: set_db finish_floorplan_override false
+@@file 14: finish_floorplan -auto_halo
+Start automatic macro halo creation ...
+Done automatic macro halo creation.
+*** Done finish_floorplan, (cpu = 0:00:00.0, mem = 1495.3M, mem_delta = 0.0M) ***
+@@file 15: check_floorplan -place -power_domain -feed_through -partition_clone -report_density -multi_layer_pin -partition_in_partition -bus_guide -out_file top.checkFPlan
+Checking routing tracks.....
+Checking other grids.....
+Checking FINFET Grid is on Manufacture Grid.....
+Checking core/die box is on Grid.....
+Checking snap rule ......
+Checking Row is on grid......
+Checking AreaIO row.....
+Checking row out of die ...
+Checking routing blockage.....
+Checking components.....
+Checking IO Pads out of die...
+Checking constraints (guide/region/fence).....
+
+Checking Preroutes.....
+No. of regular pre-routes not on tracks : 0 
+Checking multi-layer pins......
+Checking alignment of partition and clones......
+Calling CheckPlace .....
+Estimated cell power/ground rail width = 0.175 um
+Begin checking placement ... (start mem=1495.3M, init mem=1623.4M)
+*info: Placed = 0             
+*info: Unplaced = 1141        
+Placement Density:69.88%(2428/3474)
+Placement Density (including fixed std cells):69.88%(2428/3474)
+Finished check_place (total: cpu=0:00:00.0, real=0:00:00.0; vio checks: cpu=0:00:00.0, real=0:00:00.0; mem=1623.4M)
+Calling VerifyPowerDomain .....
+
+Reporting Utilizations.....
+
+Core utilization  = 69.882101
+Effective Utilizations
+Extracting standard cell pins and blockage ...... 
+Pin and blockage extraction finished
+Extracting macro/IO cell pins and blockage ...... 
+Pin and blockage extraction finished
+Average module density = 0.699.
+Density for the design = 0.699.
+       = stdcell_area 9128 sites (2428 um^2) / alloc_area 13062 sites (3474 um^2).
+Pin Density = 0.3581.
+            = total # of pins 4678 / total area 13062.
+Check bus guide ......
+
+Checking Partition Overlapping relations .....
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@@file 16: check_timing_library_consistency
+Checking the Library binding for instance in active view 'nangate_view_setup'
+Pass. All instances have library definition in view 'nangate_view_setup'
+Checking the Library binding for instance in active view 'nangate_view_hold'
+Pass. All instances have library definition in view 'nangate_view_hold'
+@@file 17: set_db design_process_node 45
+##  Process: 45            (User Set)               
+##     Node: (not set)                           
+
+##  Check design process and node:  
+##  Design tech node is not set.
+
+Applying the recommended capacitance filtering threshold values for 45nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.1.
+	These values will be used by all post-route extraction engines, including TQuantus, IQuantus and Quantus QRC extraction.
+	Capacitance filtering mode(extract_rc_cap_filter_mode option of the set_db) is 'relative_and_coupling' for all engines.
+	The accuracy mode for post_route extract_rc_effort_level low extraction will be set to 'high'.
+	Default value for EffortLevel(extract_rc_effort_level option of the set_db) in post_route extraction mode will be 'medium' if Quantus QRC technology file is specified else 'low'.
+@file 18: save_global top.globals
+**ERROR: (IMPSE-110):	File '_1_init.tcl' line 18: invalid command name "save_global".
+#@ End verbose source _1_init.tcl
+invalid command name "save_global"
+invalid command name "save_global"
+@innovus 2> gui_select -point {0.02600 0.00100}
+@innovus 3> source _2_power.tcl 
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:40:16, mem=1620.6M)
+
+
+viaInitial starts at Fri Aug 15 13:40:16 2025
+viaInitial ends at Fri Aug 15 13:40:16 2025
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2240.7M)
+Ring generation is complete.
+vias are now being generated.
+add_rings created 8 wires.
+ViaGen created 8 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+| metal9 |        4       |       NA       |
+|  via9  |        8       |        0       |
+| metal10|        4       |       NA       |
++--------+----------------+----------------+
+#% End add_rings (date=08/15 13:40:16, total cpu=0:00:00.0, real=0:00:00.0, peak res=1624.1M, current mem=1624.1M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 5 -start_from left -start_offset 11.5 -stop_offset 11.5 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:40:16, mem=1624.1M)
+
+Initialize fgc environment(mem: 2240.7M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2240.7M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2240.7M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2240.7M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2240.7M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 10 wires.
+ViaGen created 20 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       20       |        0       |
+| metal10|       10       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:40:16, total cpu=0:00:00.0, real=0:00:00.0, peak res=1625.1M, current mem=1625.1M)
+@file 11:
+#@ End verbose source: _2_power.tcl
+@innovus 4> gui_select -point {24.32100 -0.51300}
+@innovus 5> gui_select -point {7.96400 0.95900}
+@innovus 6> source _2_power.tcl 
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:44:13, mem=1626.3M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2245.0M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:44:13, total cpu=0:00:00.0, real=0:00:00.0, peak res=1626.3M, current mem=1626.3M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 14.75 -stop_offset 14.75-switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:44:13, mem=1626.3M)
+
+Usage: add_stripes [-help] [-all_blocks <0|1>] [-area <x1 y1 x2 y2 ...>]
+                   [-area_blockage < {x1 y1 x2 y2}... {x1 y1 x2 y2 x3 y3 x4 y4 ...} ...>]
+                   [-between_bumps <0|1>]
+                   [-block_ring_bottom_layer_limit <layer>]
+                   [-block_ring_top_layer_limit <layer>] [-create_pins <0|1>]
+                   [-direction {horizontal vertical}]
+                   [-extend_to {design_boundary first_padring last_padring all_domains}]
+                   [-insts <instance_name>] -layer <layer>
+                   [-master <master_cell>]
+                   [-max_same_layer_jog_length <real_value>]
+                   [-merge_stripes_value <auto|value>] [-narrow_channel <0|1>]
+                   -nets <list_of_nets> [-number_of_sets <integer_value>]
+                   [-over_bumps <0|1>] [-over_physical_pins <0|1>]
+                   [-over_pins <0|1>] [-over_power_domain <0|1>]
+                   [-padcore_ring_bottom_layer_limit <layer>]
+                   [-padcore_ring_top_layer_limit <layer>] [-pin_layer <layer>]
+                   [-pin_offset <real_value>] [-pin_width <min_value max_value>]
+                   [-power_domains <domain_name>]
+                   [-report_cut_stripe <log name>]
+                   [-same_layer_target_only <0|1>]
+                   [-set_to_set_distance <real_value>]
+                   [-spacing <name_or_value>]
+                   [-stapling <stripe_length>|auto {<ref_offeset ref_pitch:pitch_num> | <ref_layer1>} [ref_layer2]>]
+                   [-start <real_value>] [-start_from {left right bottom top}]
+                   [-start_offset <real_value>] [-stop <real_value>]
+                   [-stop_offset <real_value>] [-switch_layer_over_obs <0|1>]
+                   [-uda <subclass_string>] [-use_interleaving_wire_group <0|1>]
+                   [-use_wire_group {-1 0 1}]
+                   [-use_wire_group_bits <integer_value>]
+                   [-via_columns <integer>] [-via_rows <integer>]
+                   -width <name_or_value> [-snap_wire_center_to_grid {none grid mask1_grid mask2_grid half_grid either} [-allow_snapping_override_custom_spacing <0|1>]]
+
+**ERROR: (IMPTCM-4):	The value "14.75-switch_layer_over_obs" specified for the float type of argument "-stop_offset" is not a valid float. Review the command specification and remove the argument or specify a legal value.
+#% End add_stripes (date=08/15 13:44:13, total cpu=0:00:00.0, real=0:00:00.0, peak res=1626.3M, current mem=1626.3M)
+**ERROR: (IMPSE-110):	File '_2_power.tcl' line 10:   .
+#@ End verbose source _2_power.tcl
+  
+  
+@innovus 7> **ERROR: (IMPSYT-6852):	No more action to undo.
+**ERROR: (IMPSYT-6852):	No more action to undo.
+**ERROR: (IMPSYT-6852):	No more action to undo.
+delete_all_floorplan_objs 
+There is no pin guide defined.
+**WARN: (IMPFP-6001):	NO matching routing blockage found. Nothing deleted. 
+There is no pin blockage which matches the wildcard name [*].
+@innovus 8> source _2_power.tcl 
+
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:44:38, mem=1635.6M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2260.1M)
+Ring generation is complete.
+vias are now being generated.
+add_rings created 8 wires.
+ViaGen created 8 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+| metal9 |        4       |       NA       |
+|  via9  |        8       |        0       |
+| metal10|        4       |       NA       |
++--------+----------------+----------------+
+#% End add_rings (date=08/15 13:44:38, total cpu=0:00:00.0, real=0:00:00.0, peak res=1635.8M, current mem=1635.8M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 14.75 -stop_offset 14.75-switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:44:38, mem=1635.8M)
+
+Usage: add_stripes [-help] [-all_blocks <0|1>] [-area <x1 y1 x2 y2 ...>]
+                   [-area_blockage < {x1 y1 x2 y2}... {x1 y1 x2 y2 x3 y3 x4 y4 ...} ...>]
+                   [-between_bumps <0|1>]
+                   [-block_ring_bottom_layer_limit <layer>]
+                   [-block_ring_top_layer_limit <layer>] [-create_pins <0|1>]
+                   [-direction {horizontal vertical}]
+                   [-extend_to {design_boundary first_padring last_padring all_domains}]
+                   [-insts <instance_name>] -layer <layer>
+                   [-master <master_cell>]
+                   [-max_same_layer_jog_length <real_value>]
+                   [-merge_stripes_value <auto|value>] [-narrow_channel <0|1>]
+                   -nets <list_of_nets> [-number_of_sets <integer_value>]
+                   [-over_bumps <0|1>] [-over_physical_pins <0|1>]
+                   [-over_pins <0|1>] [-over_power_domain <0|1>]
+                   [-padcore_ring_bottom_layer_limit <layer>]
+                   [-padcore_ring_top_layer_limit <layer>] [-pin_layer <layer>]
+                   [-pin_offset <real_value>] [-pin_width <min_value max_value>]
+                   [-power_domains <domain_name>]
+                   [-report_cut_stripe <log name>]
+                   [-same_layer_target_only <0|1>]
+                   [-set_to_set_distance <real_value>]
+                   [-spacing <name_or_value>]
+                   [-stapling <stripe_length>|auto {<ref_offeset ref_pitch:pitch_num> | <ref_layer1>} [ref_layer2]>]
+                   [-start <real_value>] [-start_from {left right bottom top}]
+                   [-start_offset <real_value>] [-stop <real_value>]
+                   [-stop_offset <real_value>] [-switch_layer_over_obs <0|1>]
+                   [-uda <subclass_string>] [-use_interleaving_wire_group <0|1>]
+                   [-use_wire_group {-1 0 1}]
+                   [-use_wire_group_bits <integer_value>]
+                   [-via_columns <integer>] [-via_rows <integer>]
+                   -width <name_or_value> [-snap_wire_center_to_grid {none grid mask1_grid mask2_grid half_grid either} [-allow_snapping_override_custom_spacing <0|1>]]
+
+**ERROR: (IMPTCM-4):	The value "14.75-switch_layer_over_obs" specified for the float type of argument "-stop_offset" is not a valid float. Review the command specification and remove the argument or specify a legal value.
+#% End add_stripes (date=08/15 13:44:38, total cpu=0:00:00.0, real=0:00:00.0, peak res=1635.8M, current mem=1635.8M)
+**ERROR: (IMPSE-110):	File '_2_power.tcl' line 10:   .
+#@ End verbose source _2_power.tcl
+  
+  
+@innovus 9> source _2_power.tcl 
+
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:44:58, mem=1636.0M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:44:58, total cpu=0:00:00.0, real=0:00:00.0, peak res=1636.0M, current mem=1636.0M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 14.5 -stop_offset 14.5-switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:44:58, mem=1636.0M)
+
+Usage: add_stripes [-help] [-all_blocks <0|1>] [-area <x1 y1 x2 y2 ...>]
+                   [-area_blockage < {x1 y1 x2 y2}... {x1 y1 x2 y2 x3 y3 x4 y4 ...} ...>]
+                   [-between_bumps <0|1>]
+                   [-block_ring_bottom_layer_limit <layer>]
+                   [-block_ring_top_layer_limit <layer>] [-create_pins <0|1>]
+                   [-direction {horizontal vertical}]
+                   [-extend_to {design_boundary first_padring last_padring all_domains}]
+                   [-insts <instance_name>] -layer <layer>
+                   [-master <master_cell>]
+                   [-max_same_layer_jog_length <real_value>]
+                   [-merge_stripes_value <auto|value>] [-narrow_channel <0|1>]
+                   -nets <list_of_nets> [-number_of_sets <integer_value>]
+                   [-over_bumps <0|1>] [-over_physical_pins <0|1>]
+                   [-over_pins <0|1>] [-over_power_domain <0|1>]
+                   [-padcore_ring_bottom_layer_limit <layer>]
+                   [-padcore_ring_top_layer_limit <layer>] [-pin_layer <layer>]
+                   [-pin_offset <real_value>] [-pin_width <min_value max_value>]
+                   [-power_domains <domain_name>]
+                   [-report_cut_stripe <log name>]
+                   [-same_layer_target_only <0|1>]
+                   [-set_to_set_distance <real_value>]
+                   [-spacing <name_or_value>]
+                   [-stapling <stripe_length>|auto {<ref_offeset ref_pitch:pitch_num> | <ref_layer1>} [ref_layer2]>]
+                   [-start <real_value>] [-start_from {left right bottom top}]
+                   [-start_offset <real_value>] [-stop <real_value>]
+                   [-stop_offset <real_value>] [-switch_layer_over_obs <0|1>]
+                   [-uda <subclass_string>] [-use_interleaving_wire_group <0|1>]
+                   [-use_wire_group {-1 0 1}]
+                   [-use_wire_group_bits <integer_value>]
+                   [-via_columns <integer>] [-via_rows <integer>]
+                   -width <name_or_value> [-snap_wire_center_to_grid {none grid mask1_grid mask2_grid half_grid either} [-allow_snapping_override_custom_spacing <0|1>]]
+
+**ERROR: (IMPTCM-4):	The value "14.5-switch_layer_over_obs" specified for the float type of argument "-stop_offset" is not a valid float. Review the command specification and remove the argument or specify a legal value.
+#% End add_stripes (date=08/15 13:44:58, total cpu=0:00:00.0, real=0:00:00.0, peak res=1636.0M, current mem=1636.0M)
+**ERROR: (IMPSE-110):	File '_2_power.tcl' line 10:   .
+#@ End verbose source _2_power.tcl
+  
+  
+@innovus 10> source _2_power.tcl 
+
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:45:11, mem=1635.9M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:45:11, total cpu=0:00:00.0, real=0:00:00.0, peak res=1635.9M, current mem=1635.9M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 14.5 -stop_offset 14.5 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:45:11, mem=1635.9M)
+
+Initialize fgc environment(mem: 2262.3M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 6 wires.
+ViaGen created 12 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       12       |        0       |
+| metal10|        6       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:45:11, total cpu=0:00:00.0, real=0:00:00.0, peak res=1635.9M, current mem=1635.9M)
+@file 11:
+#@ End verbose source: _2_power.tcl
+@innovus 11> source _2_power.tcl 
+
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:46:12, mem=1635.9M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:46:12, total cpu=0:00:00.0, real=0:00:00.0, peak res=1635.9M, current mem=1635.9M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 4 -start_from left -start_offset 12 -stop_offset 12 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:46:12, mem=1635.9M)
+
+Initialize fgc environment(mem: 2262.3M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+**WARN: (IMPPP-354):	The power planner did not generate the vertical stripe at 22.969999 3.180000 22.969999 73.980003 with width 1.800000 due to one of these reasons: the stripe would merge with rings, the stripe could not connect to any legal target, or the stripe would break the design rule.
+Type 'man IMPPP-354' for more detail.
+**WARN: (IMPPP-354):	The power planner did not generate the vertical stripe at 26.270000 6.480000 26.270000 70.680000 with width 1.800000 due to one of these reasons: the stripe would merge with rings, the stripe could not connect to any legal target, or the stripe would break the design rule.
+Type 'man IMPPP-354' for more detail.
+**WARN: (IMPPP-354):	The power planner did not generate the vertical stripe at 36.264999 6.480000 36.264999 70.680000 with width 1.800000 due to one of these reasons: the stripe would merge with rings, the stripe could not connect to any legal target, or the stripe would break the design rule.
+Type 'man IMPPP-354' for more detail.
+**WARN: (IMPPP-354):	The power planner did not generate the vertical stripe at 52.955002 3.180000 52.955002 73.980003 with width 1.800000 due to one of these reasons: the stripe would merge with rings, the stripe could not connect to any legal target, or the stripe would break the design rule.
+Type 'man IMPPP-354' for more detail.
+**WARN: (IMPPP-354):	The power planner did not generate the vertical stripe at 56.255001 6.480000 56.255001 70.680000 with width 1.800000 due to one of these reasons: the stripe would merge with rings, the stripe could not connect to any legal target, or the stripe would break the design rule.
+Type 'man IMPPP-354' for more detail.
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 4 wires.
+ViaGen created 8 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+| metal8 |        1       |       NA       |
+|  via8  |        2       |        0       |
+|  via9  |        6       |        0       |
+| metal10|        3       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:46:12, total cpu=0:00:00.0, real=0:00:00.0, peak res=1636.3M, current mem=1636.3M)
+@file 11:
+#@ End verbose source: _2_power.tcl
+@innovus 12> delete_all_floorplan_objs 
+There is no pin guide defined.
+**WARN: (IMPFP-6001):	NO matching routing blockage found. Nothing deleted. 
+There is no pin blockage which matches the wildcard name [*].
+@innovus 13> source _2_power.tcl 
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:46:23, mem=1636.2M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Ring generation is complete.
+vias are now being generated.
+add_rings created 8 wires.
+ViaGen created 8 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+| metal9 |        4       |       NA       |
+|  via9  |        8       |        0       |
+| metal10|        4       |       NA       |
++--------+----------------+----------------+
+#% End add_rings (date=08/15 13:46:23, total cpu=0:00:00.0, real=0:00:00.0, peak res=1636.2M, current mem=1636.2M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 4 -start_from left -start_offset 12 -stop_offset 12 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:46:23, mem=1636.2M)
+
+Initialize fgc environment(mem: 2262.3M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2262.3M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 8 wires.
+ViaGen created 16 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       16       |        0       |
+| metal10|        8       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:46:23, total cpu=0:00:00.0, real=0:00:00.0, peak res=1636.2M, current mem=1636.2M)
+@file 11:
+#@ End verbose source: _2_power.tcl
+@innovus 14> set_db add_stripes_ignore_block_check false ; set_db add_stripes_break_at none ; set_db add_stripes_route_over_rows_only false ; set_db add_stripes_rows_without_stripes_only false ; set_db add_stripes_extend_to_closest_target none ; set_db add_stripes_stop_at_last_wire_for_area false ; set_db add_stripes_partial_set_through_domain false ; set_db add_stripes_ignore_non_default_domains false ; set_db add_stripes_trim_antenna_back_to_shape none ; set_db add_stripes_spacing_type edge_to_edge ; set_db add_stripes_spacing_from_block 0 ; set_db add_stripes_stripe_min_length stripe_width ; set_db add_stripes_stacked_via_top_layer metal10 ; set_db add_stripes_stacked_via_bottom_layer metal1 ; set_db add_stripes_via_using_exact_crossover_size false ; set_db add_stripes_split_vias false ; set_db add_stripes_orthogonal_only true ; set_db add_stripes_allow_jog { padcore_ring  block_ring } ; set_db add_stripes_skip_via_on_pin {  standardcell } ; set_db add_stripes_skip_via_on_wire_shape {  noshape   }
+When breaking rings, the power planner will consider the existence of blocks.
+Stripes will not be created over regions without power planning wires.
+Stripes will not extend to closest target.
+Stripes will stop at the boundary of the specified area.
+The entire stripe set will break at the domain if one of the nets is not in the domain.
+add_stripes will break automatically at non-default domains when generating global stripes over the core area or default domain.
+The power planner will set stripe antenna targets to none (no trimming allowed).
+Offset for stripe breaking is set to 0.
+add_stripes will allow jog to connect padcore ring and block ring.
+
+@innovus 15> add_stripes will allow jog to connect padcore ring and block ring.
+
+Stripes will stop at the boundary of the specified area.
+When breaking rings, the power planner will consider the existence of blocks.
+Stripes will not extend to closest target.
+The power planner will set stripe antenna targets to none (no trimming allowed).
+Stripes will not be created over regions without power planning wires.
+The entire stripe set will break at the domain if one of the nets is not in the domain.
+add_stripes will break automatically at non-default domains when generating global stripes over the core area or default domain.
+Offset for stripe breaking is set to 0.
+add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.8 -set_to_set_distance 12 -start_from left -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:47:54, mem=1651.2M)
+
+Initialize fgc environment(mem: 2276.3M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2276.3M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2276.3M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2276.3M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2276.3M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 10 wires.
+ViaGen created 20 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       20       |        0       |
+| metal10|       10       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:47:54, total cpu=0:00:00.0, real=0:00:00.0, peak res=1651.2M, current mem=1651.2M)
+@innovus 16> set_db add_stripes_ignore_block_check false ; set_db add_stripes_break_at none ; set_db add_stripes_route_over_rows_only false ; set_db add_stripes_rows_without_stripes_only false ; set_db add_stripes_extend_to_closest_target none ; set_db add_stripes_stop_at_last_wire_for_area false ; set_db add_stripes_partial_set_through_domain false ; set_db add_stripes_ignore_non_default_domains false ; set_db add_stripes_trim_antenna_back_to_shape none ; set_db add_stripes_spacing_type edge_to_edge ; set_db add_stripes_spacing_from_block 0 ; set_db add_stripes_stripe_min_length stripe_width ; set_db add_stripes_stacked_via_top_layer metal10 ; set_db add_stripes_stacked_via_bottom_layer metal1 ; set_db add_stripes_via_using_exact_crossover_size false ; set_db add_stripes_split_vias false ; set_db add_stripes_orthogonal_only true ; set_db add_stripes_allow_jog { padcore_ring  block_ring } ; set_db add_stripes_skip_via_on_pin {  standardcell } ; set_db add_stripes_skip_via_on_wire_shape {  noshape   }
+When breaking rings, the power planner will consider the existence of blocks.
+Stripes will not be created over regions without power planning wires.
+Stripes will not extend to closest target.
+Stripes will stop at the boundary of the specified area.
+The entire stripe set will break at the domain if one of the nets is not in the domain.
+add_stripes will break automatically at non-default domains when generating global stripes over the core area or default domain.
+The power planner will set stripe antenna targets to none (no trimming allowed).
+Offset for stripe breaking is set to 0.
+add_stripes will allow jog to connect padcore ring and block ring.
+
+@innovus 17> add_stripes will allow jog to connect padcore ring and block ring.
+
+Stripes will stop at the boundary of the specified area.
+When breaking rings, the power planner will consider the existence of blocks.
+Stripes will not extend to closest target.
+The power planner will set stripe antenna targets to none (no trimming allowed).
+Stripes will not be created over regions without power planning wires.
+The entire stripe set will break at the domain if one of the nets is not in the domain.
+add_stripes will break automatically at non-default domains when generating global stripes over the core area or default domain.
+Offset for stripe breaking is set to 0.
+add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 5 -start_from left -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:49:05, mem=1664.7M)
+
+Initialize fgc environment(mem: 2280.8M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2280.8M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2280.8M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2280.8M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2280.8M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 10 wires.
+ViaGen created 20 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       20       |        0       |
+| metal10|       10       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:49:05, total cpu=0:00:00.0, real=0:00:00.0, peak res=1664.8M, current mem=1664.8M)
+@innovus 18> source _2_power.tcl 
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:52:20, mem=1676.4M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:52:20, total cpu=0:00:00.0, real=0:00:00.0, peak res=1676.4M, current mem=1676.4M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@@file 10: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 12 -stop_offset 12 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:52:20, mem=1676.4M)
+
+Initialize fgc environment(mem: 2281.9M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 6 wires.
+ViaGen created 12 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       12       |        0       |
+| metal10|        6       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:52:20, total cpu=0:00:00.0, real=0:00:00.0, peak res=1676.4M, current mem=1676.4M)
+@file 11:
+#@ End verbose source: _2_power.tcl
+@innovus 19> source _2_power.tcl 
+#@ Begin verbose source (pre): source _2_power.tcl 
+@@file 1: delete_global_net_connections
+@@file 2: connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 3: connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 4: connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+@@file 5: connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+@@file 6: set_db add_rings_target default ;
+The ring targets are set to core/block ring wires.
+@@file 6: set_db add_rings_extend_over_row 0 ;
+add_rings command will disallow rings to go over rows.
+@@file 6: set_db add_rings_ignore_rows 0 ;
+add_rings command will consider rows while creating rings.
+@@file 6: set_db add_rings_avoid_short 0 ;
+add_rings command will ignore shorts while creating rings.
+@@file 6: set_db add_rings_skip_shared_inner_ring none ;
+@@file 6: set_db add_rings_stacked_via_top_layer metal10 ;
+@@file 6: set_db add_rings_stacked_via_bottom_layer metal1 ;
+@@file 6: set_db add_rings_via_using_exact_crossover_size 1 ;
+@@file 6: set_db add_rings_orthogonal_only true ;
+@@file 6: set_db add_rings_skip_via_on_pin {  standardcell } ;
+@@file 6: set_db add_rings_skip_via_on_wire_shape {  noshape }
+@@file 7: add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+#% Begin add_rings (date=08/15 13:53:28, mem=1676.3M)
+
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Ring generation is complete.
+#% End add_rings (date=08/15 13:53:28, total cpu=0:00:00.0, real=0:00:00.0, peak res=1676.3M, current mem=1676.3M)
+@@file 8: set_db add_stripes_ignore_drc 1
+add_stripes will ignore design rule checking when generating stripes.
+@@file 9: set_db generate_special_via_ignore_drc 1
+Setting generate_special_via_ignore_drc to 1. ViaGen will skip DRC check while creating vias.
+@file 10: # change -number_of_sets, start_offset, -stop_offset
+@@file 11: add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 11.25 -stop_offset 11.25 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+#% Begin add_stripes (date=08/15 13:53:28, mem=1676.3M)
+
+Initialize fgc environment(mem: 2281.9M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 2281.9M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  NONE
+Stripe generation is complete.
+vias are now being generated.
+add_stripes created 6 wires.
+ViaGen created 12 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via9  |       12       |        0       |
+| metal10|        6       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=08/15 13:53:28, total cpu=0:00:00.0, real=0:00:00.0, peak res=1676.3M, current mem=1676.3M)
+@file 12:
+#@ End verbose source: _2_power.tcl
+@innovus 20> source _3_Sroute.tcl 
+
+#@ Begin verbose source (pre): source _3_Sroute.tcl 
+@@file 1: set_db route_special_via_connect_to_shape { stripe }
+@@file 2: route_special -connect {core_pin} -layer_change_range { metal1(1) metal10(10) } -block_pin_target {nearest_target} -core_pin_target {first_after_row_end} -allow_jogging 1 -crossover_via_layer_range { metal1(1) metal10(10) } -nets { VDD VSS } -allow_layer_change 1 -target_via_layer_range { metal1(1) metal10(10) } 
+#% Begin route_special (date=08/15 13:55:14, mem=1676.3M)
+**WARN: (IMPSR-4058):	Route_special option: blockPinTarget should be used in conjunction with option: -connect blockPin. 
+*** Begin SPECIAL ROUTE on Fri Aug 15 13:55:14 2025 ***
+SPECIAL ROUTE ran on directory: /home/lunayang/Documents/SIMAX/layout/layout_4
+SPECIAL ROUTE ran on machine: coe-ece-taco (Linux 4.18.0-553.58.1.el8_10.x86_64 Xeon 1.90Ghz)
+
+Begin option processing ...
+srouteConnectPowerBump set to false
+routeSelectNet set to "VDD VSS"
+routeSpecial set to true
+srouteBottomLayerLimit set to 1
+srouteBottomTargetLayerLimit set to 1
+srouteConnectBlockPin set to false
+srouteConnectConverterPin set to false
+srouteConnectPadPin set to false
+srouteConnectStripe set to false
+srouteCrossoverViaBottomLayer set to 1
+srouteCrossoverViaTopLayer set to 10
+srouteFollowCorePinEnd set to 3
+srouteFollowPadPin set to false
+srouteJogControl set to "preferWithChanges differentLayer"
+srouteNoViaOnWireShape set to "padring ring blockring blockpin coverpin noshape blockwire corewire followpin iowire"
+sroutePadPinAllPorts set to true
+sroutePreserveExistingRoutes set to true
+srouteRoutePowerBarPortOnBothDir set to true
+srouteStopBlockPin set to "nearestTarget"
+srouteTopLayerLimit set to 10
+srouteTopTargetLayerLimit set to 10
+End option processing: cpu: 0:00:00, real: 0:00:00, peak: 3827.00 megs.
+
+Reading DB technology information...
+Finished reading DB technology information.
+Reading floorplan and netlist information...
+Finished reading floorplan and netlist information.
+Read in 20 layers, 10 routing layers, 1 overlap layer
+Read in 134 macros, 35 used
+Read in 35 components
+  35 core components: 35 unplaced, 0 placed, 0 fixed
+Read in 62 logical pins
+Read in 62 nets
+Read in 2 special nets, 2 routed
+Read in 70 terminals
+2 nets selected.
+
+Begin power routing ...
+CPU time for VDD FollowPin 0 seconds
+CPU time for VSS FollowPin 0 seconds
+  Number of Core ports routed: 86
+  Number of Followpin connections: 43
+End power routing: cpu: 0:00:00, real: 0:00:00, peak: 3838.00 megs.
+
+
+
+ Begin updating DB with routing results ...
+ Updating DB with 0 via definition ...
+route_special created 129 wires.
+ViaGen created 1935 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+| metal1 |       129      |       NA       |
+|  via1  |       215      |        0       |
+|  via2  |       215      |        0       |
+|  via3  |       215      |        0       |
+|  via4  |       215      |        0       |
+|  via5  |       215      |        0       |
+|  via6  |       215      |        0       |
+|  via7  |       215      |        0       |
+|  via8  |       215      |        0       |
+|  via9  |       215      |        0       |
++--------+----------------+----------------+
+#% End route_special (date=08/15 13:55:14, total cpu=0:00:00.1, real=0:00:00.0, peak res=1692.6M, current mem=1685.2M)
+@file 3:
+#@ End verbose source: _3_Sroute.tcl
+@innovus 21> 

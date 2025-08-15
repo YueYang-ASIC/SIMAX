@@ -1,0 +1,65 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+
+# Library sets
+create_library_set -name nangate_libset_fast \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_fast_ccs.lib]
+
+create_library_set -name nangate_libset_typical \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_typical_ccs.lib]
+
+create_library_set -name nangate_libset_worst \
+   -timing \
+    [list ../../lib/NangateOpenCellLibrary_worst_low_ccs.lib]
+
+# Timing conditions
+create_timing_condition -name nangate_tc_fast \
+   -library_sets [list nangate_libset_fast]
+
+create_timing_condition -name nangate_tc_typical \
+   -library_sets [list nangate_libset_typical]
+
+create_timing_condition -name nangate_tc_worst \
+   -library_sets [list nangate_libset_worst]
+
+# RC corner
+create_rc_corner -name nangate_rc_typical \
+   -pre_route_res 1 \
+   -post_route_res 1 \
+   -pre_route_cap 1 \
+   -post_route_cap 1 \
+   -post_route_cross_cap 1 \
+   -pre_route_clock_res 0 \
+   -pre_route_clock_cap 0
+
+# Delay corners
+create_delay_corner -name nangate_delay_corner_fast \
+   -timing_condition nangate_tc_fast \
+   -rc_corner nangate_rc_typical
+
+create_delay_corner -name nangate_delay_corner_typical \
+   -timing_condition nangate_tc_typical \
+   -rc_corner nangate_rc_typical
+
+create_delay_corner -name nangate_delay_corner_worst \
+   -timing_condition nangate_tc_worst \
+   -rc_corner nangate_rc_typical
+
+# Constraint mode
+create_constraint_mode -name nangate_constraint_mode \
+   -sdc_files [list top.sdc]
+
+# Analysis views
+create_analysis_view -name nangate_view_setup \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_worst
+
+create_analysis_view -name nangate_view_hold \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_fast
+
+# Set analysis views
+set_analysis_view -setup [list nangate_view_setup] -hold [list nangate_view_hold]
+
