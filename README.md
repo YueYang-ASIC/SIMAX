@@ -49,10 +49,10 @@ Set them via `parameter` values in `top.v`:
 4. **Run**: `make NAME=top synth`
 5. **Review output**: QoR and power are printed to terminal **and** saved to: `top.rpt`
 6. **Adjust clock** based on slack. Edit `dc-template.tcl`:
-      \* Negative slack ⇒ increase `clk_period` (slow down).
-      \* Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
+- Negative slack ⇒ increase `clk_period` (slow down).
+- Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
 7. Re-run `make NAME=top synth`.
-8. remove generated outputs `make NAME=top cleanall`
+8. Remove generated outputs `make NAME=top cleanall`
 
 
 

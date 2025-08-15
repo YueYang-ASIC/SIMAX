@@ -112,8 +112,13 @@ check_timing
 check_design
 
 # dc_shell  
-redirect -tee top.rpt {report_qor}
-redirect -append -tee top.rpt {report_power}
+#redirect -tee top.rpt {report_qor}
+#redirect -append -tee top.rpt {report_power}
+
+report_qor -nosplit | sh egrep -i '^(Critical Path Slack|Critical Path Clk Period|Total Negative Slack|No\. of Violating Paths|Worst Hold Violation|Total Hold Violation|No\. of Hold Violations)'
+report_area -nosplit    | sh egrep -i '^Cell Area'
+report_design_rules -nosplit | sh egrep -i '^(Nets With Violations|Max Trans Violations|Max Cap Violations)'
+report_power -significant_digits 3 -nosplit | sh egrep -i '^(Total Dynamic Power|Cell Leakage Power)'
 
 
 
