@@ -8688,3 +8688,32 @@ source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/synthesis/384Top_SY
 #@ 
 #@ 
 #@ compile_ultra
+#@ 
+#@ # Comment "ungroup" line to maybe see some submodules
+#@ if { [sizeof_collection [get_cells * -filter "is_hierarchical==true"]] > 0 } {
+#@    ungroup -all -flatten -simple_names
+#@    }
+#@ # compile -map_effort medium    # May help, or maybe not
+#@ 
+#@ #===== Reports
+#@ write -format verilog -output top.vg -hierarchy $NameDesign
+#@ write_sdc	top.sdc
+#@ 
+#@ 
+#@ #report_area               > top.area
+#@ #report_cell               > top.cell
+#@ #report_hierarchy          > top.hier
+#@ #report_net                > top.net
+#@ #report_power              > top.pow
+#@ #report_timing -nworst 10  > top.tim
+#@ 
+#@ check_timing
+#@ check_design
+#@ 
+#@ # dc_shell  
+#@ redirect -tee top.rpt {report_qor}
+#@ redirect -append -tee top.rpt {report_power}
+#@ 
+#@ 
+#@ 
+#@ exit
