@@ -1,0 +1,13 @@
+set_db route_design_with_timing_driven 1
+set_db route_design_with_si_driven 1
+set_db route_design_selected_net_only 1
+set_db route_design_top_routing_layer 10
+set_db route_design_bottom_routing_layer 1
+set_db route_design_detail_end_iteration 1 
+set_db route_design_detail_use_multi_cut_via_effort medium
+set_db timing_analysis_type ocv
+route_opt_design
+time_design -post_route 
+time_design -post_route -hold 
+set_db opt_all_end_points true
+

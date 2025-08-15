@@ -14144,3 +14144,18 @@ Initializing multi-corner resistance tables ...
 **INFO(INTERRUPT): Type a number 1-5 and press ENTER:  
 
 **INFO(INTERRUPT): Type a number 1-5 and press ENTER:  
+[A
+**INFO(INTERRUPT): Type a number 1-5 and press ENTER:  
+
+**INFO(INTERRUPT): Type a number 1-5 and press ENTER:  
+**INFO (INTERRUPT): The current command will stop at next legal exit point.
+**INFO (INTERRUPT): The current script will stop before next command.
+**INFO (INTERRUPT): One more Ctrl-C to exit Innovus ...
+
+**INFO(INTERRUPT): Type a number 1-5 and press ENTER:  
+Innovus terminated by user interrupt.
+
+*** Memory Usage v#1 (Current mem = 3447.156M, initial mem = 503.027M) ***
+*** Message Summary: 1912 warning(s), 2 error(s)
+
+--- Ending "Innovus" (totcpu=0:24:51, real=338:07:33, mem=3447.2M) ---

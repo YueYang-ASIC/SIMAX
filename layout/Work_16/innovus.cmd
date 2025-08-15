@@ -549,3 +549,5 @@ group_path -name failing -to result_reg_reg[3]
 set_path_group_options failing -effort_level high
 route_opt_design -opt -hold
 route_opt_design -opt -hold
+gui_deselect -all
+exit

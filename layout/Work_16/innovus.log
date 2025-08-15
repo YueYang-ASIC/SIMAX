@@ -14114,4 +14114,10 @@ Category            Num of Insts Rejected     Reasons
       flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
 UM:          20.56             53          0.000 ns          0.028 ns  route_opt_design
 *** route_opt_design #5 [finish] : cpu/real = 0:00:19.8/0:00:21.3 (0.9), totSession cpu/real = 0:07:45.4/0:53:40.4 (0.1), mem = 3853.4M
-@innovus 365> @innovus 365> 
+@innovus 365> @innovus 365> gui_deselect -all 
+@innovus 366> exit
+
+*** Memory Usage v#1 (Current mem = 3781.414M, initial mem = 503.000M) ***
+*** Message Summary: 1508 warning(s), 12 error(s)
+
+--- Ending "Innovus" (totcpu=8:30:38, real=336:17:37, mem=3781.4M) ---

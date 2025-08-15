@@ -1,0 +1,1474 @@
+#######################################################
+#                                                     
+#  Innovus Command Logging File                     
+#  Created on Thu Jul 24 10:34:37 2025                
+#                                                     
+#######################################################
+
+#@(#)CDS: Innovus v21.18-s099_1 (64bit) 07/18/2023 13:03 (Linux 3.10.0-693.el7.x86_64)
+#@(#)CDS: NanoRoute 21.18-s099_1 NR230707-1955/21_18-UB (database version 18.20.605) {superthreading v2.17}
+#@(#)CDS: AAE 21.18-s017 (64bit) 07/18/2023 (Linux 3.10.0-693.el7.x86_64)
+#@(#)CDS: CTE 21.18-s022_1 () Jul 11 2023 23:10:24 ( )
+#@(#)CDS: SYNTECH 21.18-s010_1 () Jul  5 2023 06:32:03 ( )
+#@(#)CDS: CPE v21.18-s053
+#@(#)CDS: IQuantus/TQuantus 21.1.1-s966 (64bit) Wed Mar 8 10:22:20 PST 2023 (Linux 3.10.0-693.el7.x86_64)
+
+set_db init_power_nets VDD
+set_db init_ground_nets VSS
+read_mmmc top.mmmc
+#@ Begin verbose source top.mmmc (pre)
+create_library_set -name nangate_libset_fast \
+   -timing \
+    [list /home/lunayang/Documents/Many-Core-SIMD-Research/lib/NangateOpenCellLibrary_fast_ccs.lib]
+create_library_set -name nangate_libset_typical \
+   -timing \
+    [list /home/lunayang/Documents/Many-Core-SIMD-Research/lib/NangateOpenCellLibrary_typical_ccs.lib]
+create_library_set -name nangate_libset_worst \
+   -timing \
+    [list /home/lunayang/Documents/Many-Core-SIMD-Research/lib/NangateOpenCellLibrary_worst_low_ccs.lib]
+create_timing_condition -name nangate_tc_fast \
+   -library_sets [list nangate_libset_fast]
+create_timing_condition -name nangate_tc_typical \
+   -library_sets [list nangate_libset_typical]
+create_timing_condition -name nangate_tc_worst \
+   -library_sets [list nangate_libset_worst]
+create_rc_corner -name nangate_rc_typical \
+   -pre_route_res 1 \
+   -post_route_res 1 \
+   -pre_route_cap 1 \
+   -post_route_cap 1 \
+   -post_route_cross_cap 1 \
+   -pre_route_clock_res 0 \
+   -pre_route_clock_cap 0
+create_delay_corner -name nangate_delay_corner_fast \
+   -timing_condition nangate_tc_fast \
+   -rc_corner nangate_rc_typical
+create_delay_corner -name nangate_delay_corner_typical \
+   -timing_condition nangate_tc_typical \
+   -rc_corner nangate_rc_typical
+create_delay_corner -name nangate_delay_corner_worst \
+   -timing_condition nangate_tc_worst \
+   -rc_corner nangate_rc_typical
+create_constraint_mode -name nangate_constraint_mode \
+   -sdc_files [list top.sdc]
+create_analysis_view -name nangate_view_setup \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_worst
+create_analysis_view -name nangate_view_hold \
+   -constraint_mode nangate_constraint_mode \
+   -delay_corner nangate_delay_corner_fast
+set_analysis_view -setup [list nangate_view_setup] -hold [list nangate_view_hold]
+#@ End verbose source top.mmmc
+gui_select -point {62.43650 6.46650}
+set_io_flow_flag 0
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.993756948602 0.700001 10 10 10 10
+set_io_flow_flag 0
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.969840331165 0.699918 100 100 100 100
+set_io_flow_flag 0
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.945867044791 0.699575 10 10 10 10
+check_floorplan -place -power_domain -feed_through -partition_clone -report_density -multi_layer_pin -partition_in_partition -bus_guide -out_file top.checkFPlan
+check_timing_library_consistency 
+check_floorplan
+gui_select -point {110.82500 92.09600}
+gui_select -point {110.82500 92.09600}
+set_db finish_floorplan_active_objs {core macro}
+set_db finish_floorplan_drc_region_objs {macro macro_halo hard_blockage min_gap core_spacing}
+set_db finish_floorplan_add_blockage_direction xy
+set_db finish_floorplan_override false
+finish_floorplan -auto_halo
+check_floorplan -place -power_domain -feed_through -partition_clone -report_density -multi_layer_pin -partition_in_partition -bus_guide -out_file top.checkFPlan
+check_timing_library_consistency 
+set_partition_pin_status -partition top -pins clk -status unplaced -quiet
+set_db assign_pins_edit_in_batch true
+edit_pin -fix_overlap 1 -unit micron -spread_direction clockwise -side Bottom -layer 1 -spread_type start -spacing 1.0 -start 0.0 0.0 -pin clk
+set_db assign_pins_edit_in_batch false
+set_partition_pin_status -partition top -pins {x_vector_flat[0]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[1]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[2]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[3]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[4]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[5]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[6]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[7]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[8]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[9]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[10]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[11]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[12]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[13]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[14]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[15]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[16]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[17]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[18]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[19]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[20]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[21]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[22]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[23]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[24]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[25]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[26]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[27]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[28]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[29]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[30]} -status unplaced -quiet
+set_partition_pin_status -partition top -pins {x_vector_flat[31]} -status unplaced -quiet
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+gui_select -point {-5.37950 62.76800}
+set_partition_pin_status -partition top -pins clk -status unplaced -quiet
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+gui_select -point {16.60800 -10.06300}
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+write_io_file -locations top.save.io
+delete_global_net_connections
+connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+delete_global_net_connections
+connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+set_db add_rings_target default
+set_db add_rings_extend_over_row 0
+set_db add_rings_ignore_rows 0
+set_db add_rings_avoid_short 0
+set_db add_rings_skip_shared_inner_ring none
+set_db add_rings_stacked_via_top_layer metal10
+set_db add_rings_stacked_via_bottom_layer metal1
+set_db add_rings_via_using_exact_crossover_size 1
+set_db add_rings_orthogonal_only true
+set_db add_rings_skip_via_on_pin {  standardcell }
+set_db add_rings_skip_via_on_wire_shape {  noshape }
+add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+gui_select -point {166.66500 92.79600}
+set_db add_stripes_ignore_drc 1
+set_db generate_special_via_ignore_drc 1
+gui_select -point {281.74900 -40.18250}
+set_db add_stripes_ignore_block_check false
+set_db add_stripes_break_at none
+set_db add_stripes_route_over_rows_only false
+set_db add_stripes_rows_without_stripes_only false
+set_db add_stripes_extend_to_closest_target none
+set_db add_stripes_stop_at_last_wire_for_area false
+set_db add_stripes_partial_set_through_domain false
+set_db add_stripes_ignore_non_default_domains false
+set_db add_stripes_trim_antenna_back_to_shape none
+set_db add_stripes_spacing_type edge_to_edge
+set_db add_stripes_spacing_from_block 0
+set_db add_stripes_stripe_min_length stripe_width
+set_db add_stripes_stacked_via_top_layer metal10
+set_db add_stripes_stacked_via_bottom_layer metal1
+set_db add_stripes_via_using_exact_crossover_size false
+set_db add_stripes_split_vias false
+set_db add_stripes_orthogonal_only true
+set_db add_stripes_allow_jog { padcore_ring  block_ring }
+set_db add_stripes_skip_via_on_pin {  standardcell }
+set_db add_stripes_skip_via_on_wire_shape {  noshape   }
+add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 5 -start_from left -start_offset 10 -switch_layer_over_obs true -merge_stripes_value auto -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+set_power_output_dir -reset
+set_power_output_dir ./run1
+set_default_switching_activity -reset
+set_default_switching_activity -input_activity 0.2 -period 10.0
+read_activity_file -reset
+set_power -reset
+set_dynamic_power_simulation -reset
+report_power -rail_analysis_format VS -out_file ./run1/top.rpt
+gui_select -point {156.64000 30.33100}
+set_rail_analysis_config -method era_static -power_switch_eco false -write_movies false -write_voltage_waveforms false -accuracy xd -analysis_view nangate_view_setup -process_techgen_em_rules false -enable_rlrp_analysis false -extraction_tech_file gpdk045.tch -voltage_source_search_distance 50 -ignore_shorts false -enable_mfg_effects false -report_via_current_direction false
+write_power_pads -net VDD -auto_fetch
+write_power_pads -net VDD -auto_fetch
+gui_select -point {140.86500 21.08000}
+write_power_pads -net VDD -voltage_source_file top.pp
+set_pg_nets -net VDD -voltage 0.9 -threshold 0.81
+set_power_data -reset
+set_power_data -format current -scale 1 run1/static_VDD.ptiavg
+set_power_pads -reset
+set_power_pads -net VDD -format xy -file top.pp
+set_package -reset
+set_package -spice_model_file {} -mapping_file {}
+set_net_group -reset
+set_advanced_rail_options -reset
+report_rail -type net -results_directory ./run1 VDD
+gui_select -point {158.13700 84.34900}
+set_rail_analysis_config -ignore_incomplete_net 1
+set_rail_analysis_config -ignore_incomplete_net 
+set_rail_analysis_config -ignore_incomplete_net true
+man set_rail_analysis_config
+gui_select -point {-23.36400 85.73250}
+set_db route_special_via_connect_to_shape { noshape }
+eval_legacy { sroute -connect { blockPin padPin padRing corePin floatingStripe } -layerChangeRange { metal1(1) metal10(10) } -blockPinTarget { nearestTarget } -padPinPortConnect { allPort oneGeom } -padPinTarget { nearestTarget } -corePinTarget { firstAfterRowEnd } -floatingStripeTarget { blockring padring ring stripe ringpin blockpin followpin } -blockPinRouteWithPinWidth -blockPinConnectRingPinCorners -allowJogging 1 -crossoverViaLayerRange { metal1(1) metal10(10) } -nets { VDD VSS } -allowLayerChange 1 -blockPin useLef -targetViaLayerRange { metal1(1) metal10(10) } }
+place_opt_design 
+gui_select -point {158.13700 42.01750}
+set_layer_preference pinObj -is_visible 1
+set_layer_preference node_gird -is_visible 1
+set_layer_preference node_gird -is_visible 0
+set_layer_preference node_track -is_visible 1
+set_layer_preference node_track -is_visible 0
+set_layer_preference FreePDK45_38x28_10R_NP_162NW_34O -is_visible 1
+set_layer_preference FreePDK45_38x28_10R_NP_162NW_34O -is_visible 0
+set_layer_preference FreePDK45_38x28_10R_NP_162NW_34O -is_visible 1
+set_layer_preference FreePDK45_38x28_10R_NP_162NW_34O -is_visible 0
+set_layer_preference sitePattern -is_visible 1
+set_layer_preference sitePattern -is_visible 0
+set_layer_preference cellBlkgObj -is_visible 1
+set_layer_preference cellBlkgObj -is_visible 0
+set_layer_preference cellBlkgObj -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference metal9 -is_visible 1
+set_layer_preference metal10 -is_visible 1
+set_layer_preference via8 -is_visible 1
+set_layer_preference via9 -is_visible 1
+set_layer_preference metal8 -is_visible 1
+set_layer_preference via7 -is_visible 1
+set_layer_preference metal7 -is_visible 1
+set_layer_preference via6 -is_visible 1
+set_layer_preference metal6 -is_visible 1
+set_layer_preference metal5 -is_visible 1
+set_layer_preference metal4 -is_visible 1
+set_layer_preference metal3 -is_visible 1
+set_layer_preference metal2 -is_visible 1
+set_layer_preference metal1 -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference metal1 -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference metal1 -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference routeCongest -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference gcellOvflow -is_visible 1
+set_layer_preference node_net -is_visible 0
+gui_select -point {-11.19000 47.55100}
+set_layer_preference node_layer -is_visible 0
+set_layer_preference congChan -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference routeCongest -color magenta
+set_layer_preference congChan -color magenta -stipple horizontal
+set_layer_preference routeCongest -color magenta -stipple backslash
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference node_layer -is_visible 1
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference power -is_visible 1
+set_layer_preference power -is_visible 0
+set_layer_preference pgPower -is_visible 1
+set_layer_preference pgPower -is_visible 0
+set_layer_preference pgGround -is_visible 1
+set_layer_preference pgGround -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference groupmain_Congestion -is_visible 0
+set_layer_preference congestH -is_visible 0
+set_layer_preference congestV -is_visible 0
+set_layer_preference gcellOvflow -is_visible 0
+set_layer_preference congest -is_visible 0
+set_layer_preference congestObj -is_visible 0
+gui_select -point {147.80450 59.01200}
+set_layer_preference active -is_visible 0
+set_layer_preference active -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference node_layer -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference metal2 -is_visible 0
+set_layer_preference metal2 -is_visible 1
+set_layer_preference metal3 -is_visible 0
+set_layer_preference metal3 -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference metal4 -is_visible 1
+set_layer_preference metal4 -is_visible 0
+set_layer_preference metal5 -is_visible 1
+set_layer_preference metal5 -is_visible 0
+set_layer_preference metal5 -is_visible 1
+set_layer_preference metal5 -is_visible 0
+set_layer_preference stdCell -is_visible 0
+set_layer_preference metal5 -is_visible 1
+set_layer_preference metal5 -is_visible 0
+set_layer_preference metal4 -is_visible 1
+set_layer_preference metal3 -is_visible 1
+set_layer_preference metal2 -is_visible 1
+set_layer_preference metal1 -is_visible 1
+set_layer_preference stdCell -is_visible 1
+set_layer_preference stdCell -is_visible 0
+set_layer_preference stdCell -is_visible 1
+set_layer_preference via1 -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference via1 -is_visible 1
+set_layer_preference via1 -is_visible 0
+set_layer_preference via1 -is_visible 1
+set_layer_preference via1 -is_visible 0
+set_layer_preference stdCell -is_visible 0
+set_layer_preference metal1 -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference via1 -is_visible 1
+set_layer_preference stdCell -is_visible 1
+set_layer_preference via1 -is_visible 0
+set_layer_preference node_layer -is_visible 1
+gui_select -point {59.97700 52.48100}
+set_layer_preference groupmain_Congestion -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_track -is_visible 1
+set_layer_preference node_track -is_visible 0
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference groupmain_Congestion -is_visible 0
+set_layer_preference congestH -is_visible 0
+set_layer_preference congestV -is_visible 0
+set_layer_preference gcellOvflow -is_visible 0
+set_layer_preference congest -is_visible 0
+set_layer_preference congestObj -is_visible 0
+set_layer_preference densityMap -is_visible 0
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference node_overlay -is_visible 0
+set_layer_preference densityMap -is_visible 1
+set_db report_place_density_map_grid_unit 50
+set_db report_place_density_map_threshold 0.75
+set_layer_preference densityMap -color {#000066 #00006d #000074 #00007b #000082 #000089 #000090 #000097 #00009e #0000a5 #0000ac #0000b3 #0000bb #0000c2 #0000c9 #0000d0 #0000d7 #0000de #0000e5 #0000ec #0000f3 #0000fa #0005ff #0011ff #001eff #002aff #0037ff #0043ff #0050ff #005cff #0069ff #0076ff #0082ff #008fff #009bff #00a8ff #00b4ff #00c1ff #00cdff #00daff #00e7ff #00f3ff #00fefd #00f8f2 #00f2e6 #00ecda #00e6ce #00e0c2 #00dbb7 #00d5ab #00cf9f #00c993 #00c387 #00bd7c #00b770 #00b164 #00ab58 #00a54c #009f40 #009a35 #009429 #008e1d #008811 #008205 #058200 #118800 #1d8e00 #299400 #359a00 #409f00 #4ca500 #58ab00 #64b100 #70b700 #7cbd00 #87c300 #93c900 #9fcf00 #abd500 #b7db00 #c2e000 #cee600 #daec00 #e6f200 #f2f800 #fdfe00 #fff300 #ffe700 #ffda00 #ffcd00 #ffc100 #ffb400 #ffa800 #ff9b00 #ff8f00 #ff8200 #ff7600 #ff6900 #ff5c00 #ff5000 #ff4300 #ff3700 #ff2a00 #ff1e00 #ff1100 #ff0500 #ff0606 #ff1212 #ff1e1e #ff2a2a #ff3636 #ff4242 #ff4d4d #ff5959 #ff6565 #ff7171 #ff7d7d #ff8888 #ff9494 #ffa0a0 #ffacac #ffb8b8 #ffc3c3 #ffcfcf #ffdbdb #ffe7e7 #fff3f3}
+set_db report_place_density_map_grid_size 10
+set_db report_place_density_map_threshold 0.75
+set_layer_preference densityMap -color {#000066 #00006d #000074 #00007b #000082 #000089 #000090 #000097 #00009e #0000a5 #0000ac #0000b3 #0000bb #0000c2 #0000c9 #0000d0 #0000d7 #0000de #0000e5 #0000ec #0000f3 #0000fa #0005ff #0011ff #001eff #002aff #0037ff #0043ff #0050ff #005cff #0069ff #0076ff #0082ff #008fff #009bff #00a8ff #00b4ff #00c1ff #00cdff #00daff #00e7ff #00f3ff #00fefd #00f8f2 #00f2e6 #00ecda #00e6ce #00e0c2 #00dbb7 #00d5ab #00cf9f #00c993 #00c387 #00bd7c #00b770 #00b164 #00ab58 #00a54c #009f40 #009a35 #009429 #008e1d #008811 #008205 #058200 #118800 #1d8e00 #299400 #359a00 #409f00 #4ca500 #58ab00 #64b100 #70b700 #7cbd00 #87c300 #93c900 #9fcf00 #abd500 #b7db00 #c2e000 #cee600 #daec00 #e6f200 #f2f800 #fdfe00 #fff300 #ffe700 #ffda00 #ffcd00 #ffc100 #ffb400 #ffa800 #ff9b00 #ff8f00 #ff8200 #ff7600 #ff6900 #ff5c00 #ff5000 #ff4300 #ff3700 #ff2a00 #ff1e00 #ff1100 #ff0500 #ff0606 #ff1212 #ff1e1e #ff2a2a #ff3636 #ff4242 #ff4d4d #ff5959 #ff6565 #ff7171 #ff7d7d #ff8888 #ff9494 #ffa0a0 #ffacac #ffb8b8 #ffc3c3 #ffcfcf #ffdbdb #ffe7e7 #fff3f3}
+set_layer_preference densityMap -is_visible 0
+set_layer_preference pinDensityMap -is_visible 1
+set_db report_pin_density_map_grid_size 10
+set_db report_pin_density_map_threshold 0.5
+set_layer_preference pinDensityMap -color {#000066 #00006d #000074 #00007b #000082 #000089 #000090 #000097 #00009e #0000a5 #0000ac #0000b3 #0000bb #0000c2 #0000c9 #0000d0 #0000d7 #0000de #0000e5 #0000ec #0000f3 #0000fa #0005ff #0011ff #001eff #002aff #0037ff #0043ff #0050ff #005cff #0069ff #0076ff #0082ff #008fff #009bff #00a8ff #00b4ff #00c1ff #00cdff #00daff #00e7ff #00f3ff #00fefd #00f8f2 #00f2e6 #00ecda #00e6ce #00e0c2 #00dbb7 #00d5ab #00cf9f #00c993 #00c387 #00bd7c #00b770 #00b164 #00ab58 #00a54c #009f40 #009a35 #009429 #008e1d #008811 #008205 #058200 #118800 #1d8e00 #299400 #359a00 #409f00 #4ca500 #58ab00 #64b100 #70b700 #7cbd00 #87c300 #93c900 #9fcf00 #abd500 #b7db00 #c2e000 #cee600 #daec00 #e6f200 #f2f800 #fdfe00 #fff300 #ffe700 #ffda00 #ffcd00 #ffc100 #ffb400 #ffa800 #ff9b00 #ff8f00 #ff8200 #ff7600 #ff6900 #ff5c00 #ff5000 #ff4300 #ff3700 #ff2a00 #ff1e00 #ff1100 #ff0500 #ff0606 #ff1212 #ff1e1e #ff2a2a #ff3636 #ff4242 #ff4d4d #ff5959 #ff6565 #ff7171 #ff7d7d #ff8888 #ff9494 #ffa0a0 #ffacac #ffb8b8 #ffc3c3 #ffcfcf #ffdbdb #ffe7e7 #fff3f3}
+set_layer_preference pinDensityMap -is_visible 0
+set_layer_preference timingMap -is_visible 1
+set_layer_preference timingMap -color {#ffffff #fff3f3 #ffe7e7 #ffdbdb #ffcfcf #ffc3c3 #ffb8b8 #ffacac #ffa0a0 #ff9494 #ff8888 #ff7d7d #ff7171 #ff6565 #ff5959 #ff4d4d #ff4242 #ff3636 #ff2a2a #ff1e1e #ff1212 #ff0606 #ff0500 #ff1100 #ff1e00 #ff2a00 #ff3700 #ff4300 #ff5000 #ff5c00 #ff6900 #ff7600 #ff8200 #ff8f00 #ff9b00 #ffa800 #ffb400 #ffc100 #ffcd00 #ffda00 #ffe700 #fff300 #fdfe00 #f2f800 #e6f200 #daec00 #cee600 #c2e000 #b7db00 #abd500 #9fcf00 #93c900 #87c300 #7cbd00 #70b700 #64b100 #58ab00 #4ca500 #409f00 #359a00 #299400 #1d8e00 #118800 #058200 #008205 #008811 #008e1d #009429 #009a35 #009f40 #00a54c #00ab58 #00b164 #00b770 #00bd7c #00c387 #00c993 #00cf9f #00d5ab #00dbb7 #00e0c2 #00e6ce #00ecda #00f2e6 #00f8f2 #00fefd #00f3ff #00e7ff #00daff #00cdff #00c1ff #00b4ff #00a8ff #009bff #008fff #0082ff #0076ff #0069ff #005cff #0050ff #0043ff #0037ff #002aff #001eff #0011ff #0005ff #0000fa #0000f3 #0000ec #0000e5 #0000de #0000d7 #0000d0 #0000c9 #0000c2 #0000bb #0000b3 #0000ac #0000a5 #00009e #000097 #000090 #000089 #000082 #00007b #000074 #00006d}
+set_layer_preference node_net -is_visible 0
+set_layer_preference node_layer -is_visible 0
+set_layer_preference timingMap -color {#ffffff #fff3f3 #ffe7e7 #ffdbdb #ffcfcf #ffc3c3 #ffb8b8 #ffacac #ffa0a0 #ff9494 #ff8888 #ff7d7d #ff7171 #ff6565 #ff5959 #ff4d4d #ff4242 #ff3636 #ff2a2a #ff1e1e #ff1212 #ff0606 #ff0500 #ff1100 #ff1e00 #ff2a00 #ff3700 #ff4300 #ff5000 #ff5c00 #ff6900 #ff7600 #ff8200 #ff8f00 #ff9b00 #ffa800 #ffb400 #ffc100 #ffcd00 #ffda00 #ffe700 #fff300 #fdfe00 #f2f800 #e6f200 #daec00 #cee600 #c2e000 #b7db00 #abd500 #9fcf00 #93c900 #87c300 #7cbd00 #70b700 #64b100 #58ab00 #4ca500 #409f00 #359a00 #299400 #1d8e00 #118800 #058200 #008205 #008811 #008e1d #009429 #009a35 #009f40 #00a54c #00ab58 #00b164 #00b770 #00bd7c #00c387 #00c993 #00cf9f #00d5ab #00dbb7 #00e0c2 #00e6ce #00ecda #00f2e6 #00f8f2 #00fefd #00f3ff #00e7ff #00daff #00cdff #00c1ff #00b4ff #00a8ff #009bff #008fff #0082ff #0076ff #0069ff #005cff #0050ff #0043ff #0037ff #002aff #001eff #0011ff #0005ff #0000fa #0000f3 #0000ec #0000e5 #0000de #0000d7 #0000d0 #0000c9 #0000c2 #0000bb #0000b3 #0000ac #0000a5 #00009e #000097 #000090 #000089 #000082 #00007b #000074 #00006d}
+set_layer_preference timingMap -color {#ffffff #fff3f3 #ffe7e7 #ffdbdb #ffcfcf #ffc3c3 #ffb8b8 #ffacac #ffa0a0 #ff9494 #ff8888 #ff7d7d #ff7171 #ff6565 #ff5959 #ff4d4d #ff4242 #ff3636 #ff2a2a #ff1e1e #ff1212 #ff0606 #ff0500 #ff1100 #ff1e00 #ff2a00 #ff3700 #ff4300 #ff5000 #ff5c00 #ff6900 #ff7600 #ff8200 #ff8f00 #ff9b00 #ffa800 #ffb400 #ffc100 #ffcd00 #ffda00 #ffe700 #fff300 #fdfe00 #f2f800 #e6f200 #daec00 #cee600 #c2e000 #b7db00 #abd500 #9fcf00 #93c900 #87c300 #7cbd00 #70b700 #64b100 #58ab00 #4ca500 #409f00 #359a00 #299400 #1d8e00 #118800 #058200 #008205 #008811 #008e1d #009429 #009a35 #009f40 #00a54c #00ab58 #00b164 #00b770 #00bd7c #00c387 #00c993 #00cf9f #00d5ab #00dbb7 #00e0c2 #00e6ce #00ecda #00f2e6 #00f8f2 #00fefd #00f3ff #00e7ff #00daff #00cdff #00c1ff #00b4ff #00a8ff #009bff #008fff #0082ff #0076ff #0069ff #005cff #0050ff #0043ff #0037ff #002aff #001eff #0011ff #0005ff #0000fa #0000f3 #0000ec #0000e5 #0000de #0000d7 #0000d0 #0000c9 #0000c2 #0000bb #0000b3 #0000ac #0000a5 #00009e #000097 #000090 #000089 #000082 #00007b #000074 #00006d}
+set_layer_preference timingMap -color {#ffffff #fff3f3 #ffe7e7 #ffdbdb #ffcfcf #ffc3c3 #ffb8b8 #ffacac #ffa0a0 #ff9494 #ff8888 #ff7d7d #ff7171 #ff6565 #ff5959 #ff4d4d #ff4242 #ff3636 #ff2a2a #ff1e1e #ff1212 #ff0606 #ff0500 #ff1100 #ff1e00 #ff2a00 #ff3700 #ff4300 #ff5000 #ff5c00 #ff6900 #ff7600 #ff8200 #ff8f00 #ff9b00 #ffa800 #ffb400 #ffc100 #ffcd00 #ffda00 #ffe700 #fff300 #fdfe00 #f2f800 #e6f200 #daec00 #cee600 #c2e000 #b7db00 #abd500 #9fcf00 #93c900 #87c300 #7cbd00 #70b700 #64b100 #58ab00 #4ca500 #409f00 #359a00 #299400 #1d8e00 #118800 #058200 #008205 #008811 #008e1d #009429 #009a35 #009f40 #00a54c #00ab58 #00b164 #00b770 #00bd7c #00c387 #00c993 #00cf9f #00d5ab #00dbb7 #00e0c2 #00e6ce #00ecda #00f2e6 #00f8f2 #00fefd #00f3ff #00e7ff #00daff #00cdff #00c1ff #00b4ff #00a8ff #009bff #008fff #0082ff #0076ff #0069ff #005cff #0050ff #0043ff #0037ff #002aff #001eff #0011ff #0005ff #0000fa #0000f3 #0000ec #0000e5 #0000de #0000d7 #0000d0 #0000c9 #0000c2 #0000bb #0000b3 #0000ac #0000a5 #00009e #000097 #000090 #000089 #000082 #00007b #000074 #00006d}
+set_layer_preference timingMap -color {#ffffff #fff3f3 #ffe7e7 #ffdbdb #ffcfcf #ffc3c3 #ffb8b8 #ffacac #ffa0a0 #ff9494 #ff8888 #ff7d7d #ff7171 #ff6565 #ff5959 #ff4d4d #ff4242 #ff3636 #ff2a2a #ff1e1e #ff1212 #ff0606 #ff0500 #ff1100 #ff1e00 #ff2a00 #ff3700 #ff4300 #ff5000 #ff5c00 #ff6900 #ff7600 #ff8200 #ff8f00 #ff9b00 #ffa800 #ffb400 #ffc100 #ffcd00 #ffda00 #ffe700 #fff300 #fdfe00 #f2f800 #e6f200 #daec00 #cee600 #c2e000 #b7db00 #abd500 #9fcf00 #93c900 #87c300 #7cbd00 #70b700 #64b100 #58ab00 #4ca500 #409f00 #359a00 #299400 #1d8e00 #118800 #058200 #008205 #008811 #008e1d #009429 #009a35 #009f40 #00a54c #00ab58 #00b164 #00b770 #00bd7c #00c387 #00c993 #00cf9f #00d5ab #00dbb7 #00e0c2 #00e6ce #00ecda #00f2e6 #00f8f2 #00fefd #00f3ff #00e7ff #00daff #00cdff #00c1ff #00b4ff #00a8ff #009bff #008fff #0082ff #0076ff #0069ff #005cff #0050ff #0043ff #0037ff #002aff #001eff #0011ff #0005ff #0000fa #0000f3 #0000ec #0000e5 #0000de #0000d7 #0000d0 #0000c9 #0000c2 #0000bb #0000b3 #0000ac #0000a5 #00009e #000097 #000090 #000089 #000082 #00007b #000074 #00006d}
+set_layer_preference timingMap -is_visible 0
+set_layer_preference metalDensityMap -is_visible 1
+set_layer_preference powerDensity -is_visible 1
+set_layer_preference metalDensityMap -is_visible 0
+set_layer_preference powerDensity -is_visible 0
+set_layer_preference powerDensity -is_visible 1
+set_layer_preference powerNet -color {#0000ff #0010de #0020bd #00319c #00417b #00525a #006239 #007318 #088300 #299400 #4aa400 #6ab400 #8bc500 #acd500 #cde600 #eef600 #fff900 #ffed00 #ffe200 #ffd600 #ffcb00 #ffbf00 #ffb400 #ffa800 #ff9500 #ff8000 #ff6a00 #ff5500 #ff4000 #ff2a00 #ff1500 #ff0000}
+set_layer_preference powerDensity -is_visible 0
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_layer -is_visible 1
+gui_select -point {170.03850 75.61750}
+set_db route_early_global_bottom_routing_layer 1
+set_db route_early_global_top_routing_layer 8
+set_db route_early_global_honor_power_domain false
+set_db route_early_global_honor_partition_pin_guide true
+route_early_global
+set_layer_preference groupmain_Congestion -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference node_layer -is_visible 0
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_db route_early_global_bottom_routing_layer 1
+set_db route_early_global_top_routing_layer 3
+set_db route_early_global_honor_power_domain false
+set_db route_early_global_honor_partition_pin_guide true
+route_early_global
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_db route_early_global_bottom_routing_layer 1
+set_db route_early_global_top_routing_layer 4
+set_db route_early_global_honor_power_domain false
+set_db route_early_global_honor_partition_pin_guide true
+route_early_global
+set_layer_preference node_layer -is_visible 1
+write_db top.inn
+reset_parasitics
+extract_rc
+write_sdf top.sdf -ideal_clock_network 
+setDesignMode -process 45
+write_sdf top.sdf -ideal_clock_network 
+man set_db
+write_floorplan top.fp
+set_db design_process_node 45
+write_sdf top.sdf -ideal_clock_network 
+time_design -pre_cts -path_report -drv_report -slack_report -num_paths 50 -report_prefix top_preCTS -report_dir timingReports
+report_timing -output_format gtd -max_paths 10000 -max_slack 0.75 -path_exceptions all -early > top.mtarpt
+read_timing_debug_report -name default_report top.mtarpt -max_path_num 10000 -update_category 0
+time_design -pre_cts -hold
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+report_timing -output_format gtd -max_paths 10000 -max_slack 0.75 -path_exceptions all -early > top.btarpt
+read_timing_debug_report -name default_report top.btarpt -max_path_num 10000 -update_category 0
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_select -point {154.26350 32.05700}
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+gui_select -point {55.21250 41.74050}
+gui_select -point {93.94750 48.65750}
+gui_select -point {140.75750 88.46050}
+gui_select -point {140.68200 87.93250}
+gui_select -point {140.53150 88.30950}
+gui_select -point {139.55100 88.61150}
+gui_deselect -all
+gui_deselect -all
+write_db preCTSopt.inn
+set_ccopt_property buffer_cells {BUF_X1 BUF_X2 BUF_X4 BUF_X8 BUF_X16 BUF_X32 CLKBUF_X1 CLKBUF_X2 CLKBUF_X3}
+set_db cts_buffer_cells {BUF_X1 BUF_X2 BUF_X4 BUF_X8 BUF_X16 BUF_X32 CLKBUF_X1 CLKBUF_X2 CLKBUF_X3}
+set_db cts_inverter_cells {INV_X1 INV_X2 INV_X4 INV_X8 INV_X16 INV_X32}
+create_clock_tree_spec -out_file top.spec
+ccopt_design 
+set_layer_preference node_cell -is_visible 1
+set_layer_preference node_cell -is_visible 0
+set_layer_preference node_cell -is_visible 1
+set_layer_preference node_blockage -is_visible 1
+set_layer_preference node_blockage -is_visible 0
+set_layer_preference node_blockage -is_visible 1
+set_layer_preference node_row -is_visible 1
+set_layer_preference node_row -is_visible 0
+set_layer_preference node_row -is_visible 1
+set_layer_preference node_row -is_visible 0
+set_layer_preference node_row -is_visible 1
+set_layer_preference node_row -is_visible 0
+set_layer_preference stdRow -is_visible 1
+set_layer_preference ioRow -is_visible 1
+set_layer_preference stdRow -is_visible 0
+set_layer_preference ioRow -is_visible 0
+set_layer_preference node_floorplan -is_visible 1
+set_layer_preference node_floorplan -is_visible 0
+set_layer_preference node_floorplan -is_visible 1
+set_layer_preference node_floorplan -is_visible 0
+set_layer_preference node_partition -is_visible 0
+set_layer_preference node_partition -is_visible 1
+set_layer_preference node_partition -is_visible 0
+set_layer_preference node_power -is_visible 1
+set_layer_preference node_power -is_visible 0
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference node_overlay -is_visible 0
+set_layer_preference groupmain_Congestion -is_visible 1
+set_layer_preference node_net -is_visible 0
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference node_layer -is_visible 0
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference node_overlay -is_visible 0
+set_layer_preference node_track -is_visible 1
+set_layer_preference node_track -is_visible 0
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_route -is_visible 0
+set_layer_preference node_route -is_visible 1
+set_layer_preference node_gird -is_visible 1
+set_layer_preference node_gird -is_visible 0
+gui_select -point {193.60600 7.15850}
+gui_select -point {153.71000 75.21850}
+gui_select -point {153.71000 75.21850}
+time_design -post_cts 
+time_design -post_cts -hold
+opt_design -post_cts -hold
+gui_select -point {152.32650 118.38050}
+gui_select -point {162.28700 69.68500}
+write_db postCTSopt.inn
+gui_select -point {150.11350 121.70050}
+set_db route_design_with_timing_driven 1
+set_db route_design_with_si_driven 1
+set_db route_design_detail_auto_stop 0
+set_db route_design_selected_net_only 1
+set_db route_design_top_routing_layer 10
+set_db route_design_bottom_routing_layer 1
+set_db route_design_detail_end_iteration 1
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+route_design -global_detail
+gui_select -point {-14.51000 60.55450}
+set_db route_design_detail_auto_stop 1
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+gui_select -point {-21.42700 84.34900}
+gui_select -point {-25.30050 81.02900}
+set_db route_design_detail_use_multi_cut_via_effort medium
+set_db timing_analysis_type ocv
+route_opt_design 
+time_design -post_route 
+time_design -post_route -hold 
+gui_deselect -all
+gui_deselect -all
+route_opt_design -opt -hold 
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+route_design 
+set_db route_design_selected_net_only 0
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+report_obj -set_by_user -compact -categories {design extract_rc route delaycal}
+eval_legacy { checkPlace -ignoreOutOfcore -placeLegalityChecks -noHalo -preserveMaskShift -noHardfence }
+route_global_detail
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+gui_select -point {-25.02400 84.62550}
+route_opt_design 
+time_design -post_route 
+time_design -post_route -hold 
+route_opt_design -opt -hold 
+report_timing -output_format gtd -max_paths 10000 -max_slack 0.75 -path_exceptions all -early > top.mtarpt
+read_timing_debug_report -name default_report top.mtarpt -max_path_num 10000 -update_category 0
+gui_deselect -all
+gui_select -point {164.50050 38.69700}
+route_opt_design -opt -hold 
+gui_deselect -all
+gui_select -point {-20.04350 48.10400}
+group_path -name failing
+gui_deselect -all
+group_path -name failing -to acc_reg_out_reg[3]8/D 
+gui_deselect -all
+set_path_group_options failing -effort_level high
+route_opt_design -opt -hold 
+write_db top_detailrouted.inn
+write_db top_detailrouted.inn
+gui_deselect -all
+gui_deselect -all
+gui_deselect -all
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_layer_preference violation -is_visible 1
+delete_drc_markers
+check_connectivity -type all -check_geometry_loops -ignore_soft_pg_connects -error 1000 -warning 50
+set_layer_preference violation -is_visible 1
+gui_select -point {146.51650 74.94200}
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_layer_preference violation -is_visible 1
+report_summary 
+gui_select -point {161.18050 62.76800}
+gui_select -point {156.75350 25.41650}
+gui_select -point {130.74600 -0.86800}
+gui_select -point {130.74600 -0.86800}
+gui_select -point {151.22000 33.71700}
+gui_select -point {120.23200 135.53450}
+gui_select -point {150.66650 126.12750}
+gui_select -point {20.32750 135.25100}
+gui_select -point {19.98750 135.08100}
+gui_select -point {19.96650 134.34900}
+set_layer_preference node_layer -is_visible 0
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_blockage -is_visible 0
+set_layer_preference node_cell -is_visible 0
+set_layer_preference node_module -is_visible 0
+set_layer_preference node_inst -is_visible 0
+set_layer_preference node_net -is_visible 0
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_net -is_visible 0
+gui_select -point {102.52450 103.44000}
+gui_select -point {101.97150 103.16300}
+gui_select -point {103.21000 102.40950}
+gui_select -point {103.49900 99.23250}
+gui_select -rect {96.13300 107.32050 109.99800 94.61050}
+set_layer_preference violation -is_visible 1
+fixVia -shorts
+fix_via -short 
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+fix_via -short 
+gui_select -point {160.07350 75.21850}
+fix_drc_with_patch 
+check_drc 
+set_route_attributes -nets {} -si_post_route_fix true
+set_layer_preference routeCongest -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+gui_select -point {102.80150 103.44000}
+gui_select -point {102.80150 103.16300}
+gui_select -point {102.80150 103.16300}
+set_layer_preference node_net -is_visible 1
+set_layer_preference net -is_visible 0
+fix_via -short 
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference node_power -is_visible 1
+set_layer_preference node_power -is_visible 0
+set_layer_preference net -is_visible 0
+set_layer_preference pgPower -is_visible 1
+set_layer_preference pgGround -is_visible 1
+set_layer_preference clock -is_visible 1
+set_layer_preference power -is_visible 1
+set_layer_preference pgPower -is_visible 0
+set_layer_preference pgGround -is_visible 0
+set_layer_preference power -is_visible 0
+set_layer_preference node_inst -is_visible 1
+set_layer_preference instanceCell -is_visible 0
+set_layer_preference stdCell -is_visible 1
+set_layer_preference stdCell -is_visible 0
+set_layer_preference power -is_visible 1
+set_layer_preference pgPower -is_visible 1
+set_layer_preference pgGround -is_visible 1
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference net -is_visible 0
+set_layer_preference net -is_visible 1
+gui_select -point {97.00500 15.26750}
+gui_select -point {169.21850 65.34650}
+add_fillers -base_cells FILLCELL_X1 FILLCELL_X16 FILLCELL_X2 FILLCELL_X32 FILLCELL_X4 FILLCELL_X8 -prefix FILLER
+check_drc 
+set_layer_preference power -is_visible 0
+set_layer_preference power -is_visible 1
+set_layer_preference power -is_visible 0
+set_layer_preference power -is_visible 1
+set_layer_preference power -is_visible 0
+set_layer_preference power -is_visible 1
+gui_select -point {159.79700 78.53900}
+set_db opt_drv_fix_max_cap true
+set_db opt_drv_fix_max_tran true
+set_db opt_fix_fanout_load true
+eval_legacy { setDelayCalMode -engine default -siAware true }
+opt_design -post_route -hold
+set_db opt_drv_fix_max_cap true
+set_db opt_drv_fix_max_tran true
+set_db opt_fix_fanout_load true
+eval_legacy { setDelayCalMode -engine default -siAware true }
+opt_design -post_route -hold
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_layer_preference metal10 -is_visible 0
+set_layer_preference via9 -is_visible 0
+set_layer_preference metal9 -is_visible 0
+set_layer_preference via8 -is_visible 0
+set_layer_preference metal8 -is_visible 0
+set_layer_preference via7 -is_visible 0
+set_layer_preference via6 -is_visible 0
+set_layer_preference metal6 -is_visible 0
+set_layer_preference via5 -is_visible 0
+set_layer_preference metal5 -is_visible 0
+set_layer_preference via4 -is_visible 0
+set_layer_preference via3 -is_visible 0
+set_layer_preference metal3 -is_visible 0
+set_layer_preference via2 -is_visible 0
+set_layer_preference metal2 -is_visible 0
+set_layer_preference metal2 -is_visible 1
+set_layer_preference metal2 -is_visible 0
+set_layer_preference metal2 -is_visible 1
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference metal2 -is_visible 1
+set_layer_preference via2 -is_visible 1
+set_layer_preference via1 -is_visible 1
+set_layer_preference via1 -is_visible 0
+set_layer_preference metal1 -is_visible 1
+set_layer_preference metal1 -is_visible 0
+set_layer_preference metal3 -is_visible 1
+set_layer_preference via3 -is_visible 1
+set_layer_preference via3 -is_visible 0
+set_layer_preference via3 -is_visible 1
+set_layer_preference via3 -is_visible 0
+set_layer_preference metal3 -is_visible 0
+set_layer_preference metal3 -is_visible 1
+set_layer_preference via2 -is_visible 0
+set_layer_preference via2 -is_visible 1
+gui_select -point {88.82200 101.68750}
+gui_select -point {88.91850 101.62950}
+gui_select -point {88.83200 101.69900}
+select_routes -obj_type {wire via} -type regular
+select_routes -type regular
+gui_select -point {88.82700 101.68850}
+gui_select -point {88.82400 101.69250}
+delete_selected_from_floorplan
+gui_select -point {102.91200 102.91450}
+delete_selected_from_floorplan
+gui_select -point {13.97150 44.73750}
+delete_selected_from_floorplan
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_layer_preference via3 -is_visible 1
+set_layer_preference via3 -is_visible 0
+set_layer_preference metal4 -is_visible 1
+set_layer_preference metal4 -is_visible 0
+set_layer_preference metal3 -is_visible 0
+set_layer_preference via2 -is_visible 0
+set_layer_preference via2 -is_visible 1
+set_layer_preference metal3 -is_visible 1
+set_layer_preference via3 -is_visible 1
+set_layer_preference metal4 -is_visible 1
+set_layer_preference via4 -is_visible 1
+gui_select -point {102.94600 102.95050}
+select_routes -obj_type {wire via}
+select_routes
+select_routes
+gui_select -point {103.01750 102.87100}
+gui_select -point {103.02250 102.90750}
+gui_select -point {102.95200 102.96550}
+delete_routes -selected -obj_type wire
+gui_select -point {102.94600 102.94850}
+gui_select -point {102.94600 102.95800}
+delete_routes -selected -obj_type wire
+gui_select -point {102.94000 102.95800}
+gui_select -point {102.81850 102.99150}
+gui_select -point {102.94950 102.96100}
+delete_routes -selected -obj_type wire
+gui_select -point {102.82750 102.95100}
+delete_selected_from_floorplan
+set_db route_design_with_eco 1
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+eval_legacy { checkPlace -ignoreOutOfcore -placeLegalityChecks -noHalo -preserveMaskShift -noHardfence }
+route_global_detail
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+gui_select -point {164.77700 29.56700}
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference metal2 -is_visible 1
+set_layer_preference via2 -is_visible 1
+gui_select -point {154.26350 61.93800}
+gui_select -rect {-15.06350 136.64100 155.37000 -7.50800}
+set_db route_design_selected_net_only 1
+set_db route_design_top_routing_layer 2
+set_db route_design_bottom_routing_layer 2
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+set_layer_preference node_net -is_visible 0
+set_layer_preference node_net -is_visible 1
+gui_select -point {162.56400 86.83900}
+gui_select -point {161.18050 84.90250}
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+gui_select -point {88.84900 101.69900}
+delete_routes -selected
+delete_routes -selected
+gui_select -point {88.98650 101.56700}
+gui_select -point {88.79600 101.70700}
+select_routes -obj_type {wire via}
+gui_select -point {88.81350 101.73000}
+gui_select -point {88.81350 101.72900}
+select_routes
+delete_routes -selected -obj_type wire
+gui_select -point {146.51650 84.07250}
+select_routes
+delete_routes -selected -obj_type wire
+gui_select -point {162.01050 68.02500}
+gui_select -point {13.99050 44.86200}
+gui_select -point {14.00300 44.93250}
+gui_select -point {13.98550 44.93550}
+gui_select -point {14.10050 44.82150}
+gui_select -point {13.88950 44.86050}
+gui_select -point {14.16050 44.78000}
+gui_select -point {13.98900 44.85800}
+gui_select -point {14.00100 44.79550}
+gui_select -point {14.10800 44.78650}
+gui_select -point {13.97750 44.78550}
+gui_select -point {14.07450 44.79450}
+gui_select -point {13.97150 44.87800}
+delete_selected_from_floorplan
+gui_select -point {14.26450 44.50750}
+gui_select -point {13.98900 44.85800}
+select_routes -obj_type {wire via}
+gui_select -point {14.14200 44.81250}
+gui_select -point {13.97950 44.87800}
+select_routes
+gui_select -point {14.14800 44.77900}
+select_routes
+select_routes
+gui_select -point {13.96300 44.88400}
+delete_routes -selected -obj_type wire
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+gui_select -point {88.85150 101.68650}
+delete_routes -selected -obj_type wire
+gui_select -point {88.95700 101.55900}
+set_db route_design_selected_net_only 0
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+eval_legacy { checkPlace -ignoreOutOfcore -placeLegalityChecks -noHalo -preserveMaskShift -noHardfence }
+route_global_detail
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+gui_select -point {88.95350 101.75150}
+gui_select -point {88.84150 101.70450}
+gui_select -point {153.15650 86.28600}
+gui_select -point {88.81950 101.71650}
+gui_select -point {88.91000 101.73300}
+gui_select -point {88.84300 101.72000}
+delete_routes -selected -obj_type wire
+gui_select -point {88.84050 101.71450}
+gui_select -point {157.58350 74.38850}
+set_db route_design_with_timing_driven true
+set_db route_design_with_si_driven true
+eval_legacy { checkPlace -ignoreOutOfcore -placeLegalityChecks -noHalo -preserveMaskShift -noHardfence }
+eval_legacy { setDelayCalMode -quiet -engine aae }
+set_db delaycal_enable_si true
+reset_db delaycal_combine_mmmc
+set_db timing_analysis_check_type hold
+set_db timing_analysis_type ocv
+reset_db timing_analysis_cppr
+set_db extract_rc_engine post_route
+reset_db extract_rc_effort_level
+set_db extract_rc_coupled true
+set_db si_delay_separate_on_data true
+reset_db si_analysis_type
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+route_global_detail 
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+route_detail 
+check_drc 
+route_detail 
+check_drc 
+route_detail 
+gui_select -point {88.81750 101.72200}
+set_db opt_drv_fix_max_cap true
+set_db opt_drv_fix_max_tran true
+set_db opt_fix_fanout_load true
+eval_legacy { setDelayCalMode -engine default -siAware true }
+opt_design -post_route -hold
+set_db opt_drv_fix_max_cap true
+set_db opt_drv_fix_max_tran true
+set_db opt_fix_fanout_load true
+eval_legacy { setDelayCalMode -engine default -siAware true }
+opt_design -post_route -hold
+check_drc 
+set_layer_preference node_layer -is_visible 1
+set_layer_preference node_layer -is_visible 0
+set_layer_preference node_layer -is_visible 1
+report_area 
+report_timing
+report_timing_summary 
+set_global timing_enable_simultaneous_setup_hold_mode true
+set_db timing_enable_simultaneous_setup_hold_mode true
+report_timing_summary 
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_layer_preference violation -is_visible 1
+gui_select -point {89.36600 101.62350}
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+gui_select -point {155.92350 90.71250}
+time_design -post_route -path_report -drv_report -slack_report -num_paths 50 -report_prefix top_postRoute -report_dir timingReports
+gui_select -point {-15.06350 103.71650}
+write_db TOP_GDSII
+write_db TOP_GDSII
+set_layer_preference instanceCell -is_visible 1
+set_layer_preference node_module -is_visible 1
+set_layer_preference node_cell -is_visible 1
+set_layer_preference node_blockage -is_visible 1
+set_layer_preference node_row -is_visible 1
+set_layer_preference node_floorplan -is_visible 1
+set_layer_preference node_partition -is_visible 1
+set_layer_preference node_power -is_visible 1
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference node_overlay -is_visible 0
+set_layer_preference node_overlay -is_visible 1
+set_layer_preference node_overlay -is_visible 0
+set_layer_preference densityMap -is_visible 1
+set_layer_preference densityMap -is_visible 0
+set_layer_preference pinDensityMap -is_visible 1
+set_layer_preference pinDensityMap -is_visible 0
+set_layer_preference timingMap -is_visible 1
+set_layer_preference timingMap -is_visible 0
+set_layer_preference metalDensityMap -is_visible 1
+set_layer_preference metalDensityMap -is_visible 0
+set_layer_preference powerDensity -is_visible 1
+set_layer_preference powerDensity -is_visible 0
+set_layer_preference groupmain_Congestion -is_visible 1
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestH -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference congestV -color {#000066 #0000c9 #0053ff #00fcfa #00a953 #53a900 #f9fc00 #ff5300 #ff5858 #ffffff}
+set_layer_preference groupmain_Congestion -is_visible 0
+set_layer_preference congestH -is_visible 0
+set_layer_preference congestV -is_visible 0
+set_layer_preference gcellOvflow -is_visible 0
+set_layer_preference congest -is_visible 0
+set_layer_preference node_track -is_visible 1
+set_layer_preference node_gird -is_visible 1
+gui_select -point {173.68550 72.53150}
+gui_select -point {163.39400 46.16750}
+gui_select -point {163.94700 91.54250}
+gui_select -point {166.71400 96.24600}
+set_layer_preference node_power -is_visible 0
+set_layer_preference pgPower -is_visible 0
+set_layer_preference power -is_visible 0
+gui_select -point {167.54400 65.25850}
+set_layer_preference node_row -is_visible 0
+set_layer_preference node_row -is_visible 1
+set_layer_preference node_row -is_visible 0
+set_layer_preference node_row -is_visible 1
+gui_select -point {157.58350 78.53900}
+gui_select -point {156.47700 51.70100}
+gui_select -point {130.19250 36.48400}
+set_layer_preference node_floorplan -is_visible 0
+set_layer_preference node_floorplan -is_visible 1
+set_io_flow_flag 0
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.945867044791 1.0 10.07 10.08 10.07 10.08
+gui_select -point {152.77100 103.17700}
+gui_select -point {152.49750 103.17700}
+read_floorplan top.fp
+read_db TOP_GDSII
+gui_select -point {168.37400 114.50700}
+gui_select -point {159.52050 105.93000}
+gui_select -point {162.01050 98.18300}
+gui_select -point {158.41350 69.68500}
+set_layer_preference node_gird -is_visible 0
+set_layer_preference node_misc -is_visible 1
+set_layer_preference node_misc -is_visible 0
+set_layer_preference node_misc -is_visible 1
+set_layer_preference node_misc -is_visible 0
+set_layer_preference node_misc -is_visible 1
+set_layer_preference node_bump -is_visible 0
+set_layer_preference node_bump -is_visible 1
+set_layer_preference node_route -is_visible 0
+set_layer_preference node_route -is_visible 1
+set_layer_preference node_net -is_visible 1
+set_layer_preference node_net -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference clock -is_visible 1
+set_layer_preference node_track -is_visible 0
+set_layer_preference node_track -is_visible 1
+set_layer_preference trackObj -is_visible 0
+set_layer_preference trackObj -is_visible 1
+set_layer_preference trackObj -is_visible 0
+set_layer_preference trackObj -is_visible 1
+set_layer_preference trackObj -is_visible 0
+set_layer_preference nonPrefTrackObj -is_visible 0
+set_layer_preference nonPrefTrackObj -is_visible 1
+set_layer_preference nonPrefTrackObj -is_visible 0
+set_layer_preference nonPrefTrackObj -is_visible 1
+set_layer_preference nonPrefTrackObj -is_visible 0
+set_layer_preference nonPrefTrackObj -is_visible 1
+set_layer_preference nonPrefTrackObj -is_visible 0
+set_layer_preference stdCell -is_visible 0
+set_layer_preference stdCell -is_visible 1
+set_layer_preference block -is_visible 0
+set_layer_preference block -is_visible 1
+set_layer_preference coverCell -is_visible 0
+set_layer_preference coverCell -is_visible 1
+set_layer_preference stdCell -is_visible 0
+gui_select -point {147.61050 72.65850}
+set_layer_preference stdCell -is_visible 1
+set_preference marginOfZoomSelected 10
+gui_select -point {152.32650 68.85450}
+set_layer_preference node_power -is_visible 1
+set_layer_preference power -is_visible 1
+set_layer_preference pgPower -is_visible 1
+set_layer_preference pgGround -is_visible 1
+set_layer_preference pgGround -is_visible 0
+set_layer_preference pgPower -is_visible 0
+set_layer_preference power -is_visible 0
+gui_select -point {155.37000 78.53800}
+set_layer_preference pgPower -is_visible 1
+set_layer_preference power -is_visible 1
+set_layer_preference pgGround -is_visible 1
+set_layer_preference node_power -is_visible 0
+set_layer_preference node_power -is_visible 1
+set_layer_preference allM10 -color purple
+set_layer_preference allM9 -color red
+set_layer_preference allM10 -color red -stipple vertical
+set_layer_preference allM9 -color red -stipple horizontal
+set_layer_preference allM10Cont -color purple
+set_layer_preference allM10Cont -color purple
+set_layer_preference allM9Cont -color red
+gui_select -point {154.54000 97.90650}
+set_layer_preference allM10 -color pink
+set_layer_preference allM10 -color purple
+gui_select -point {157.86050 110.91000}
+gui_select -point {-16.72350 84.90250}
+gui_select -point {-12.57350 99.01300}
+gui_select -point {160.35050 115.89050}
+set_layer_preference power -is_visible 0
+report_density_in_area 
+report_density_in_area -area
+report_design
+report_design_property 
+report_analysis_summary 
+report_area 
+report_cell_instance_timing 
+report_timing_summary 
+report_congested_area 
+report_delay_calculation 
+report_flow 
+report_gate_count 
+report_power
+report_timing
+report_timing -hold
+report_gate_count 
+report_instance_library 
+set_layer_preference net -is_visible 0
+set_layer_preference pgPower -is_visible 0
+set_layer_preference pgGround -is_visible 0
+set_layer_preference instanceCell -is_visible 0
+set_layer_preference net -is_visible 1
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference clock -is_visible 0
+set_layer_preference clock -is_visible 1
+set_layer_preference allM3 -color blue -stipple brick
+set_layer_preference M3Wire -is_visible 1
+set_layer_preference M3Track -is_visible 1
+set_layer_preference M3Pin -is_visible 1
+set_layer_preference M3RB -is_visible 1
+set_layer_preference M3Vio -is_visible 1
+set_layer_preference M3Patch -is_visible 1
+set_layer_preference M3EOL -is_visible 1
+set_layer_preference M3LineEnd -is_visible 1
+set_layer_preference allM3 -color green -stipple brick
+set_layer_preference net -is_visible 0
+set_layer_preference allM4 -color blue
+set_layer_preference net -is_visible 1
+set_layer_preference power -is_visible 1
+set_layer_preference pgPower -is_visible 1
+set_layer_preference pgGround -is_visible 1
+set_layer_preference allM4 -color yellow
+set_layer_preference allM3 -color #55ff00
+set_layer_preference allM3 -color green
+set_layer_preference allM3 -color #00ff00
+report_timing -hold
+report_timing
+report_timing -check_type hold
+report_timing -check_type setup 
+report_qor 
+report_qor -format html -out_file top_rpt_summary
+report_qor -format html -out_file ./top_rpt_summary
+report_qor -format text -help 
+report_qor -help 
+report_qor 
+report_qor -format text 
+time_design -post_route -hold 
+report_constraint 
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+time_design -post_route -path_report -drv_report -slack_report -num_paths 50 -report_prefix top_postRoute -report_dir timingReports
+gui_deselect -all
+gui_select -point {-20.87350 104.82300}
+gui_select -point {-1.78300 109.52650}
+set_db assign_pins_edit_in_batch true
+set_db assign_pins_edit_in_batch false
+gui_select -point {156.20000 85.17900}
+gui_select -point {138.62100 48.88400}
+gui_select -point {138.37550 49.12950}
+gui_select -point {138.60650 49.48300}

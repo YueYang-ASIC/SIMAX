@@ -270,3 +270,4 @@ set_db opt_fix_fanout_load false
 opt_design -post_cts
 opt_design -post_cts -hold
 report_area 
+exit

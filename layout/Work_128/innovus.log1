@@ -7949,4 +7949,9 @@ report_area
     Hinst Name       Module Name          Inst Count           Total Area
 ----------------------------------------------------------------------
 top                                            38411            76817.342
-@innovus 39> 
+@innovus 39> exit
+
+*** Memory Usage v#1 (Current mem = 3259.570M, initial mem = 495.000M) ***
+*** Message Summary: 1744 warning(s), 0 error(s)
+
+--- Ending "Innovus" (totcpu=1:18:38, real=44:17:13, mem=3259.6M) ---
