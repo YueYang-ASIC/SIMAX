@@ -59,17 +59,17 @@ Set them via `parameter` values in `top.v`:
 
 ---
 ### Results
+#### Timing 
   <img src="figs/qor_timing.png" alt="Timing" width="250">
-Figure 1. Timing.
 
-
+#### Area 
   <img src="figs/qor_area.png" alt="Area" width="250">
-Figure 2. Area.
 
+#### Power
  <img src="figs/power_rpt.png" alt="Power" width="300">
-Figure 3. Power.
----
 
+
+---
 ### Troubleshooting
 
 * **Unresolved modules**: Fix paths/entries in `.vfs`.
