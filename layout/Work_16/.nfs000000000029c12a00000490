@@ -1472,3 +1472,4 @@ gui_select -point {156.20000 85.17900}
 gui_select -point {138.62100 48.88400}
 gui_select -point {138.37550 49.12950}
 gui_select -point {138.60650 49.48300}
+gui_select -point {154.54000 92.64950}

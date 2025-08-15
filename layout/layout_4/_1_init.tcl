@@ -1,4 +1,5 @@
 # Version 1.0 Yue Yang 8-15-2025
+# Import design
 set_db init_power_nets VDD
 set_db init_ground_nets VSS
 read_mmmc top.mmmc
@@ -15,5 +16,8 @@ finish_floorplan -auto_halo
 check_floorplan -place -power_domain -feed_through -partition_clone -report_density -multi_layer_pin -partition_in_partition -bus_guide -out_file top.checkFPlan
 check_timing_library_consistency
 set_db design_process_node 45
-save_global top.globals
+#check point
+write_db top_import
+# allow read 
+set_db read_db_stop_at_design_in_memory false
 
