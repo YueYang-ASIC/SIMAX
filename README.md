@@ -56,10 +56,21 @@ Set them via `parameter` values in `top.v`:
 
 7. Re-run `make NAME=top synth`.
 8. Remove generated outputs `make NAME=top cleanall`
-   ![QoR timing](figs/qor_timing.png)
-   ![Power area](figs/power_rpt.png)
-   ![QoR area](figs/qor_area.png)
 
+### Results
+*Figure 1.* Timing.
+<a href="figs/qor_timing.png">
+  <img src="figs/qor_timing.png" alt="Timing" width="400">
+</a>
+*Figure 2.* Area.
+<a href="figs/qor_area.png">
+  <img src="figs/qor_area.png" alt="Area" width="400">
+</a>
+*Figure 3.* Power.
+<a href="figs/power_rpt.png">
+  <img src="figs/power_rpt.png" alt="Power" width="400">
+</a>
+ 
 
 
 ---
