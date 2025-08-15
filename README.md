@@ -6,6 +6,7 @@ A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized
 
 ```
 .
+├─ figs/                  # Figures, screenshots
 ├─ layout/                # Innovus
 ├─ lef/                   # NangateOpenCellLibrary.lef
 ├─ lib/					  # 45nm Timing library
