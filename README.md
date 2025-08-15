@@ -1,5 +1,7 @@
 # SIMAX
 
+A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized Transformer inference. SIMAX enables a configurable RTL-to-GDSII hardware implementation flow. Its parameterized hardware template allows designers to explore a wide spectrum of trade-offs across performance, power efficiency, and area scalability, from small edge deployments to large-scale many-core configurations.
+
 ## Project Layout
 
 ```
@@ -7,36 +9,39 @@
 ├─ layout/                # Innovus
 ├─ lef/                   # NangateOpenCellLibrary.lef
 ├─ lib/					  # 45nm Timing library
-├─ rtl/                # Verilog source
+├─ rtl/                   # Verilog source
 ├─ setup/				  # for innovus import design
 ├─ synthesis/            # Generate netlist, sdc, and PPA reports (created by the flow)
-│  └─ dc-template.tcl    # DC script (edit clk\_period here)
+│  └─ dc-template.tcl    # DC script (edit clk\\\_period here)
 │  ├─ top.vfs            # Verilog Filelist for Synthesis (no testbench)
 │  └─ top.vfv            # Verilog Filelist for Verification (with testbench)
 ├─ tech/				  # freepdk45: An open-source predictive 45nm pdk
 └─ README.md
 ```
- 
+
+
 
 ## Synthesis
 
-Makefile-driven flow to run **Synopsys Design Compiler** on SIMAX and capture QoR/power summaries.
 
-## Prerequisites
 
-* Synopsys **Design Compiler** (`dc\_shell` or `dc\_shell -tcl`) in your `PATH`
+### Prerequisites
+
+* Synopsys **Design Compiler** (`dc\\\_shell` or `dc\\\_shell -tcl`) in your `PATH`
 * GNU Make
 
 ---
 
-## Configure SIMAX Parameters
+### Configure SIMAX Parameters
 
 Before running synthesis, confirm your SIMAX template dimensions (e.g., **rows**, **columns**, **clock cycles/latency**).
 Set them via `parameter` values in `top.v`:
-* `CYCLE_W` = ceiling (log2(ROWS+COLS+1))
+
+* `CYCLE\_W` = ceiling (log2(ROWS+COLS+1))
+
 ---
 
-## Quick Start (Synthesis)
+### Quick Start
 
 1. **Navigate** to your synthesis folder (project root with the `Makefile`).
 2. **Edit** `top.vfs` (synthesis) and `top.vfv` (verification) as needed.
@@ -44,17 +49,18 @@ Set them via `parameter` values in `top.v`:
 4. **Run**: `make NAME=top synth`
 5. **Review output**: QoR and power are printed to terminal **and** saved to: `top.rpt`
 6. **Adjust clock** based on slack. Edit `dc-template.tcl`:
-   \* Negative slack ⇒ increase `clk\_period` (slow down).
-   \* Comfortable positive slack ⇒ try decreasing `clk\_period` (speed up).
-7.  Re-run `make NAME=top synth`.
+      \* Negative slack ⇒ increase `clk\\\_period` (slow down).
+      \* Comfortable positive slack ⇒ try decreasing `clk\\\_period` (speed up).
+7. Re-run `make NAME=top synth`.
 8. remove generated outputs `make NAME=top cleanall`
 
-  
+
 
 ---
-## Troubleshooting
-* **Unresolved modules**: Fix paths/entries in `.vfs`.
-* **Top not found**: Ensure `NAME=<top_module>` matches your RTL top.
-* **Negative slack**: Relax `clk_period` or optimize constraints/RTL.
-* **No power report**: Confirm libraries include power data and script calls `report_power`.
 
+### Troubleshooting
+
+* **Unresolved modules**: Fix paths/entries in `.vfs`.
+* **Top not found**: Ensure `NAME=<top\_module>` matches your RTL top.
+* **Negative slack**: Relax `clk\_period` or optimize constraints/RTL.
+* **No power report**: Confirm libraries include power data and script calls `report\_power`.
