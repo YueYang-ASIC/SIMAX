@@ -1,0 +1,92 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  Voltus Scheduler (RC extraction scheduler)
+*  Copyright 2013 Cadence Design Systems, Inc.
+*  Version: v21.18-s053_1 (07/11/2023 23:32:16)
+*  Excecutable: /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler
+*  Command Line: -nt 1 -usecellid -session_file ./work/sfe.session -cmd ./work/voltus_scheduler.cmd 
+*  Run by lunayang on Sun Jul 27 11:35:31 2025
+*  Hostname: coe-ece-taco
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Started Voltus Scheduler at 11:35:30 07/27/2025
+
+Extraction option setup as:
+setenv gray_data NONE
+setenv enable_cluster_overhang_via false
+setenv enable_dfm_mask_conflict_shape false
+Begin Preparing Data for Parasitic Extraction
+ * Begin Load cell library
+ * Ended Load cell library: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=22.32MB/5080.20MB/2465.68MB) TimeFromStart: 2.03s Mem: 22.32MB
+
+ * Begin Pre-parse DEF and build hierachy
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[3\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[0\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[1\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[2\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[12\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[13\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[14\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[15\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[1\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[2\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[3\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[0\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[1\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[2\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[3\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[4\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[5\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[6\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[7\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[8\]1
+ * Ended Pre-parse DEF and build hierachy: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=43.34MB/5097.20MB/2465.68MB) TimeFromStart: 2.42s Mem: 43.34MB
+
+ * Begin Flatten, partition and dump design
+ * Begin Create cell name DB
+ * Ended Create cell name DB: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=559.03MB/5867.62MB/2599.43MB) TimeFromStart: 2.48s Mem: 559.03MB
+
+ * Begin Write cell name DB
+ * Ended Write cell name DB: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=559.03MB/5867.62MB/2599.43MB) TimeFromStart: 2.49s Mem: 559.03MB
+
+ * Ended Flatten, partition and dump design: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=559.18MB/5867.62MB/2599.58MB) TimeFromStart: 2.56s Mem: 559.18MB
+
+Extracting following DFM effects:
+MetalFill        : n/a
+WEE Effects      : n/a
+Erosion Effects  : n/a
+T/B Enlargements : n/a
+R(w) Effects     : n/a
+R(w,s) Effects   : n/a
+R(sw,st) Effects : n/a
+TC(w) Effects    : n/a
+Some effects indicate n/a because of non-availability of relevant input data (or) requested to be off.
+Ended Preparing Data for Parasitic Extraction: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=32.78MB/5867.62MB/2599.58MB)
+
+Finished Voltus Scheduler at 11:35:32 07/27/2025 (cpu=0:00:00, real=0:00:02, peak mem=2599.58MB)
+Current Innovus resource usage: (total cpu=1:49:20, real=73:01:08, mem=2073.18MB)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  Voltus Scheduler (RC extraction scheduler)
+*  Copyright 2013 Cadence Design Systems, Inc.
+*  Version: v21.18-s053_1 (07/11/2023 23:32:16)
+*  Excecutable: /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler
+*  Command Line: -skip_prep -nt 1 -usecellid -session_file ./work/sfe.session -cmd ./work/voltus_scheduler.cmd -zx /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_extractor 
+*  Run by lunayang on Sun Jul 27 11:35:32 2025
+*  Hostname: coe-ece-taco
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Started Voltus Scheduler at 11:35:31 07/27/2025
+
+Extraction option setup as:
+setenv gray_data NONE
+setenv enable_cluster_overhang_via false
+setenv enable_dfm_mask_conflict_shape false
+Begin Parasitic Extraction
+Extracting Progress:
+    0% at 11:35:32 07/27/2025
+Extraction command for partition 0: /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_extractor -vstorm -partition 0 -partition_bbox 0 -2147483648 1400300 2147483647 -sfedb ./work/SFEDB -cachedir /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/zx_tmp_coe-ece-taco_1907943/n5hHOx -cmd ./work/VDD.cmd
+  100% at 11:35:37 07/27/2025
+Ended Parasitic Extraction: (cpu=0:00:00, real=0:00:05, mem(process/total/peak)=20.25MB/5071.20MB/2599.58MB)
+
+Finished Voltus Scheduler at 11:35:37 07/27/2025 (cpu=0:00:00, real=0:00:06, peak mem=2262.64MB)
+Current Innovus resource usage: (total cpu=1:49:20, real=73:01:13, mem=2060.65MB)

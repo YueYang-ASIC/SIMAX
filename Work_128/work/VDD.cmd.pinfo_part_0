@@ -1,0 +1,23 @@
+
+Begin Preparing Data for Parasitic Extraction
+.
+Ended Preparing Data for Parasitic Extraction: (cpu=0:00:00, real=0:00:01, mem(process/total/peak)=199.66MB/5357.88MB/2599.58MB)
+
+Begin Parasitic Extraction
+
+Nets to Extract:
+VDD
+
+   0% at 11:35:37 07/27/2025 
+
+ 100% at 11:35:37 07/27/2025 
+
+Ended Parasitic Extraction: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=202.16MB/5357.88MB/2599.58MB)
+
+Hostname coe-ece-taco
+
+Wall clock 5.242323
+
+CPU time 0.314126
+
+Peak memory (process): 300601344

@@ -1,0 +1,135 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  Voltus Rail Super Merge Grid (Power analysis merge grid)
+*  Copyright 2013-2014 Cadence Design Systems, Inc.
+*  Version: v21.18-s053_1 (07/11/2023 23:32:16)
+*  Excecutable: /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg
+*  Command Line: -cmd ./run1/voltus_rail_smg.VDD.cmd -l ./run1/voltus_rail_smg.VDD.log 
+*  Run by lunayang on Sun Jul 27 11:35:37 2025
+*  Hostname: coe-ece-taco
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Started Voltus Rail SMG at 11:35:36 07/27/2025
+
+Begin Merging power grid
+Layer summary:
+   ID         TechLayer          DefLayer        Type               Top            Bottom
+=========================================================================================
+    0           REDUCED           REDUCED     Reduced               N/A               N/A
+    1        CSUBSTRATE        CSUBSTRATE       Metal               N/A               N/A
+    2    N_SOURCE_DRAIN    N_SOURCE_DRAIN   Diffusion              CONT               N/A
+    3    P_SOURCE_DRAIN    P_SOURCE_DRAIN   Diffusion              CONT               N/A
+    4          POLYCIDE          POLYCIDE        Poly              CONT               N/A
+    5              CONT              CONT         Via           METAL_1    N_SOURCE_DRAIN
+                                                                           P_SOURCE_DRAIN
+                                                                                 POLYCIDE
+    6           METAL_1            metal1       Metal             VIA_1              CONT
+    7             VIA_1              via1         Via           METAL_2           METAL_1
+    8           METAL_2            metal2       Metal             VIA_2             VIA_1
+    9             VIA_2              via2         Via           METAL_3           METAL_2
+   10           METAL_3            metal3       Metal             VIA_3             VIA_2
+   11             VIA_3              via3         Via           METAL_4           METAL_3
+   12           METAL_4            metal4       Metal             VIA_4             VIA_3
+   13             VIA_4              via4         Via           METAL_5           METAL_4
+   14           METAL_5            metal5       Metal             VIA_5             VIA_4
+   15             VIA_5              via5         Via           METAL_6           METAL_5
+   16           METAL_6            metal6       Metal             VIA_6             VIA_5
+   17             VIA_6              via6         Via           METAL_7           METAL_6
+   18           METAL_7            metal7       Metal             VIA_7             VIA_6
+   19             VIA_7              via7         Via           METAL_8           METAL_7
+   20           METAL_8            metal8       Metal             VIA_8             VIA_7
+   21             VIA_8              via8         Via           METAL_9           METAL_8
+   22           METAL_9            metal9       Metal             VIA_9             VIA_8
+   23             VIA_9              via9         Via          METAL_10           METAL_9
+   24          METAL_10           metal10       Metal            VIA_10             VIA_9
+   25            VIA_10            VIA_10         Via          METAL_11          METAL_10
+   26          METAL_11          METAL_11       Metal               N/A            VIA_10
+
+Begin Sclp::init() TimeFromStart: 1.90s Mem: 15.24MB
+Ended Sclp::init(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=17.67MB/5314.93MB/2599.58MB) TimeFromStart: 1.93s Mem: 17.67MB
+
+Tech reference temperature: 25
+Target temperature: 25
+
+Nets to merge: VDD
+Begin (NET VDD):  Grid::_mergeTopLevel() TimeFromStart: 2.12s Mem: 34.13MB
+Begin (NET VDD):  Grid::_loadNodes() Load top level Nodes TimeFromStart: 2.12s Mem: 34.13MB
+(NET VDD):  Partition 0 load 36 nodes.
+Ended (NET VDD):  Grid::_loadNodes() Load top level Nodes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Begin (NET VDD):  Grid::_loadSNodes() Load stitching nodes TimeFromStart: 2.12s Mem: 34.13MB
+Ended (NET VDD):  Grid::_loadSNodes() Load stitching nodes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Begin (NET VDD):  Grid::_buildNodeMap() Build global node map TimeFromStart: 2.12s Mem: 34.13MB
+(NET VDD):  Num of mismatch stitching nodes: 0
+(NET VDD):  Original node = 37 , after merge = 37
+Ended (NET VDD):  Grid::_buildNodeMap() Build global node map: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Ended (NET VDD):  Grid::_mergeTopLevel(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Begin CellInstLoader::Part::load() part 0 TimeFromStart: 2.12s Mem: 34.13MB
+CellRepo::Part0::load(): Load 0 cell instances (0 masters).
+Ended CellInstLoader::Part::load() part 0: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Begin CellInstLoader::_mergeInsts() TimeFromStart: 2.12s Mem: 34.13MB
+CellInstLoader::_mergeInsts(): Total num of valid instances are 0
+Ended CellInstLoader::_mergeInsts(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.12s Mem: 34.13MB
+
+Begin (NET VDD):  Grid::_saveTopLevelNode() TimeFromStart: 2.13s Mem: 34.13MB
+Ended (NET VDD):  Grid::_saveTopLevelNode(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.13MB
+
+Begin (NET VDD):  Grid::_setCellStartNode() TimeFromStart: 2.13s Mem: 34.13MB
+Ended (NET VDD):  Grid::_setCellStartNode(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.13MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.13MB
+
+Begin (NET VDD):  Grid::_saveTopLevelElem() TimeFromStart: 2.13s Mem: 34.13MB
+Ended (NET VDD):  Grid::_saveTopLevelElem(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin CellRepo::_loadCellLib() TimeFromStart: 2.13s Mem: 34.64MB
+Ended CellRepo::_loadCellLib(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin CellRepo::_finalizeCellInst() TimeFromStart: 2.13s Mem: 34.64MB
+Begin CellRepo::_finalizeCellInst()::cleanInst TimeFromStart: 2.13s Mem: 34.64MB
+Ended CellRepo::_finalizeCellInst()::cleanInst: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin CellRepo::_finalizeCellInst()::buildInstIndex TimeFromStart: 2.13s Mem: 34.64MB
+Ended CellRepo::_finalizeCellInst()::buildInstIndex: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Ended CellRepo::_finalizeCellInst(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin CellRepo::_tileInst() TimeFromStart: 2.13s Mem: 34.64MB
+Ended CellRepo::_tileInst(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin CellRepo::_buildIntfNodes() TimeFromStart: 2.13s Mem: 34.64MB
+Ended CellRepo::_buildIntfNodes(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  Grid::_writeInstTile() TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  Grid::_writeInstTile(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  Grid::_loadInstIntfConn()::0 TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  Grid::_loadInstIntfConn()::0: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  Grid::_fillIntfNode() TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  Grid::_fillIntfNode(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  FlattenCell::_buildNodeSequence() TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  FlattenCell::_buildNodeSequence(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  Grid::_writeIntfConn() TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  Grid::_writeIntfConn(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.13s Mem: 34.64MB
+
+Begin (NET VDD):  FlattenCell::_flattenNode() TimeFromStart: 2.13s Mem: 34.64MB
+Ended (NET VDD):  FlattenCell::_flattenNode(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.14s Mem: 34.64MB
+
+Begin (NET VDD):  FlattenCell::_flattenElem() TimeFromStart: 2.14s Mem: 34.64MB
+Ended (NET VDD):  FlattenCell::_flattenElem(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.14s Mem: 34.64MB
+
+Begin (NET VDD):  FlattenCell::_flattenTap() TimeFromStart: 2.14s Mem: 34.64MB
+Ended (NET VDD):  FlattenCell::_flattenTap(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=34.64MB/5330.93MB/2599.58MB) TimeFromStart: 2.14s Mem: 34.64MB
+
+Begin (NET VDD):  Grid::_writeDefPins() TimeFromStart: 2.14s Mem: 34.64MB
+Ended (NET VDD):  Grid::_writeDefPins(): (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=35.12MB/5330.93MB/2599.58MB) TimeFromStart: 2.14s Mem: 35.12MB
+
+Begin (NET VDD):  PGDBWriter::finalize() TimeFromStart: 2.14s Mem: 35.12MB
+** ERROR: (VOLTUS_RAIL_SMG-0046):	Unable to continue rail analysis because net "VDD" does not have any valid logically-connected cell instance.
+Use the -ignore_incomplete_net option of the set_rail_analysis_mode command to ignore these nets and rerun the analysis.
+Finished Voltus Rail SMG at 11:35:38 07/27/2025 (cpu=0:00:00, real=0:00:02, peak mem=2075.78MB)
+Current Innovus resource usage: (total cpu=1:49:20, real=73:01:14, mem=2075.78MB)

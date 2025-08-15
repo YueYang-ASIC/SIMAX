@@ -1,0 +1,1500 @@
+
+
+// Path 1
+Endpoint:      result_reg_reg[3><0]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -714.5ps
+
+Node: result_reg_reg[3><0]/RN
+Net:  rst_n
+  Setup Slack:   829.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 2
+Endpoint:      result_reg_reg[3><1]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -714.1ps
+
+Node: result_reg_reg[3><1]/RN
+Net:  rst_n
+  Setup Slack:   847.5ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 3
+Endpoint:      acc_reg_out_reg[1]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.9ps
+
+Node: acc_reg_out_reg[1]15/RN
+Net:  rst_n
+  Setup Slack:   828.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 4
+Endpoint:      result_reg_reg[2><2]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.9ps
+
+Node: result_reg_reg[2><2]/RN
+Net:  rst_n
+  Setup Slack:   818.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 5
+Endpoint:      result_reg_reg[3><2]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.7ps
+
+Node: result_reg_reg[3><2]/RN
+Net:  rst_n
+  Setup Slack:   818.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 6
+Endpoint:      acc_reg_out_reg[2]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.5ps
+
+Node: acc_reg_out_reg[2]11/RN
+Net:  rst_n
+  Setup Slack:   818.4ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 7
+Endpoint:      acc_reg_out_reg[2]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.5ps
+
+Node: acc_reg_out_reg[2]15/RN
+Net:  rst_n
+  Setup Slack:   798.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 8
+Endpoint:      acc_reg_out_reg[1]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.3ps
+
+Node: acc_reg_out_reg[1]11/RN
+Net:  rst_n
+  Setup Slack:   818.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 9
+Endpoint:      result_reg_reg[2><1]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.3ps
+
+Node: result_reg_reg[2><1]/RN
+Net:  rst_n
+  Setup Slack:   818.4ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 10
+Endpoint:      acc_reg_out_reg[0]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -713.2ps
+
+Node: acc_reg_out_reg[0]15/RN
+Net:  rst_n
+  Setup Slack:   785.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 11
+Endpoint:      result_reg_reg[2><0]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -712.6ps
+
+Node: result_reg_reg[2><0]/RN
+Net:  rst_n
+  Setup Slack:   817.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 12
+Endpoint:      acc_reg_out_reg[4]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -712.4ps
+
+Node: acc_reg_out_reg[4]11/RN
+Net:  rst_n
+  Setup Slack:   817.5ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 13
+Endpoint:      acc_reg_out_reg[0]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -712.2ps
+
+Node: acc_reg_out_reg[0]11/RN
+Net:  rst_n
+  Setup Slack:   817.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 14
+Endpoint:      x_reg_out_reg[0]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -712.0ps
+
+Node: x_reg_out_reg[0]15/RN
+Net:  rst_n
+  Setup Slack:   773.7ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 15
+Endpoint:      result_reg_reg[2><5]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.7ps
+
+Node: result_reg_reg[2><5]/RN
+Net:  rst_n
+  Setup Slack:   816.7ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 16
+Endpoint:      acc_reg_out_reg[6]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.6ps
+
+Node: acc_reg_out_reg[6]11/RN
+Net:  rst_n
+  Setup Slack:   816.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 17
+Endpoint:      acc_reg_out_reg[7]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.6ps
+
+Node: acc_reg_out_reg[7]11/RN
+Net:  rst_n
+  Setup Slack:   816.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 18
+Endpoint:      acc_reg_out_reg[5]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.6ps
+
+Node: acc_reg_out_reg[5]11/RN
+Net:  rst_n
+  Setup Slack:   816.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 19
+Endpoint:      acc_reg_out_reg[3]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.5ps
+
+Node: acc_reg_out_reg[3]11/RN
+Net:  rst_n
+  Setup Slack:   816.7ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 20
+Endpoint:      result_reg_reg[3><3]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -711.1ps
+
+Node: result_reg_reg[3><3]/RN
+Net:  rst_n
+  Setup Slack:   878.7ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 21
+Endpoint:      result_reg_reg[2><4]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -709.5ps
+
+Node: result_reg_reg[2><4]/RN
+Net:  rst_n
+  Setup Slack:   814.4ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 22
+Endpoint:      result_reg_reg[2><3]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -709.1ps
+
+Node: result_reg_reg[2><3]/RN
+Net:  rst_n
+  Setup Slack:   814.1ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 23
+Endpoint:      x_reg_out_reg[1]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -708.9ps
+
+Node: x_reg_out_reg[1]15/RN
+Net:  rst_n
+  Setup Slack:   752.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 24
+Endpoint:      result_reg_reg[2><7]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -708.8ps
+
+Node: result_reg_reg[2><7]/RN
+Net:  rst_n
+  Setup Slack:   813.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 25
+Endpoint:      result_reg_reg[2><6]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -708.3ps
+
+Node: result_reg_reg[2><6]/RN
+Net:  rst_n
+  Setup Slack:   813.4ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 26
+Endpoint:      acc_reg_out_reg[3]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -708.1ps
+
+Node: acc_reg_out_reg[3]15/RN
+Net:  rst_n
+  Setup Slack:   895.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 27
+Endpoint:      acc_reg_out_reg[4]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -708.0ps
+
+Node: acc_reg_out_reg[4]15/RN
+Net:  rst_n
+  Setup Slack:   895.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 28
+Endpoint:      result_reg_reg[2><8]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -707.9ps
+
+Node: result_reg_reg[2><8]/RN
+Net:  rst_n
+  Setup Slack:   812.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 29
+Endpoint:      acc_reg_out_reg[8]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -707.4ps
+
+Node: acc_reg_out_reg[8]11/RN
+Net:  rst_n
+  Setup Slack:   812.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 30
+Endpoint:      x_reg_out_reg[0]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -707.4ps
+
+Node: x_reg_out_reg[0]11/RN
+Net:  rst_n
+  Setup Slack:   743.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 31
+Endpoint:      result_reg_reg[2><9]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -707.2ps
+
+Node: result_reg_reg[2><9]/RN
+Net:  rst_n
+  Setup Slack:   812.4ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 32
+Endpoint:      acc_reg_out_reg[9]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.9ps
+
+Node: acc_reg_out_reg[9]11/RN
+Net:  rst_n
+  Setup Slack:   812.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 33
+Endpoint:      result_reg_reg[2><10]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.7ps
+
+Node: result_reg_reg[2><10]/RN
+Net:  rst_n
+  Setup Slack:   811.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 34
+Endpoint:      result_reg_reg[2><11]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.5ps
+
+Node: result_reg_reg[2><11]/RN
+Net:  rst_n
+  Setup Slack:   811.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 35
+Endpoint:      acc_reg_out_reg[10]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.5ps
+
+Node: acc_reg_out_reg[10]11/RN
+Net:  rst_n
+  Setup Slack:   811.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 36
+Endpoint:      acc_reg_out_reg[11]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.3ps
+
+Node: acc_reg_out_reg[11]11/RN
+Net:  rst_n
+  Setup Slack:   811.5ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 37
+Endpoint:      result_reg_reg[2><12]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -706.1ps
+
+Node: result_reg_reg[2><12]/RN
+Net:  rst_n
+  Setup Slack:   811.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 38
+Endpoint:      acc_reg_out_reg[12]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -705.8ps
+
+Node: acc_reg_out_reg[12]11/RN
+Net:  rst_n
+  Setup Slack:   810.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 39
+Endpoint:      acc_reg_out_reg[13]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -705.7ps
+
+Node: acc_reg_out_reg[13]11/RN
+Net:  rst_n
+  Setup Slack:   810.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 40
+Endpoint:      x_reg_out_reg[1]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -702.9ps
+
+Node: x_reg_out_reg[1]11/RN
+Net:  rst_n
+  Setup Slack:   722.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 41
+Endpoint:      result_reg_reg[3><4]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -702.0ps
+
+Node: result_reg_reg[3><4]/RN
+Net:  rst_n
+  Setup Slack:   921.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 42
+Endpoint:      x_reg_out_reg[2]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -698.8ps
+
+Node: x_reg_out_reg[2]11/RN
+Net:  rst_n
+  Setup Slack:   705.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 43
+Endpoint:      acc_reg_out_reg[6]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -695.9ps
+
+Node: acc_reg_out_reg[6]15/RN
+Net:  rst_n
+  Setup Slack:   941.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 44
+Endpoint:      result_reg_reg[3><6]/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -695.9ps
+
+Node: result_reg_reg[3><6]/RN
+Net:  rst_n
+  Setup Slack:   941.6ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 45
+Endpoint:      x_reg_out_reg[3]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -695.8ps
+
+Node: x_reg_out_reg[3]11/RN
+Net:  rst_n
+  Setup Slack:   695.7ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 46
+Endpoint:      weight_reg_reg[0]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -694.0ps
+
+Node: weight_reg_reg[0]11/RN
+Net:  rst_n
+  Setup Slack:   690.5ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 47
+Endpoint:      x_reg_out_reg[4]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -692.1ps
+
+Node: x_reg_out_reg[4]11/RN
+Net:  rst_n
+  Setup Slack:   684.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 48
+Endpoint:      weight_reg_reg[4]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -684.7ps
+
+Node: weight_reg_reg[4]11/RN
+Net:  rst_n
+  Setup Slack:   664.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 49
+Endpoint:      acc_reg_out_reg[5]15/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -681.6ps
+
+Node: acc_reg_out_reg[5]15/RN
+Net:  rst_n
+  Setup Slack:   964.9ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode
+
+
+// Path 50
+Endpoint:      x_reg_out_reg[5]11/RN
+Beginpoint:    rst_n
+Analysis View: nangate_view_hold
+Hold Slack:    -678.7ps
+
+Node: x_reg_out_reg[5]11/RN
+Net:  rst_n
+  Setup Slack:   648.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      InvalidResizeInst
+    ECO Safe Resize
+      InvalidResizeInst
+Node: rst_n
+Net:  rst_n
+  Setup Slack:   169.2ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+    LegalSingleBuffer
+      InvalidTermForRoute
+    ResizeLegal
+      FTermNode
+    ECO Safe Resize
+      FTermNode

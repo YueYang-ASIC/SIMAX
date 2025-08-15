@@ -1,0 +1,105 @@
+/home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_rail -temp_directory_name /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO -cmd /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/voltus_rail_1549410.cmd -machine coe-ece-taco -hbPort -1 
+* voltus_rail
+*	Version v21.18-s053_1 (07/11/2023 23:32:16)
+*	Copyright 2007 - 2017 Cadence Design Systems, Inc.
+*
+*	Run by lunayang on Sun Jul 27 11:35:31 2025
+
+*	Executing 64 bit version on host: coe-ece-taco
+*
+* Current Process Limit (in bytes):
+*    Data Size	: 18014398509481983k
+*    File Size	: 18014398509481983k
+*    Memory	: 18014398509481983k
+*    Stack Size	: 261120k
+*    Descriptors: 1024 
+*
+
+
+Started Rail Analysis at 11:35:30 07/27/2025
+
+
+Multi-CPU Configuration:
+	#CPU: 1
+	Mode: local
+	Host: coe-ece-taco
+
+Analyze Rail Settings:
+	Temp directory: /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO
+	Output directory: ./run1
+	Run directory: ./run1/VDD_25C_avg_1
+
+
+
+Running R  extraction for /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz ...
+
+Invoking: "/home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler   -nt 1   -usecellid  -session_file ./work/sfe.session    -cmd ./work/voltus_scheduler.cmd" ...
+Extraction option setup as:
+setenv gray_data NONE
+setenv enable_cluster_overhang_via false
+setenv enable_dfm_mask_conflict_shape false
+Begin Preparing Data for Parasitic Extraction
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[3\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[0\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[1\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component cycle_reg\[2\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[12\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[13\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[14\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[15\]
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[1\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[2\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component x_reg_out_reg\[3\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[0\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[1\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[2\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[3\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[4\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[5\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[6\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[7\]1
+** WARN: (VOLTUS_SCHD-0182):	/tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/eps_out_1549410.def.gz has unplaced and ignored component acc_reg_out_reg\[8\]1
+Extracting following DFM effects:
+MetalFill        : n/a
+WEE Effects      : n/a
+Erosion Effects  : n/a
+T/B Enlargements : n/a
+R(w) Effects     : n/a
+R(w,s) Effects   : n/a
+R(sw,st) Effects : n/a
+TC(w) Effects    : n/a
+Some effects indicate n/a because of non-availability of relevant input data (or) requested to be off.
+Ended Preparing Data for Parasitic Extraction: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=32.78MB/5867.62MB/2599.58MB)
+
+Invoking: "/home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_scheduler -skip_prep -nt 1 -usecellid -session_file ./work/sfe.session -cmd ./work/voltus_scheduler.cmd -zx /home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_extractor" ...
+Extraction option setup as:
+setenv gray_data NONE
+setenv enable_cluster_overhang_via false
+setenv enable_dfm_mask_conflict_shape false
+Begin Parasitic Extraction
+Extracting Progress:
+    0% at 11:35:32 07/27/2025
+  100% at 11:35:37 07/27/2025
+Ended Parasitic Extraction: (cpu=0:00:00, real=0:00:05, mem(process/total/peak)=20.25MB/5071.20MB/2599.58MB)
+
+Invoking: "/home/software/cadence/INNOVUS211/tools.lnx86/ssvtools/bin/64bit/voltus_rail_smg -cmd ./run1/voltus_rail_smg.VDD.cmd -l ./run1/voltus_rail_smg.VDD.log" ...
+Begin Merging power grid
+Tech reference temperature: 25
+Target temperature: 25
+
+** ERROR: (VOLTUS_RAIL_SMG-0046):	Unable to continue rail analysis because net "VDD" does not have any valid logically-connected cell instance.
+Use the -ignore_incomplete_net option of the set_rail_analysis_mode command to ignore these nets and rerun the analysis.
+*** Error: Failed to run voltus_rail_smg, return code is 1
+*** Error: In processing command script
+Power grid merging failed.
+1 error was found while processing the file /tmp/innovus_temp_1549410_coe-ece-taco_lunayang_ic5TpO/voltus_rail_1549410.cmd
+
+Rail Analysis Statistics:
+Warning messages:      0
+Error messages:        1
+
+Rail Analysis is unsuccessful due to errors.
+
+Finished Rail Analysis at 11:35:38 07/27/2025 (cpu=0:00:01, real=0:00:08, peak mem=2599.58MB)
+Current Innovus resource usage: (total cpu=1:49:20, real=73:01:14, mem=2040.65MB)
+voltus_rail exited unsuccessfully.

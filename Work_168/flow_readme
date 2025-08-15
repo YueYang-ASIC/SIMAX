@@ -1,0 +1,6 @@
+1. source _1_init.tcl and _2_power.tcl
+2. measure the core length to add stripes, sets only count in the middle; advanced: switch layer over obstructions, Merge with block rings; auto
+3. source _3_Sroute.tcl
+4. power analysis: static, setup, run : ./run1
+5. source _4_placement.tcl ; opt_design -pre_cts 
+6. source _5_CTS.tcl; opt_design -post_cts -hold

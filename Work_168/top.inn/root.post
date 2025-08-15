@@ -1,0 +1,71 @@
+::db::check_and_set_root_attr extract_rc_engine pre_route
+::db::check_and_set_root_attr add_rings_avoid_short false
+::db::check_and_set_root_attr add_rings_extend_over_row false
+::db::check_and_set_root_attr add_rings_ignore_rows false
+::db::check_and_set_root_attr add_rings_orthogonal_only true
+::db::check_and_set_root_attr add_rings_skip_shared_inner_ring none
+::db::check_and_set_root_attr add_rings_skip_via_on_pin standardcell
+::db::check_and_set_root_attr add_rings_skip_via_on_wire_shape noshape
+::db::check_and_set_root_attr add_rings_stacked_via_bottom_layer metal1
+::db::check_and_set_root_attr add_rings_stacked_via_top_layer metal10
+::db::check_and_set_root_attr add_rings_target default
+::db::check_and_set_root_attr add_rings_via_using_exact_crossover_size true
+::db::check_and_set_root_attr add_stripes_allow_jog {padcore_ring block_ring}
+::db::check_and_set_root_attr add_stripes_break_at none
+::db::check_and_set_root_attr add_stripes_extend_to_closest_target none
+::db::check_and_set_root_attr add_stripes_ignore_block_check false
+::db::check_and_set_root_attr add_stripes_ignore_drc true
+::db::check_and_set_root_attr add_stripes_ignore_non_default_domains false
+::db::check_and_set_root_attr add_stripes_orthogonal_only true
+::db::check_and_set_root_attr add_stripes_partial_set_through_domain false
+::db::check_and_set_root_attr add_stripes_route_over_rows_only false
+::db::check_and_set_root_attr add_stripes_rows_without_stripes_only false
+::db::check_and_set_root_attr add_stripes_skip_via_on_pin standardcell
+::db::check_and_set_root_attr add_stripes_skip_via_on_wire_shape noshape
+::db::check_and_set_root_attr add_stripes_spacing_from_block 0.0
+::db::check_and_set_root_attr add_stripes_spacing_type edge_to_edge
+::db::check_and_set_root_attr add_stripes_split_vias false
+::db::check_and_set_root_attr add_stripes_stacked_via_bottom_layer metal1
+::db::check_and_set_root_attr add_stripes_stacked_via_top_layer metal10
+::db::check_and_set_root_attr add_stripes_stop_at_last_wire_for_area false
+::db::check_and_set_root_attr add_stripes_stripe_min_length stripe_width
+::db::check_and_set_root_attr add_stripes_trim_antenna_back_to_shape none
+::db::check_and_set_root_attr add_stripes_via_using_exact_crossover_size false
+::db::check_and_set_root_attr assign_pins_edit_in_batch false
+::db::check_and_set_root_attr delaycal_enable_high_fanout true
+::db::check_and_set_root_attr delaycal_ignore_net_load false
+::db::check_and_set_root_attr finish_floorplan_active_objs {core macro}
+::db::check_and_set_root_attr finish_floorplan_add_blockage_direction xy
+::db::check_and_set_root_attr finish_floorplan_drc_region_objs {macro macro_halo hard_blockage min_gap core_spacing}
+::db::check_and_set_root_attr finish_floorplan_override false
+::db::check_and_set_root_attr floorplan_default_tech_site FreePDK45_38x28_10R_NP_162NW_34O
+::db::check_and_set_root_attr floorplan_max_io_height false
+::db::check_and_set_root_attr generate_special_via_ignore_drc true
+::db::check_and_set_root_attr opt_drv_margin 0.0
+::db::check_and_set_root_attr opt_fix_drv true
+::db::check_and_set_root_attr opt_resize_flip_flops true
+::db::check_and_set_root_attr opt_setup_target_slack 0.0
+::db::check_and_set_root_attr opt_view_pruning_hold_views_active_list { nangate_view_hold }
+::db::check_and_set_root_attr opt_view_pruning_setup_views_active_list { nangate_view_setup }
+::db::check_and_set_root_attr opt_view_pruning_setup_views_persistent_list { nangate_view_setup}
+::db::check_and_set_root_attr opt_view_pruning_tdgr_setup_views_persistent_list { nangate_view_setup}
+::db::check_and_set_root_attr power_corner max
+::db::check_and_set_root_attr power_honor_negative_energy true
+::db::check_and_set_root_attr power_ignore_control_signals true
+::db::check_and_set_root_attr power_method static
+::db::check_and_set_root_attr power_view nangate_view_setup
+::db::check_and_set_root_attr power_write_db true
+::db::check_and_set_root_attr power_write_static_currents true
+::db::check_and_set_root_attr report_pin_density_map_grid_size 10
+::db::check_and_set_root_attr report_pin_density_map_threshold 0.5
+::db::check_and_set_root_attr report_place_density_map_grid_size 10
+::db::check_and_set_root_attr report_place_density_map_grid_unit 50.0
+::db::check_and_set_root_attr report_place_density_map_threshold 0.75
+::db::check_and_set_root_attr route_design_extract_third_party_compatible false
+::db::check_and_set_root_attr route_design_global_exp_timing_driven_std_delay 8.5
+::db::check_and_set_root_attr route_early_global_bottom_routing_layer 1
+::db::check_and_set_root_attr route_early_global_honor_partition_pin_guide true
+::db::check_and_set_root_attr route_early_global_honor_power_domain false
+::db::check_and_set_root_attr route_early_global_top_routing_layer 4
+::db::check_and_set_root_attr route_special_via_connect_to_shape noshape
+::db::check_and_set_root_attr write_def_stream_check_uncolored false

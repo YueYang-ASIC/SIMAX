@@ -1,0 +1,68 @@
+
+
+// Path 1
+Endpoint:      acc_reg_out_reg[3]/D
+Beginpoint:    acc_reg_out_reg[3]/Q
+Analysis View: nangate_view_hold
+Hold Slack:    -0.1ps
+
+Node: acc_reg_out_reg[3]/D
+Net:  n1164
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC652_n1164/Z
+Net:  n1164
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC652_n1164/A
+Net:  FE_PHN652_n1164
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: U3971/ZN
+Net:  FE_PHN652_n1164
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: U3971/A
+Net:  n3715
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: U3970/ZN
+Net:  n3715
+  Setup Slack:   727.0ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: U3970/B1
+Net:  FE_PHN1398_acc_out_0__0__3
+  Setup Slack:   1171.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC1398_acc_out_0__0__3/Z
+Net:  FE_PHN1398_acc_out_0__0__3
+  Setup Slack:   1171.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC1398_acc_out_0__0__3/A
+Net:  FE_PHN819_acc_out_0__0__3
+  Setup Slack:   1171.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC819_acc_out_0__0__3/Z
+Net:  FE_PHN819_acc_out_0__0__3
+  Setup Slack:   1171.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: FE_PHC819_acc_out_0__0__3/A
+Net:  acc_out[0><0><3]
+  Setup Slack:   1171.3ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
+Node: acc_reg_out_reg[3]/Q
+Net:  acc_out[0><0><3]
+  Setup Slack:   221.8ps
+  Analysis View: nangate_view_setup
+  Failed Reason:
