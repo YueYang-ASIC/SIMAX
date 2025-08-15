@@ -1,6 +1,6 @@
 # SIMAX
 
-A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized Transformer inference. SIMAX enables a configurable RTL-to-GDSII hardware implementation flow. Its parameterized hardware template allows designers to explore a wide spectrum of trade-offs across performance, power efficiency, and area scalability, from small edge deployments to large-scale many-core configurations.
+A SIMD-Based Many-Core Accelerator--specifically designed for MVMs in quantized Transformer inference. SIMAX enables a configurable RTL-to-GDSII hardware implementation flow. Its parameterized hardware template allows designers to explore a wide spectrum of trade-offs across performance, power efficiency, and area scalability, from small edge deployments to large-scale many-core configurations.
 
 ## Project Layout
 
@@ -13,7 +13,7 @@ A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized
 ├─ rtl/                   # Verilog source
 ├─ setup/				  # for innovus import design
 ├─ synthesis/            # Generate netlist, sdc, and PPA reports (created by the flow)
-│  └─ dc-template.tcl    # DC script (edit clk\\\_period here)
+│  └─ dc-template.tcl    # DC script (edit clk_period here)
 │  ├─ top.vfs            # Verilog Filelist for Synthesis (no testbench)
 │  └─ top.vfv            # Verilog Filelist for Verification (with testbench)
 ├─ tech/				  # freepdk45: An open-source predictive 45nm pdk
@@ -28,8 +28,8 @@ A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized
 
 ### Prerequisites
 
-- Synopsys **Design Compiler** (`dc_shell` or `dc_shell -tcl`) in your `PATH`
-- GNU Make
+* Synopsys **Design Compiler** (`dc_shell` or `dc_shell -tcl`) in your `PATH`
+* GNU Make
 
 ---
 
@@ -50,10 +50,15 @@ Set them via `parameter` values in `top.v`:
 4. **Run**: `make NAME=top synth`
 5. **Review output**: QoR and power are printed to terminal **and** saved to: `top.rpt`
 6. **Adjust clock** based on slack. Edit `dc-template.tcl`:
-- Negative slack ⇒ increase `clk_period` (slow down).
-- Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
+
+* Negative slack ⇒ increase `clk_period` (slow down).
+* Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
+
 7. Re-run `make NAME=top synth`.
 8. Remove generated outputs `make NAME=top cleanall`
+   ![QoR timing](figs/qor_timing.png)
+   ![Power area](figs/power_rpt.png)
+   ![QoR area](figs/qor_area.png)
 
 
 
