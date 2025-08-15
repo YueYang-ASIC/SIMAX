@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Fri Aug 15 18:32:34 2025
+#@ # Date:   Fri Aug 15 18:48:36 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8650,7 +8650,7 @@ source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/synthesis/384Top_SY
 #@ set CLK "clk"
 #@ 
 #@ #===== All values are in units of ns for NanGate 45 nm library
-#@ set clk_period      1.55
+#@ set clk_period      1.56
 #@ 
 #@ set clock_skew      [expr {$clk_period} * 0.05 ]
 #@ set input_setup     [expr {$clk_period} * 0.97 ]

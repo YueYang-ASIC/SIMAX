@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Fri Aug 15 17:13:29 2025
+#@ # Date:   Fri Aug 15 19:17:41 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8498,8 +8498,8 @@ source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
 #@ # -- End source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
-source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/.synopsys_dc.setup
-#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/.synopsys_dc.setup
+source /home/c11879_csufresno/Documents/SIMAX/synthesis/16Top_SYN_4_4/.synopsys_dc.setup
+#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/synthesis/16Top_SYN_4_4/.synopsys_dc.setup
 
 #@ # .synopsys_dc.setup 
 #@ # 2025/8/15   Written for SIMAX project by Yue Yang
@@ -8522,9 +8522,7 @@ source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/.synopsys_
 #@ 
 #@ set search_path [list . ../../lib/CCS \
 #@ 			../../lib \
-#@ 			../../lib/Verilog \
-#@                        ../../lib/syn \
-#@                        ../../lib/sim ]
+#@ 			../../lib/Verilog  ]
 #@ 
 #@ #set link_library [list NangateOpenCellLibrary_typical_ccs.lib dw_foundation.sldb]
 #@ set link_library [list NangateOpenCellLibrary.db dw_foundation.sldb]
@@ -8591,10 +8589,10 @@ source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/.synopsys_
 #@ set edifout_target_system  "cadence"
 #@ set edifout_instantiate_ports  "true"
 #@ 
-#@ # -- End source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/.synopsys_dc.setup
+#@ # -- End source /home/c11879_csufresno/Documents/SIMAX/synthesis/16Top_SYN_4_4/.synopsys_dc.setup
 
-source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/dc-top.tcl
-#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/Synthesis/16Top_SYN_4_4/dc-top.tcl
+source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/synthesis/16Top_SYN_4_4/dc-top.tcl
+#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/synthesis/16Top_SYN_4_4/dc-top.tcl
 
 #@ # dc-top.tcl script 
 #@ #

@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Fri Aug 15 18:31:59 2025
+#@ # Date:   Fri Aug 15 19:38:33 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8522,9 +8522,7 @@ source /home/c11879_csufresno/Documents/SIMAX/synthesis/256Top_SYN_16_16/.synops
 #@ 
 #@ set search_path [list . ../../lib/CCS \
 #@ 			../../lib \
-#@ 			../../lib/Verilog \
-#@                        ../../lib/syn \
-#@                        ../../lib/sim ]
+#@ 			../../lib/Verilog  ]
 #@ 
 #@ #set link_library [list NangateOpenCellLibrary_typical_ccs.lib dw_foundation.sldb]
 #@ set link_library [list NangateOpenCellLibrary.db dw_foundation.sldb]
@@ -8650,7 +8648,7 @@ source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/synthesis/256Top_SY
 #@ set CLK "clk"
 #@ 
 #@ #===== All values are in units of ns for NanGate 45 nm library
-#@ set clk_period      1.52
+#@ set clk_period      1.56
 #@ 
 #@ set clock_skew      [expr {$clk_period} * 0.05 ]
 #@ set input_setup     [expr {$clk_period} * 0.97 ]

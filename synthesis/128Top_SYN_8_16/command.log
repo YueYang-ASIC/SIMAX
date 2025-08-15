@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Fri Aug 15 18:29:43 2025
+#@ # Date:   Fri Aug 15 19:27:12 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8522,9 +8522,7 @@ source /home/c11879_csufresno/Documents/SIMAX/synthesis/128Top_SYN_8_16/.synopsy
 #@ 
 #@ set search_path [list . ../../lib/CCS \
 #@ 			../../lib \
-#@ 			../../lib/Verilog \
-#@                        ../../lib/syn \
-#@                        ../../lib/sim ]
+#@ 			../../lib/Verilog  ]
 #@ 
 #@ #set link_library [list NangateOpenCellLibrary_typical_ccs.lib dw_foundation.sldb]
 #@ set link_library [list NangateOpenCellLibrary.db dw_foundation.sldb]

@@ -3,21 +3,21 @@
 Report : qor
 Design : top
 Version: S-2021.06-SP5-1
-Date   : Fri Aug 15 18:35:38 2025
+Date   : Fri Aug 15 19:45:25 2025
 ****************************************
 
 
   Timing Path Group 'clk'
   -----------------------------------
-  Levels of Logic:              24.00
-  Critical Path Length:          1.45
+  Levels of Logic:              26.00
+  Critical Path Length:          1.43
   Critical Path Slack:           0.00
-  Critical Path Clk Period:      1.55
+  Critical Path Clk Period:      1.53
   Total Negative Slack:          0.00
   No. of Violating Paths:        0.00
-  Worst Hold Violation:         -0.01
-  Total Hold Violation:         -0.68
-  No. of Hold Violations:      198.00
+  Worst Hold Violation:         -0.00
+  Total Hold Violation:         -0.44
+  No. of Hold Violations:      186.00
   -----------------------------------
 
 
@@ -25,12 +25,12 @@ Date   : Fri Aug 15 18:35:38 2025
   -----------------------------------
   Hierarchical Cell Count:          0
   Hierarchical Port Count:          0
-  Leaf Cell Count:              47291
-  Buf/Inv Cell Count:            6450
-  Buf Cell Count:                 216
-  Inv Cell Count:                6234
+  Leaf Cell Count:              47445
+  Buf/Inv Cell Count:            6461
+  Buf Cell Count:                 247
+  Inv Cell Count:                6214
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:     41716
+  Combinational Cell Count:     41870
   Sequential Cell Count:         5575
   Macro Count:                      0
   -----------------------------------
@@ -38,21 +38,21 @@ Date   : Fri Aug 15 18:35:38 2025
 
   Area
   -----------------------------------
-  Combinational Area:    67853.940745
-  Noncombinational Area: 29682.940959
-  Buf/Inv Area:           3540.194029
-  Total Buffer Area:           200.03
-  Total Inverter Area:        3340.16
+  Combinational Area:    68001.570737
+  Noncombinational Area: 29691.452961
+  Buf/Inv Area:           3554.292028
+  Total Buffer Area:           226.10
+  Total Inverter Area:        3328.19
   Macro/Black Box Area:      0.000000
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:             97536.881704
-  Design Area:           97536.881704
+  Cell Area:             97693.023698
+  Design Area:           97693.023698
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:         57838
+  Total Number of Nets:         58014
   Nets With Violations:             0
   Max Trans Violations:             0
   Max Cap Violations:               0
@@ -63,19 +63,19 @@ Date   : Fri Aug 15 18:35:38 2025
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                   13.37
-  Logic Optimization:                 44.13
-  Mapping Optimization:              136.02
+  Resource Sharing:                   12.86
+  Logic Optimization:                 33.01
+  Mapping Optimization:              163.28
   -----------------------------------------
-  Overall Compile Time:              304.93
-  Overall Compile Wall Clock Time:   307.77
+  Overall Compile Time:              295.06
+  Overall Compile Wall Clock Time:   297.81
 
   --------------------------------------------------------------------
 
   Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
 
 
-  Design (Hold)  WNS: 0.01  TNS: 0.68  Number of Violating Paths: 198
+  Design (Hold)  WNS: 0.00  TNS: 0.44  Number of Violating Paths: 186
 
   --------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ Report : power
         -analysis_effort low
 Design : top
 Version: S-2021.06-SP5-1
-Date   : Fri Aug 15 18:35:38 2025
+Date   : Fri Aug 15 19:45:25 2025
 ****************************************
 
 
@@ -113,12 +113,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =  34.0453 mW   (96%)
-  Net Switching Power  =   1.5796 mW    (4%)
+  Cell Internal Power  =  34.5025 mW   (96%)
+  Net Switching Power  =   1.5767 mW    (4%)
                          ---------
-Total Dynamic Power    =  35.6249 mW  (100%)
+Total Dynamic Power    =  36.0793 mW  (100%)
 
-Cell Leakage Power     =   6.2516 mW
+Cell Leakage Power     =   6.2813 mW
 
 
                  Internal         Switching           Leakage            Total
@@ -128,9 +128,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register       3.3389e+04          577.5056        1.5269e+06        3.5493e+04  (  84.76%)
+register       3.3823e+04          594.4164        1.5296e+06        3.5947e+04  (  84.86%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational    656.4602        1.0021e+03        4.7247e+06        6.3833e+03  (  15.24%)
+combinational    679.9178          982.3144        4.7517e+06        6.4139e+03  (  15.14%)
 --------------------------------------------------------------------------------------------------
-Total          3.4045e+04 uW     1.5796e+03 uW     6.2516e+06 nW     4.1877e+04 uW
+Total          3.4502e+04 uW     1.5767e+03 uW     6.2813e+06 nW     4.2360e+04 uW
 1

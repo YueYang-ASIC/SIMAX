@@ -95,8 +95,7 @@ cleanall: clean
 	rm -f $(NAME).vpd
 	rm -f $(NAME).sdc
 	rm -f $(NAME).sdf
-	rm -f $(NAME).qor
-	rm -f $(NAME).pow
+	rm -f $(NAME).rpt
 	rm -f command.log
 	rm -rf checkDesign
 	rm -rf timingReports

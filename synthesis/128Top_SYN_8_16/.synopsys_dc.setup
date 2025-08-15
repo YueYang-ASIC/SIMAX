@@ -19,9 +19,7 @@
 
 set search_path [list . ../../lib/CCS \
 			../../lib \
-			../../lib/Verilog \
-                       ../../lib/syn \
-                       ../../lib/sim ]
+			../../lib/Verilog  ]
 
 #set link_library [list NangateOpenCellLibrary_typical_ccs.lib dw_foundation.sldb]
 set link_library [list NangateOpenCellLibrary.db dw_foundation.sldb]

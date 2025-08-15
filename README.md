@@ -49,17 +49,18 @@ Set them via `parameter` values in `top.v`:
 3. **Check** SIMAX dimensions (rows/cols/cycles) match your intended configuration.
 4. **Run**: `make NAME=top synth`
 5. **Review output**: QoR and power are printed to terminal **and** saved to: `top.rpt`
-6. **Adjust clock** based on slack. Edit `dc-template.tcl`:
+6. **Fix setup violation**: Adjust clock based on slack. Edit `dc-template.tcl`:
 
 * Negative slack ⇒ increase `clk_period` (slow down).
 * Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
+* DC can only fix setup; Use innovus to fix hold after CTS with buffer insertion.
 
 7. Re-run `make NAME=top synth`.
 8. Remove generated outputs `make NAME=top cleanall`
 
 ---
 ### Results (SIMAX 4 x 4 as an example)
-#### Timing 
+#### Timing : Only fix setup violation; Hold violation will be fixed in P&R
   <img src="figs/qor_timing.png" alt="Timing" width="250">
 
 #### Area 

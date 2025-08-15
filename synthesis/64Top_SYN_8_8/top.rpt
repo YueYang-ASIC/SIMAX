@@ -3,7 +3,7 @@
 Report : qor
 Design : top
 Version: S-2021.06-SP5-1
-Date   : Fri Aug 15 18:30:31 2025
+Date   : Fri Aug 15 19:39:04 2025
 ****************************************
 
 
@@ -63,12 +63,12 @@ Date   : Fri Aug 15 18:30:31 2025
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    4.16
-  Logic Optimization:                 10.17
+  Resource Sharing:                    4.12
+  Logic Optimization:                 10.35
   Mapping Optimization:               57.13
   -----------------------------------------
-  Overall Compile Time:               97.48
-  Overall Compile Wall Clock Time:    98.70
+  Overall Compile Time:               96.77
+  Overall Compile Wall Clock Time:    98.02
 
   --------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ Report : power
         -analysis_effort low
 Design : top
 Version: S-2021.06-SP5-1
-Date   : Fri Aug 15 18:30:31 2025
+Date   : Fri Aug 15 19:39:04 2025
 ****************************************
 
 
