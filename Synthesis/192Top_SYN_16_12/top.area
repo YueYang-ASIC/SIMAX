@@ -1,0 +1,32 @@
+ 
+****************************************
+Report : area
+Design : top
+Version: S-2021.06-SP5-1
+Date   : Fri Aug  1 14:41:51 2025
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'top' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db)
+
+Number of ports:                          372
+Number of nets:                         63042
+Number of cells:                        51642
+Number of combinational cells:          45235
+Number of sequential cells:              6407
+Number of macros/black boxes:               0
+Number of buf/inv:                       5177
+Number of references:                      47
+
+Combinational area:              76615.714775
+Buf/Inv area:                     2968.294017
+Noncombinational area:           34124.077105
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                110739.791879
+Total area:                 undefined
+1

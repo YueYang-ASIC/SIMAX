@@ -1,0 +1,540 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+              Version S-2021.06-SP5-1 for linux64 - Mar 10, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+# dc-top.tcl script 
+#
+# 2018/02/15  Added *_ANALYZE_SECTION comments to new Makefile can automatically
+#             add .v files to dc-*.tcl. Also updated some comments.
+# 2017/02/14  Reduced output_delay to 4% and input_delay to 3% of the clock 
+#             cycle time so very short critical paths are visible in timing 
+#             reports. Also changed clock_skew from 250ps to 5% of cycle time 
+#             so it will scale with clock frequency.
+# 2017/02/10  Uncommented "analyze -format verilog ./proc.v" line. It seems to
+#             be needed only the first time synthesis is run.
+# 2017/02/04  Changes for NanGate 45 nm library including new timing parameters
+# 2012/02/22  Changed:
+#               ungroup -all -flatten -simple_names
+#             to:
+#               if { [sizeof_collection [get_cells * -filter 
+#                  "is_hierarchical==true"]] > 0 } {
+#                  ungroup -all -flatten -simple_names
+#                  }
+# 2010/02/16  Updated commented path to vtvtlib25.db
+# 2009/02/12  Many parts re-written in new tcl version by Zhibin Xiao
+# 2006/01/30  Updated /afs/.../vtvtlib25.db path to this quarter's path.
+# 2004/02/05  Updated /afs/.../vtvtlib25.db path to this quarter's path.
+# 2003/05/22  Increased input_setup from 500 to 6000 (external input delay
+#             now 6ns instead of 9.5ns) so input paths don't show up at the
+#             top of timing reports so often.
+# 2003/05/15  Cleaned up a little
+# 2003/05/14  Written
+#
+# Debugging
+# list -designs
+# list -libraries
+# list -files 
+#
+# Add if you like:
+# Annotates inputs, but doesn't propagate through design to clear warnings.
+#   set_switching_activity -toggle_rate 0.25 -clock "clk" { "in31a" }
+# More power info
+#   report_power -net
+#   report_power -hier
+#   set_max_delay
+#   write -format db -output top.db
+#
+# Doesn't work quite the way I expect
+#   NameDesign = top    Set variable ok, but how to concatenate?
+#   write_rtl -format verilog -output top.vg
+#===== Set: make sure you change design name elsewhere in this file
+set NameDesign "top"
+top
+#===== Set some timing parameters
+set CLK "clk"
+clk
+#===== All values are in units of ns for NanGate 45 nm library
+set clk_period      1.52
+1.52
+set clock_skew      [expr {$clk_period} * 0.05 ]
+0.076
+set input_setup     [expr {$clk_period} * 0.97 ]
+1.4744
+set output_delay    [expr {$clk_period} * 0.04 ]
+0.0608
+set input_delay     [expr {$clk_period} - {$input_setup}]
+0.0456
+# It appears one "analyze" command is needed for each .v file. This works best
+# (only?) with one command line per module.
+analyze -format verilog mesh_2d_array.v
+Running PRESTO HDLC
+Compiling source file ./mesh_2d_array.v
+Presto compilation completed successfully.
+Loading db file '/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/synopsys/Design_Compiler/libraries/syn/dw_foundation.sldb'
+1
+analyze -format verilog top.v
+Running PRESTO HDLC
+Compiling source file ./top.v
+Presto compilation completed successfully.
+1
+analyze -format verilog fsm_controller.v
+Running PRESTO HDLC
+Compiling source file ./fsm_controller.v
+Presto compilation completed successfully.
+1
+analyze -format verilog tile_pe.v
+Running PRESTO HDLC
+Compiling source file ./tile_pe.v
+Presto compilation completed successfully.
+1
+elaborate $NameDesign
+Loading db file '/usr/synopsys/syn/S-2021.06-SP5-1/libraries/syn/gtech.db'
+Loading db file '/usr/synopsys/syn/S-2021.06-SP5-1/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (top)
+Elaborated 1 design.
+Current design is now 'top'.
+Information: Building the design 'fsm_controller' instantiated from design 'top' with
+	the parameters "ROWS=8,COLS=32,CYCLE_W=6". (HDL-193)
+Warning:  ./fsm_controller.v:39: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./fsm_controller.v:45: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./fsm_controller.v:24: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 19 in file
+	'./fsm_controller.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine fsm_controller_ROWS8_COLS32_CYCLE_W6 line 19 in file
+		'./fsm_controller.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      cycle_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  global_state_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (fsm_controller_ROWS8_COLS32_CYCLE_W6)
+Information: Building the design 'mesh_2d_array' instantiated from design 'top' with
+	the parameters "DW=8,ROWS=8,COLS=32,ROW_W=3,COL_W=5,ACC_W=16". (HDL-193)
+Warning:  ./mesh_2d_array.v:29: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./mesh_2d_array.v:85: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine mesh_2d_array_DW8_ROWS8_COLS32_ROW_W3_COL_W5_ACC_W16 line 66 in file
+		'./mesh_2d_array.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   result_reg_reg    | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (mesh_2d_array_DW8_ROWS8_COLS32_ROW_W3_COL_W5_ACC_W16)
+Information: Building the design 'tile_pe' instantiated from design 'mesh_2d_array_DW8_ROWS8_COLS32_ROW_W3_COL_W5_ACC_W16' with
+	the parameters "DW=8,ROW_W=3,COL_W=5,ACC_W=16". (HDL-193)
+Warning:  ./tile_pe.v:53: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./tile_pe.v:52: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./tile_pe.v:52: signed to unsigned part selection occurs. (VER-318)
+
+Statistics for case statements in always block at line 36 in file
+	'./tile_pe.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            42            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine tile_pe_DW8_ROW_W3_COL_W5_ACC_W16 line 36 in file
+		'./tile_pe.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   acc_reg_out_reg   | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    x_reg_out_reg    | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   weight_reg_reg    | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (tile_pe_DW8_ROW_W3_COL_W5_ACC_W16)
+1
+current_design $NameDesign
+Current design is 'top'.
+{top}
+link
+
+  Linking design 'top'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  NangateOpenCellLibrary (library) /synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db
+  dw_foundation.sldb (library) /synopsys/Design_Compiler/libraries/syn/dw_foundation.sldb
+
+1
+uniquify
+Information: Uniquified 256 instances of design 'tile_pe_DW8_ROW_W3_COL_W5_ACC_W16'. (OPT-1056)
+1
+if { [sizeof_collection [get_cells * -filter "is_hierarchical==true"]] > 0 } {
+   ungroup -all -flatten -simple_names
+   }
+Information: Updating graph... (UID-83)
+Warning: Design 'top' contains 5 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+set_max_area 0.0
+1
+#===== Timing and input/output load constraints
+create_clock $CLK -name $CLK -period $clk_period -waveform [list 0.0 [expr {$clk_period} / 2.0 ] ] 
+1
+set_clock_uncertainty $clock_skew $CLK
+1
+#set_clock_skew -plus_uncertainty $clock_skew $CLK
+#set_clock_skew -minus_uncertainty $clock_skew $CLK
+set_input_delay     $input_delay  -clock $CLK [all_inputs]
+1
+#remove_input_delay               -clock $CLK [all_inputs] 
+set_output_delay    $output_delay -clock $CLK [all_outputs]
+1
+set_load 1.5 [all_outputs]
+1
+compile_ultra
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'top'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | S-2021.06-DWBB_202106.5 |     *     |
+| Licensed DW Building Blocks        | S-2021.06-DWBB_202106.5 |     *     |
+============================================================================
+
+============================================================================
+| Flow Information                                                         |
+----------------------------------------------------------------------------
+| Flow         | Design Compiler WLM                                       |
+============================================================================
+| Design Information                                      | Value          |
+============================================================================
+| Number of Scenarios                                     | 0              |
+| Leaf Cell Count                                         | 19847          |
+| Number of User Hierarchies                              | 0              |
+| Sequential Cell Count                                   | 8328           |
+| Macro Count                                             | 0              |
+| Number of Power Domains                                 | 0              |
+| Design with UPF Data                                    | false          |
+============================================================================
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 259 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+  Simplifying Design 'top'
+
+Loaded alib file './alib-52/NangateOpenCellLibrary.db.alib'
+  Building model 'DW01_NAND2'
+Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'top'
+Information: Added key list 'DesignWare' to design 'top'. (DDB-72)
+ Implement Synthetic for 'top'.
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:02:10  158012.5      0.33    1472.5    2089.8                           11391933.0000
+    0:02:12  157985.9      0.35    1472.8    2071.7                           11390111.0000
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:02:15  157985.9      0.35    1472.8    2071.7                           11390111.0000
+    0:02:16  157985.9      0.35    1472.8    2071.7                           11390111.0000
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Mapping 'top_DP_OP_4868J1_327_3732_0'
+  Mapping 'top_DP_OP_4724J1_183_3732_0'
+  Mapping 'top_DP_OP_4677J1_136_3732_0'
+  Mapping 'top_DP_OP_4726J1_185_3732_0'
+  Mapping 'top_DP_OP_4868J1_327_3732_1'
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:02:50  153712.6      0.26     834.1    2814.5                           10780153.0000
+    0:03:21  155246.6      0.12     404.8    2070.3                           11003950.0000
+    0:03:21  155246.6      0.12     404.8    2070.3                           11003950.0000
+    0:03:26  152435.0      0.12     403.6    2070.3                           10710162.0000
+    0:03:39  151967.7      0.12     389.5    2070.3                           10677836.0000
+    0:03:42  151967.7      0.12     389.5    2070.3                           10677836.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:03:59  150736.4      0.12     364.9    2032.4                           10426172.0000
+    0:04:19  149569.1      0.12     358.4    1895.2                           10269391.0000
+    0:04:20  148745.6      0.12     286.7    1894.0                           10177293.0000
+    0:04:22  148343.9      0.11     215.4    1894.0                           10135831.0000
+    0:04:23  146093.9      0.10     214.0    1894.0                           9700947.0000
+    0:04:23  146110.9      0.10     207.4    1848.3                           9702427.0000
+    0:04:24  146110.9      0.10     207.4    1848.3                           9702427.0000
+    0:04:29  145612.7      0.10     213.5    1784.4                           9595218.0000
+    0:04:30  145612.7      0.10     213.5    1784.4                           9595218.0000
+    0:04:46  146204.2      0.07     177.9    1726.6                           9667769.0000
+    0:04:46  146204.2      0.07     177.9    1726.6                           9667769.0000
+    0:04:46  146209.3      0.07     177.4    1724.6                           9668940.0000
+    0:04:46  146209.3      0.07     177.4    1724.6                           9668940.0000
+    0:04:47  146218.6      0.07     176.5    1723.0                           9669911.0000
+    0:04:47  146218.6      0.07     176.5    1723.0                           9669911.0000
+    0:05:22  147692.2      0.03      64.3    1724.6                           9875158.0000
+    0:05:22  147692.2      0.03      64.3    1724.6                           9875158.0000
+    0:05:23  147726.0      0.03      63.8    1721.3                           9878719.0000
+    0:05:23  147726.0      0.03      63.8    1721.3                           9878719.0000
+    0:05:24  147740.1      0.03      63.4    1721.3                           9880582.0000
+    0:05:24  147740.1      0.03      63.4    1721.3                           9880582.0000
+    0:05:27  147767.8      0.03      62.1    1719.6                           9883611.0000
+    0:05:27  147767.8      0.03      62.1    1719.6                           9883611.0000
+    0:05:30  147785.1      0.03      60.2    1718.0                           9886315.0000
+    0:05:30  147785.1      0.03      60.2    1718.0                           9886315.0000
+    0:05:30  147785.1      0.03      60.2    1718.0                           9886315.0000
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:05:30  147785.1      0.03      60.2    1718.0                           9886315.0000
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+    0:05:36  148934.5      0.03      53.8       0.0 acc_reg_out_reg[0]84/D    10060694.0000
+    0:05:39  148937.1      0.03      52.4       0.0 acc_reg_out_reg[4]9/D     10059960.0000
+    0:05:43  148985.0      0.02      36.8       0.0                           10065551.0000
+    0:05:44  149004.2      0.02      36.6       0.0                           10067588.0000
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:05:44  149004.2      0.02      36.6       0.0                           10067588.0000
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+    0:06:20  152418.0      0.08     189.2       0.0 acc_reg_out_reg[10]201/D  10755532.0000
+    0:06:23  152433.2      0.08     181.5       0.0 acc_reg_out_reg[8]105/D   10756942.0000
+    0:06:28  152439.3      0.07     141.1       0.0 acc_reg_out_reg[10]3/D    10755496.0000
+    0:06:28  152439.5      0.07     140.5       0.0                           10755576.0000
+    0:06:29  152456.8      0.07     139.5       0.0                           10757679.0000
+    0:06:29  152456.8      0.07     139.5       0.0                           10757679.0000
+    0:06:34  148301.1      0.07     141.5       0.0                           9880198.0000
+    0:06:34  148301.1      0.07     141.5       0.0                           9880198.0000
+    0:06:35  148301.1      0.07     141.5       0.0                           9880198.0000
+    0:06:35  148301.1      0.07     141.5       0.0                           9880198.0000
+    0:06:35  148301.1      0.07     140.8       0.0                           9880231.0000
+    0:06:35  148301.1      0.07     140.8       0.0                           9880231.0000
+    0:06:35  148301.1      0.07     140.8       0.0                           9880231.0000
+    0:06:35  148301.1      0.07     140.8       0.0                           9880231.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:54  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:55  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:55  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:55  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:06:55  148828.3      0.04      75.0     219.9                           9955198.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:06:58  148828.3      0.04      75.0     219.9                           9955198.0000
+    0:07:03  147916.2      0.05      97.9      65.0                           9750286.0000
+    0:07:09  147901.1      0.04      88.3     284.6                           9749322.0000
+    0:07:20  147898.4      0.04      88.1     263.1                           9749198.0000
+    0:07:21  147893.3      0.04      87.8     263.1                           9748802.0000
+    0:07:24  147880.6      0.04      86.6     263.1                           9747882.0000
+    0:07:28  147873.1      0.04      85.6     273.5                           9746973.0000
+    0:07:32  147862.8      0.04      83.8     240.0                           9745908.0000
+    0:07:32  147862.8      0.04      83.8     240.0                           9745908.0000
+    0:07:37  147924.2      0.04      85.2      40.8                           9762150.0000
+    0:07:55  147378.4      0.04      78.3      40.8                           9720569.0000
+    0:07:57  147364.3      0.04      77.8      40.8                           9717368.0000
+    0:08:01  147404.4      0.04      70.2       3.1 acc_reg_out_reg[7]48/D    9724110.0000
+    0:08:06  147437.4      0.03      66.2       3.1 acc_reg_out_reg[9]38/D    9728963.0000
+    0:08:10  147465.9      0.03      61.4       3.6 acc_reg_out_reg[6]68/D    9732950.0000
+    0:08:13  147535.3      0.03      46.8       5.3 acc_reg_out_reg[6]36/D    9743308.0000
+    0:08:15  147621.5      0.02      39.4       6.4 acc_reg_out_reg[11]18/D   9756417.0000
+    0:08:18  147659.8      0.02      34.6       5.7 acc_reg_out_reg[2]208/D   9761594.0000
+    0:08:26  147665.6      0.02      32.2       0.0 acc_reg_out_reg[12]74/D   9763348.0000
+    0:08:28  147703.4      0.02      29.1       0.0 acc_reg_out_reg[3]201/D   9768671.0000
+    0:08:31  147748.6      0.02      19.9       0.0 acc_reg_out_reg[14]240/D  9774614.0000
+    0:08:33  147802.1      0.02      16.1       0.0 acc_reg_out_reg[11]149/D  9781505.0000
+    0:08:36  147843.6      0.01      12.1       0.0 acc_reg_out_reg[8]223/D   9787228.0000
+    0:08:38  147885.6      0.01       9.0       0.0 acc_reg_out_reg[8]184/D   9792364.0000
+    0:08:41  147931.4      0.01       6.4       0.0 acc_reg_out_reg[9]73/D    9797925.0000
+    0:08:43  147961.2      0.01       4.3       0.0 acc_reg_out_reg[3]172/D   9802060.0000
+    0:08:45  147980.3      0.01       3.3       0.0 acc_reg_out_reg[8]178/D   9804347.0000
+    0:08:47  148002.4      0.01       2.3       0.0 acc_reg_out_reg[7]10/D    9806819.0000
+    0:08:49  148026.1      0.01       1.6       0.0 acc_reg_out_reg[12]39/D   9809813.0000
+    0:08:54  148037.8      0.00       1.0       0.0 acc_reg_out_reg[7]20/D    9811052.0000
+    0:08:55  148041.0      0.00       0.9       0.0                           9811262.0000
+    0:09:04  148163.3      0.00       0.0      18.4                           9831591.0000
+    0:09:04  148163.3      0.00       0.0      18.4                           9831591.0000
+    0:09:04  148163.3      0.00       0.0      18.4                           9831591.0000
+    0:09:04  148163.3      0.00       0.0      18.4                           9831591.0000
+    0:09:04  148163.3      0.00       0.0      18.4                           9831591.0000
+    0:09:11  147929.5      0.00       0.0       1.3                           9773890.0000
+Loading db file '/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'top' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clk': 8328 load(s), 1 driver(s)
+     Net 'rst_n': 5369 load(s), 1 driver(s)
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+# Comment "ungroup" line to maybe see some submodules
+if { [sizeof_collection [get_cells * -filter "is_hierarchical==true"]] > 0 } {
+   ungroup -all -flatten -simple_names
+   }
+# compile -map_effort medium    # May help, or maybe not
+#===== Reports
+write -format verilog -output top.vg -hierarchy $NameDesign
+Writing verilog file '/home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/8Top_SYN_8_32/top.vg'.
+1
+write_sdc	top.sdc
+1
+report_area               > top.area
+report_cell               > top.cell
+report_hierarchy          > top.hier
+report_net                > top.net
+report_power              > top.pow
+report_timing -nworst 10  > top.tim
+check_timing
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1
+check_design
+1
+exit
+
+Memory usage for this session 434 Mbytes.
+Memory usage for this session including child processes 465 Mbytes.
+CPU usage for this session 573 seconds ( 0.16 hours ).
+Elapsed time for this session 580 seconds ( 0.16 hours ).
+
+Thank you...
