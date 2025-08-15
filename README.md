@@ -61,7 +61,7 @@ Set them via `parameter` values in `top.v`:
 ---
 ### Results (SIMAX 4 x 4 as an example)
 #### Timing : Only fix setup violation; Hold violation will be fixed in P&R
-  <img src="figs/qor_timing.png" alt="Timing" width="250">
+  <img src="figs/qor_timing_hold_vio.png" alt="Timing" width="250">
 
 #### Area 
   <img src="figs/qor_area.png" alt="Area" width="250">
