@@ -27,8 +27,8 @@ A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized
 
 ### Prerequisites
 
-* Synopsys **Design Compiler** (`dc\\\_shell` or `dc\\\_shell -tcl`) in your `PATH`
-* GNU Make
+- Synopsys **Design Compiler** (`dc_shell` or `dc_shell -tcl`) in your `PATH`
+- GNU Make
 
 ---
 
@@ -37,7 +37,7 @@ A SIMD-Based Many-Core Accelerator---specifically designed for MVMs in quantized
 Before running synthesis, confirm your SIMAX template dimensions (e.g., **rows**, **columns**, **clock cycles/latency**).
 Set them via `parameter` values in `top.v`:
 
-* `CYCLE\_W` = ceiling (log2(ROWS+COLS+1))
+* `CYCLE_W` = ceiling (log2(ROWS+COLS+1))
 
 ---
 
@@ -49,8 +49,8 @@ Set them via `parameter` values in `top.v`:
 4. **Run**: `make NAME=top synth`
 5. **Review output**: QoR and power are printed to terminal **and** saved to: `top.rpt`
 6. **Adjust clock** based on slack. Edit `dc-template.tcl`:
-      \* Negative slack ⇒ increase `clk\\\_period` (slow down).
-      \* Comfortable positive slack ⇒ try decreasing `clk\\\_period` (speed up).
+      \* Negative slack ⇒ increase `clk_period` (slow down).
+      \* Comfortable positive slack ⇒ try decreasing `clk_period` (speed up).
 7. Re-run `make NAME=top synth`.
 8. remove generated outputs `make NAME=top cleanall`
 
@@ -61,6 +61,6 @@ Set them via `parameter` values in `top.v`:
 ### Troubleshooting
 
 * **Unresolved modules**: Fix paths/entries in `.vfs`.
-* **Top not found**: Ensure `NAME=<top\_module>` matches your RTL top.
-* **Negative slack**: Relax `clk\_period` or optimize constraints/RTL.
-* **No power report**: Confirm libraries include power data and script calls `report\_power`.
+* **Top not found**: Ensure `NAME=<top_module>` matches your RTL top.
+* **Negative slack**: Relax `clk_period` or optimize constraints/RTL.
+* **No power report**: Confirm libraries include power data and script calls `report_power`.
