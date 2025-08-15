@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP5-1 for linux64 -- Mar 10, 2022
-#@ # Date:   Wed Aug 13 20:44:11 2025
+#@ # Date:   Fri Aug 15 18:28:49 2025
 #@ # Run by: c11879_csufresno@nc-csuaf4-l01.apporto.com
 #@ 
 
@@ -8498,11 +8498,11 @@ source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
 #@ # -- End source /usr/synopsys/syn/S-2021.06-SP5-1/admin/setup/.synopsys_dc.setup
 
-source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/64Top_SYN_8_8/.synopsys_dc.setup
-#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/64Top_SYN_8_8/.synopsys_dc.setup
+source /home/c11879_csufresno/Documents/SIMAX/synthesis/64Top_SYN_8_8/.synopsys_dc.setup
+#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/synthesis/64Top_SYN_8_8/.synopsys_dc.setup
 
 #@ # .synopsys_dc.setup 
-#@ #
+#@ # 2025/8/15   Written for SIMAX project by Yue Yang
 #@ # 2017/01/31  changed from vtvtlib25 to nangate45 std cells
 #@ # 2016/01/27  search path updated for libraries
 #@ # 2015/02/02  search path updated for DC install 
@@ -8520,12 +8520,11 @@ source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD
 #@ # 
 #@ # Library and Search Path variables */
 #@ 
-#@ set search_path [list . /synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS \
-#@ 			/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty \
-#@ 			/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Verilog \
-#@                        /synopsys/Design_Compiler/libraries/syn \
-#@                        /synopsys/Design_Compiler/libraries/sim ]
-#@ 
+#@ set search_path [list . ../../lib/CCS \
+#@ 			../../lib \
+#@ 			../../lib/Verilog \
+#@                        ../../lib/syn \
+#@                        ../../lib/sim ]
 #@ 
 #@ #set link_library [list NangateOpenCellLibrary_typical_ccs.lib dw_foundation.sldb]
 #@ set link_library [list NangateOpenCellLibrary.db dw_foundation.sldb]
@@ -8592,10 +8591,10 @@ source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD
 #@ set edifout_target_system  "cadence"
 #@ set edifout_instantiate_ports  "true"
 #@ 
-#@ # -- End source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/64Top_SYN_8_8/.synopsys_dc.setup
+#@ # -- End source /home/c11879_csufresno/Documents/SIMAX/synthesis/64Top_SYN_8_8/.synopsys_dc.setup
 
-source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/64Top_SYN_8_8/dc-top.tcl
-#@ # -- Starting source /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/64Top_SYN_8_8/dc-top.tcl
+source -echo -verbose /home/c11879_csufresno/Documents/SIMAX/synthesis/64Top_SYN_8_8/dc-top.tcl
+#@ # -- Starting source /home/c11879_csufresno/Documents/SIMAX/synthesis/64Top_SYN_8_8/dc-top.tcl
 
 #@ # dc-top.tcl script 
 #@ #
@@ -8653,7 +8652,6 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ #===== All values are in units of ns for NanGate 45 nm library
 #@ set clk_period      1.48
 #@ 
-#@ 
 #@ set clock_skew      [expr {$clk_period} * 0.05 ]
 #@ set input_setup     [expr {$clk_period} * 0.97 ]
 #@ set output_delay    [expr {$clk_period} * 0.04 ]
@@ -8688,6 +8686,7 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ 
 #@ set_load 1.5 [all_outputs]
 #@ 
+#@ 
 #@ compile_ultra
 #@ 
 #@ # Comment "ungroup" line to maybe see some submodules
@@ -8701,14 +8700,20 @@ source -echo -verbose /home/c11879_csufresno/Documents/ECE176_Final/SoCC_version
 #@ write_sdc	top.sdc
 #@ 
 #@ 
-#@ report_area               > top.area
-#@ report_cell               > top.cell
-#@ report_hierarchy          > top.hier
-#@ report_net                > top.net
-#@ report_power              > top.pow
-#@ report_timing -nworst 10  > top.tim
+#@ #report_area               > top.area
+#@ #report_cell               > top.cell
+#@ #report_hierarchy          > top.hier
+#@ #report_net                > top.net
+#@ #report_power              > top.pow
+#@ #report_timing -nworst 10  > top.tim
 #@ 
 #@ check_timing
 #@ check_design
+#@ 
+#@ # dc_shell  
+#@ redirect -tee top.rpt {report_qor}
+#@ redirect -append -tee top.rpt {report_power}
+#@ 
+#@ 
 #@ 
 #@ exit

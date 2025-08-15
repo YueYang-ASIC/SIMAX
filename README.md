@@ -58,7 +58,7 @@ Set them via `parameter` values in `top.v`:
 8. Remove generated outputs `make NAME=top cleanall`
 
 ---
-### Results
+### Results (SIMAX 4 x 4 as an example)
 #### Timing 
   <img src="figs/qor_timing.png" alt="Timing" width="250">
 

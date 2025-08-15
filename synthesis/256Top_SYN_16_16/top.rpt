@@ -1,0 +1,136 @@
+ 
+****************************************
+Report : qor
+Design : top
+Version: S-2021.06-SP5-1
+Date   : Fri Aug 15 18:41:13 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              23.00
+  Critical Path Length:          1.42
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      1.52
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.01
+  Total Hold Violation:         -1.25
+  No. of Hold Violations:      455.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+  Leaf Cell Count:              72214
+  Buf/Inv Cell Count:           10189
+  Buf Cell Count:                 449
+  Inv Cell Count:                9740
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:     63758
+  Sequential Cell Count:         8456
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:   103660.467133
+  Noncombinational Area: 45054.549459
+  Buf/Inv Area:           5612.068042
+  Total Buffer Area:           402.72
+  Total Inverter Area:        5209.34
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:            148715.016592
+  Design Area:          148715.016592
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         88546
+  Nets With Violations:             2
+  Max Trans Violations:             0
+  Max Cap Violations:               2
+  -----------------------------------
+
+
+  Hostname: nc-csuaf4-l01.apporto.com
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                   24.51
+  Logic Optimization:                 50.92
+  Mapping Optimization:              240.67
+  -----------------------------------------
+  Overall Compile Time:              531.67
+  Overall Compile Wall Clock Time:   535.91
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.01  TNS: 1.25  Number of Violating Paths: 455
+
+  --------------------------------------------------------------------
+
+
+1
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : top
+Version: S-2021.06-SP5-1
+Date   : Fri Aug 15 18:41:13 2025
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/c11879_csufresno/Documents/SIMAX/lib/CCS/NangateOpenCellLibrary.db)
+
+
+Operating Conditions: fast   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+top                    5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.25 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  52.7101 mW   (96%)
+  Net Switching Power  =   2.3305 mW    (4%)
+                         ---------
+Total Dynamic Power    =  55.0406 mW  (100%)
+
+Cell Leakage Power     =   9.5688 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       5.1702e+04          832.9158        2.3231e+06        5.4858e+04  (  84.91%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.0083e+03        1.4976e+03        7.2458e+06        9.7516e+03  (  15.09%)
+--------------------------------------------------------------------------------------------------
+Total          5.2710e+04 uW     2.3305e+03 uW     9.5688e+06 nW     6.4609e+04 uW
+1

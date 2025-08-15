@@ -54,7 +54,6 @@ set CLK "clk"
 #===== All values are in units of ns for NanGate 45 nm library
 set clk_period      1.48
 
-
 set clock_skew      [expr {$clk_period} * 0.05 ]
 set input_setup     [expr {$clk_period} * 0.97 ]
 set output_delay    [expr {$clk_period} * 0.04 ]
@@ -88,6 +87,7 @@ set_input_delay     $input_delay  -clock $CLK [all_inputs]
 set_output_delay    $output_delay -clock $CLK [all_outputs]
 
 set_load 1.5 [all_outputs]
+ 
 
 compile_ultra
 
@@ -102,15 +102,21 @@ write -format verilog -output top.vg -hierarchy $NameDesign
 write_sdc	top.sdc
 
 
-report_area               > top.area
-report_cell               > top.cell
-report_hierarchy          > top.hier
-report_net                > top.net
-report_power              > top.pow
-report_timing -nworst 10  > top.tim
+#report_area               > top.area
+#report_cell               > top.cell
+#report_hierarchy          > top.hier
+#report_net                > top.net
+#report_power              > top.pow
+#report_timing -nworst 10  > top.tim
 
 check_timing
 check_design
+
+# dc_shell  
+redirect -tee top.rpt {report_qor}
+redirect -append -tee top.rpt {report_power}
+
+
 
 exit
 

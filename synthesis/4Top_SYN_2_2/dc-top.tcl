@@ -116,7 +116,5 @@ check_design
 redirect -tee top.rpt {report_qor}
 redirect -append -tee top.rpt {report_power}
 
-
-
 exit
 

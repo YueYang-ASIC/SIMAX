@@ -85,21 +85,21 @@ set clk_period      1.52
 1.52
 set clock_skew      [expr {$clk_period} * 0.05 ]
 0.076
-set output_delay    [expr {$clk_period} * 0.05 ]
-0.076
-set input_delay     [expr {$clk_period} * 0.05 ]
-0.076
-set max_fanout      20
-20
+set input_setup     [expr {$clk_period} * 0.97 ]
+1.4744
+set output_delay    [expr {$clk_period} * 0.04 ]
+0.0608
+set input_delay     [expr {$clk_period} - {$input_setup}]
+0.0456
 # It appears one "analyze" command is needed for each .v file. This works best
 # (only?) with one command line per module.
 analyze -format verilog mesh_2d_array.v
 Running PRESTO HDLC
 Compiling source file ./mesh_2d_array.v
 Presto compilation completed successfully.
-Loading db file '/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db'
+Loading db file '/home/c11879_csufresno/Documents/SIMAX/lib/CCS/NangateOpenCellLibrary.db'
 Information: Using CCS timing libraries. (TIM-024)
-Loading db file '/synopsys/Design_Compiler/libraries/syn/dw_foundation.sldb'
+Loading db file '/home/c11879_csufresno/Documents/SIMAX/lib/syn/dw_foundation.sldb'
 1
 analyze -format verilog top.v
 Running PRESTO HDLC
@@ -197,8 +197,8 @@ link
   Linking design 'top'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  NangateOpenCellLibrary (library) /synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db
-  dw_foundation.sldb (library) /synopsys/Design_Compiler/libraries/syn/dw_foundation.sldb
+  NangateOpenCellLibrary (library) /home/c11879_csufresno/Documents/SIMAX/lib/CCS/NangateOpenCellLibrary.db
+  dw_foundation.sldb (library) /home/c11879_csufresno/Documents/SIMAX/lib/syn/dw_foundation.sldb
 
 1
 uniquify
@@ -282,13 +282,13 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:58   79592.5      0.16     242.2     681.0                           5800393.0000
-    0:00:59   79551.6      0.22     248.6     668.1                           5797363.0000
+    0:00:50   79592.5      0.16     242.2     681.0                           5800393.0000
+    0:00:51   79551.6      0.22     248.6     668.1                           5797363.0000
 
   Beginning Constant Register Removal
   -----------------------------------
-    0:01:00   79551.6      0.22     248.6     668.1                           5797363.0000
-    0:01:01   79551.6      0.22     248.6     668.1                           5797363.0000
+    0:00:53   79551.6      0.22     248.6     668.1                           5797363.0000
+    0:00:54   79551.6      0.22     248.6     668.1                           5797363.0000
 
   Beginning Global Optimizations
   ------------------------------
@@ -332,39 +332,39 @@ Information: Updating design information... (UID-85)
 
   Beginning Delay Optimization
   ----------------------------
-    0:01:18   79007.1      0.24     307.3     681.1                           5817962.5000
-    0:01:39   80115.5      0.07     106.8     398.0                           5964288.5000
-    0:01:39   80115.5      0.07     106.8     398.0                           5964288.5000
-    0:01:42   78323.2      0.07     107.0     398.0                           5718915.0000
-    0:01:48   78038.3      0.07     103.3     398.0                           5694400.0000
-    0:01:49   78038.3      0.07     103.3     398.0                           5694400.0000
+    0:01:10   79007.1      0.24     307.3     681.1                           5817962.5000
+    0:01:31   80115.5      0.07     106.8     398.0                           5964288.5000
+    0:01:31   80115.5      0.07     106.8     398.0                           5964288.5000
+    0:01:34   78323.2      0.07     107.0     398.0                           5718915.0000
+    0:01:41   78038.3      0.07     103.3     398.0                           5694400.0000
+    0:01:43   78038.3      0.07     103.3     398.0                           5694400.0000
 
   Beginning WLM Backend Optimization
   --------------------------------------
-    0:01:59   76989.7      0.07      94.8     390.4                           5482665.5000
-    0:02:06   74579.8      0.07      55.5     389.2                           5074696.0000
-    0:02:07   74211.9      0.06      44.4     389.2                           5028291.0000
-    0:02:08   74217.2      0.05      39.4     381.9                           5028995.0000
-    0:02:08   74217.2      0.05      39.4     381.9                           5028995.0000
-    0:02:11   73462.8      0.05      40.6     348.8                           4861598.0000
-    0:02:11   73462.8      0.05      40.6     348.8                           4861598.0000
-    0:02:14   73562.8      0.04      30.0     343.6                           4874369.5000
-    0:02:14   73562.8      0.04      30.0     343.6                           4874369.5000
-    0:02:14   73564.4      0.04      30.0     343.6                           4874802.5000
-    0:02:14   73564.4      0.04      30.0     343.6                           4874802.5000
-    0:02:15   73564.4      0.04      30.0     343.6                           4874802.5000
-    0:02:15   73564.4      0.04      30.0     343.6                           4874802.5000
-    0:02:29   74124.1      0.01       0.9     335.2                           4952907.0000
-    0:02:29   74124.1      0.01       0.9     335.2                           4952907.0000
-    0:02:29   74132.3      0.01       1.0     335.2                           4953885.0000
-    0:02:29   74132.3      0.01       1.0     335.2                           4953885.0000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:01:51   76989.7      0.07      94.8     390.4                           5482665.5000
+    0:01:59   74579.8      0.07      55.5     389.2                           5074696.0000
+    0:02:00   74211.9      0.06      44.4     389.2                           5028291.0000
+    0:02:00   74217.2      0.05      39.4     381.9                           5028995.0000
+    0:02:00   74217.2      0.05      39.4     381.9                           5028995.0000
+    0:02:03   73462.8      0.05      40.6     348.8                           4861598.0000
+    0:02:03   73462.8      0.05      40.6     348.8                           4861598.0000
+    0:02:06   73562.8      0.04      30.0     343.6                           4874369.5000
+    0:02:07   73562.8      0.04      30.0     343.6                           4874369.5000
+    0:02:07   73564.4      0.04      30.0     343.6                           4874802.5000
+    0:02:07   73564.4      0.04      30.0     343.6                           4874802.5000
+    0:02:07   73564.4      0.04      30.0     343.6                           4874802.5000
+    0:02:07   73564.4      0.04      30.0     343.6                           4874802.5000
+    0:02:21   74124.1      0.01       0.9     335.2                           4952907.0000
+    0:02:21   74124.1      0.01       0.9     335.2                           4952907.0000
+    0:02:22   74132.3      0.01       1.0     335.2                           4953885.0000
+    0:02:22   74132.3      0.01       1.0     335.2                           4953885.0000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -374,12 +374,12 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:02:33   74182.3      0.00       0.2     347.0                           4960877.5000
+    0:02:25   74182.3      0.00       0.2     347.0                           4960877.5000
   Global Optimization (Phase 31)
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
-    0:02:36   74407.9      0.00       0.0       0.0                           4983406.0000
-    0:02:36   74407.9      0.00       0.0       0.0                           4983406.0000
+    0:02:28   74407.9      0.00       0.0       0.0                           4983406.0000
+    0:02:28   74407.9      0.00       0.0       0.0                           4983406.0000
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -389,7 +389,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:02:36   74407.9      0.00       0.0       0.0                           4983406.0000
+    0:02:28   74407.9      0.00       0.0       0.0                           4983406.0000
   Global Optimization (Phase 34)
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
@@ -406,52 +406,52 @@ Information: Updating design information... (UID-85)
   Global Optimization (Phase 47)
   Global Optimization (Phase 48)
   Global Optimization (Phase 49)
-    0:02:48   76281.4      0.02      12.8       0.0 acc_reg_out_reg[7]31/D    5348970.5000
-    0:02:50   76296.0      0.02       9.6       0.0 acc_reg_out_reg[5]63/D    5350183.0000
-    0:02:53   76321.3      0.01       4.7       0.0 acc_reg_out_reg[10]84/D   5352024.5000
-    0:02:55   76331.9      0.01       2.6       0.0 acc_reg_out_reg[8]102/D   5352411.5000
-    0:02:56   76340.9      0.01       2.0       0.0                           5353158.5000
-    0:02:57   76377.6      0.01       1.6       1.6                           5357506.5000
-    0:02:57   76377.6      0.01       1.6       1.6                           5357506.5000
-    0:03:00   74373.1      0.01       1.6       0.0                           4934181.0000
-    0:03:00   74373.1      0.01       1.6       0.0                           4934181.0000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:00   74375.7      0.01       1.6       0.0                           4934458.5000
-    0:03:06   74531.6      0.00       0.0      57.5                           4957426.0000
-    0:03:06   74531.6      0.00       0.0      57.5                           4957426.0000
-    0:03:07   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:07   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:08   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:08   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:09   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:09   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:10   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:10   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:11   74530.8      0.00       0.0      57.5                           4957383.5000
+    0:02:40   76281.4      0.02      12.8       0.0 acc_reg_out_reg[7]31/D    5348970.5000
+    0:02:41   76296.0      0.02       9.6       0.0 acc_reg_out_reg[5]63/D    5350183.0000
+    0:02:44   76321.3      0.01       4.7       0.0 acc_reg_out_reg[10]84/D   5352024.5000
+    0:02:46   76331.9      0.01       2.6       0.0 acc_reg_out_reg[8]102/D   5352411.5000
+    0:02:47   76340.9      0.01       2.0       0.0                           5353158.5000
+    0:02:48   76377.6      0.01       1.6       1.6                           5357506.5000
+    0:02:48   76377.6      0.01       1.6       1.6                           5357506.5000
+    0:02:52   74367.0      0.01       1.6       0.0                           4933031.0000
+    0:02:52   74367.0      0.01       1.6       0.0                           4933031.0000
+    0:02:53   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:02:53   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:02:53   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:02:53   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:02:54   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:02:54   74369.6      0.01       1.6       0.0                           4933308.5000
+    0:03:02   74525.5      0.00       0.0      57.5                           4956276.0000
+    0:03:02   74525.5      0.00       0.0      57.5                           4956276.0000
+    0:03:03   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:03   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:04   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:04   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:05   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:05   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:07   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:07   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:07   74524.7      0.00       0.0      57.5                           4956234.0000
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:03:12   74530.8      0.00       0.0      57.5                           4957383.5000
-    0:03:15   74273.3      0.01       1.0      44.3                           4906781.0000
-    0:03:16   74278.1      0.00       0.2      44.3                           4908001.5000
-    0:03:16   74278.1      0.00       0.2      44.3                           4908001.5000
-    0:03:18   74266.4      0.00       0.2       3.8                           4903665.5000
-    0:03:25   73978.6      0.00       0.2       3.8                           4883626.0000
-    0:03:27   73958.4      0.00       0.0       0.0 acc_reg_out_reg[7]36/D    4880784.5000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:27   73960.2      0.00       0.0       0.0                           4881118.0000
-    0:03:30   73939.0      0.00       0.0       0.0                           4875319.0000
-Loading db file '/synopsys/Nangate_FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/Liberty/CCS/NangateOpenCellLibrary.db'
+    0:03:08   74524.7      0.00       0.0      57.5                           4956234.0000
+    0:03:11   74269.1      0.01       1.0      44.3                           4905486.0000
+    0:03:12   74273.9      0.00       0.2      44.3                           4906706.0000
+    0:03:12   74273.9      0.00       0.2      44.3                           4906706.0000
+    0:03:14   74266.4      0.00       0.2       3.8                           4903648.5000
+    0:03:21   73973.3      0.00       0.2       3.8                           4883320.0000
+    0:03:24   73955.2      0.00       0.0       0.0 acc_reg_out_reg[13]35/D   4880596.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:24   73961.0      0.00       0.0       0.0                           4881527.0000
+    0:03:26   73936.3      0.00       0.0       0.0                           4875343.5000
+Loading db file '/home/c11879_csufresno/Documents/SIMAX/lib/CCS/NangateOpenCellLibrary.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -461,7 +461,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 Warning: Design 'top' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
      Net 'clk': 4231 load(s), 1 driver(s)
-     Net 'rst_n': 3896 load(s), 1 driver(s)
+     Net 'rst_n': 3997 load(s), 1 driver(s)
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 1
@@ -472,17 +472,19 @@ if { [sizeof_collection [get_cells * -filter "is_hierarchical==true"]] > 0 } {
 # compile -map_effort medium    # May help, or maybe not
 #===== Reports
 write -format verilog -output top.vg -hierarchy $NameDesign
-Writing verilog file '/home/c11879_csufresno/Documents/ECE176_Final/SoCC_version/Many-Core-SIMD-Research/Synthesis/128Top_SYN_8_16/top.vg'.
+Writing verilog file '/home/c11879_csufresno/Documents/SIMAX/synthesis/128Top_SYN_8_16/top.vg'.
 1
 write_sdc	top.sdc
 1
-report_area               > top.area
-report_cell               > top.cell
-report_hierarchy          > top.hier
-report_net                > top.net
-report_power              > top.pow
-report_timing -nworst 10  > top.tim
+#report_area               > top.area
+#report_cell               > top.cell
+#report_hierarchy          > top.hier
+#report_net                > top.net
+#report_power              > top.pow
+#report_timing -nworst 10  > top.tim
 check_timing
+Information: Updating design information... (UID-85)
+Warning: Design 'top' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 
 Information: Checking generated_clocks...
 
@@ -500,11 +502,150 @@ Information: Checking partial_input_delay...
 1
 check_design
 1
+# dc_shell  
+redirect -tee top.rpt {report_qor}
+ 
+****************************************
+Report : qor
+Design : top
+Version: S-2021.06-SP5-1
+Date   : Fri Aug 15 18:33:20 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              27.00
+  Critical Path Length:          1.42
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      1.52
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.01
+  Total Hold Violation:         -0.44
+  No. of Hold Violations:      175.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+  Leaf Cell Count:              35165
+  Buf/Inv Cell Count:            3889
+  Buf Cell Count:                 286
+  Inv Cell Count:                3603
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:     30934
+  Sequential Cell Count:         4231
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:    51405.032547
+  Noncombinational Area: 22531.264728
+  Buf/Inv Area:           2189.446014
+  Total Buffer Area:           261.21
+  Total Inverter Area:        1928.23
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:             73936.297275
+  Design Area:           73936.297275
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         43251
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: nc-csuaf4-l01.apporto.com
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    9.65
+  Logic Optimization:                 17.56
+  Mapping Optimization:              120.13
+  -----------------------------------------
+  Overall Compile Time:              207.34
+  Overall Compile Wall Clock Time:   209.57
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.01  TNS: 0.44  Number of Violating Paths: 175
+
+  --------------------------------------------------------------------
+
+
+1
+redirect -append -tee top.rpt {report_power}
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : top
+Version: S-2021.06-SP5-1
+Date   : Fri Aug 15 18:33:20 2025
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/c11879_csufresno/Documents/SIMAX/lib/CCS/NangateOpenCellLibrary.db)
+
+
+Operating Conditions: fast   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+top                    5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.25 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  26.6339 mW   (95%)
+  Net Switching Power  =   1.3974 mW    (5%)
+                         ---------
+Total Dynamic Power    =  28.0313 mW  (100%)
+
+Cell Leakage Power     =   4.7250 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       2.6059e+04          489.7337        1.1683e+06        2.7717e+04  (  84.62%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational    574.5457          907.6564        3.5567e+06        5.0389e+03  (  15.38%)
+--------------------------------------------------------------------------------------------------
+Total          2.6634e+04 uW     1.3974e+03 uW     4.7250e+06 nW     3.2756e+04 uW
+1
 exit
 
 Memory usage for this session 277 Mbytes.
 Memory usage for this session including child processes 291 Mbytes.
-CPU usage for this session 220 seconds ( 0.06 hours ).
-Elapsed time for this session 225 seconds ( 0.06 hours ).
+CPU usage for this session 215 seconds ( 0.06 hours ).
+Elapsed time for this session 220 seconds ( 0.06 hours ).
 
 Thank you...
