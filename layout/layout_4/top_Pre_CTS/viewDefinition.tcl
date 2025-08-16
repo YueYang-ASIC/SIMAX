@@ -40,3 +40,4 @@ create_constraint_mode -name nangate_constraint_mode\
 create_analysis_view -name nangate_view_setup -constraint_mode nangate_constraint_mode -delay_corner nangate_delay_corner_worst -latency_file ${::IMEX::dataVar}/mmmc/views/nangate_view_setup/latency.sdc
 create_analysis_view -name nangate_view_hold -constraint_mode nangate_constraint_mode -delay_corner nangate_delay_corner_fast -latency_file ${::IMEX::dataVar}/mmmc/views/nangate_view_hold/latency.sdc
 set_analysis_view -setup [list nangate_view_setup] -hold [list nangate_view_hold]
+catch {set_interactive_constraint_mode [list nangate_constraint_mode] } 

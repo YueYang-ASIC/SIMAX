@@ -311,3 +311,97 @@ set_db opt_fix_fanout_load true
 opt_design -post_cts -hold
 time_design -post_cts -hold
 #@ End verbose source: _4_CTS.tcl
+read_db top_Pre_CTS/
+check_floorplan -report_density
+set_layer_preference violation -is_visible 1
+set_db check_drc_disable_rules {}
+set_db check_drc_ndr_spacing auto
+set_db check_drc_check_only default
+set_db check_drc_inside_via_def true
+set_db check_drc_exclude_pg_net false
+set_db check_drc_ignore_trial_route false
+set_db check_drc_ignore_cell_blockage false
+set_db check_drc_use_min_spacing_on_block_obs auto
+set_db check_drc_report top.drc.rpt
+set_db check_drc_limit 1000
+check_drc
+set_db check_drc_area {0 0 0 0}
+check_place 
+set_layer_preference violation -is_visible 1
+check_place 
+read_db _2_fp.tcl 
+read_db top_fp/
+set_db design_cong_effort high
+place_opt_design 
+check_place 
+place_detaileco
+place_detail -eco 
+place_detail -eco true 
+place_detail_clock_tree 
+set_db design_early_clock_flow true
+read_db top_import/
+#@ source _2_fp.tcl 
+#@ Begin verbose source (pre): source _2_fp.tcl 
+delete_global_net_connections
+connect_global_net VDD -type pg_pin -pin_base_name VDD -inst_base_name * -hinst {}
+connect_global_net VSS -type pg_pin -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VSS -type tie_lo -pin_base_name VSS -inst_base_name * -hinst {}
+connect_global_net VDD -type tie_hi -pin_base_name VDD -inst_base_name * -hinst {}
+set_db add_rings_target default ;
+set_db add_rings_extend_over_row 0 ;
+set_db add_rings_ignore_rows 0 ;
+set_db add_rings_avoid_short 0 ;
+set_db add_rings_skip_shared_inner_ring none ;
+set_db add_rings_stacked_via_top_layer metal10 ;
+set_db add_rings_stacked_via_bottom_layer metal1 ;
+set_db add_rings_via_using_exact_crossover_size 1 ;
+set_db add_rings_orthogonal_only true ;
+set_db add_rings_skip_via_on_pin {  standardcell } ;
+set_db add_rings_skip_via_on_wire_shape {  noshape }
+add_rings -nets {VSS VDD} -type core_rings -follow core -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1.8 bottom 1.8 left 1.8 right 1.8} -spacing {top 1.5 bottom 1.5 left 1.5 right 1.5} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
+set_db add_stripes_ignore_drc 1
+set_db generate_special_via_ignore_drc 1
+add_stripes -nets {VDD VSS} -layer metal10 -direction vertical -width 1.8 -spacing 1.5 -number_of_sets 3 -start_from left -start_offset 11.25 -stop_offset 11.25 -switch_layer_over_obs false -max_same_layer_jog_length 2 -pad_core_ring_top_layer_limit metal10 -pad_core_ring_bottom_layer_limit metal1 -block_ring_top_layer_limit metal10 -block_ring_bottom_layer_limit metal1 -use_wire_group 0 -snap_wire_center_to_grid none
+set_db route_special_via_connect_to_shape { stripe }
+route_special -connect {core_pin} -layer_change_range { metal1(1) metal10(10) } -block_pin_target {nearest_target} -core_pin_target {first_after_row_end} -allow_jogging 1 -crossover_via_layer_range { metal1(1) metal10(10) } -nets { VDD VSS } -allow_layer_change 1 -target_via_layer_range { metal1(1) metal10(10) } 
+finish_floorplan -auto_halo
+write_db top_fp	
+#@ End verbose source: _2_fp.tcl
+#@ source _3_placement.tcl 
+#@ Begin verbose source (pre): source _3_placement.tcl 
+set_db design_cong_effort high
+set_db design_early_clock_flow true
+place_opt_design 
+check_place 
+set_db route_early_global_bottom_routing_layer 2
+set_db route_early_global_top_routing_layer 8
+set_db route_early_global_honor_power_domain false 
+set_db route_early_global_honor_partition_pin_guide true
+route_early_global 
+report_congestion -overflow
+reset_parasitics 
+set_db extract_rc_effort_level high
+set_db extract_rc_engine pre_route
+extract_rc
+set_db opt_drv_fix_max_cap true ;
+set_db opt_drv_fix_max_tran true ;
+set_db opt_fix_fanout_load true
+opt_design -pre_cts
+time_design -pre_cts -path_report -drv_report -slack_report -num_paths 50 -report_prefix top_preCTS -report_dir timingReports
+write_db top_Pre_CTS 
+#@ End verbose source: _3_placement.tcl
+#@ source _4_CTS.tcl 
+#@ Begin verbose source (pre): source _4_CTS.tcl 
+set_db cts_buffer_cells {BUF_X1 BUF_X2 BUF_X4 BUF_X8 BUF_X16 BUF_X32 CLKBUF_X1 CLKBUF_X2 CLKBUF_X3}
+set_db cts_inverter_cells {INV_X1 INV_X2 INV_X4 INV_X8 INV_X16 INV_X32}  
+create_clock_tree_spec
+ccopt_design
+set_db opt_drv_fix_max_cap true
+set_db opt_drv_fix_max_tran true
+set_db opt_fix_fanout_load true
+opt_design -post_cts -hold
+time_design -post_cts -hold
+#@ End verbose source: _4_CTS.tcl
+report_timing -output_format gtd -max_paths 10000 -max_slack 0.75 -path_exceptions all -early > top.mtarpt
+read_timing_debug_report -name default_report top.mtarpt -max_path_num 10000 -update_category 0
+gui_deselect -all

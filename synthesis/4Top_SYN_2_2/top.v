@@ -51,5 +51,20 @@ module top #(
         .result_flat(result_flat)
     );
 
+// 2-FF synchronizer: async assert, sync de-assert
+module rst_sync(input clk, input rst_n, output rst_sync_n);
+  reg s1, s2;
+  always @(posedge clk or negedge rst_n)
+    if (!rst_n) {s1,s2} <= 2'b00; else {s1,s2} <= {1'b1, s1};
+  assign rst_sync_n = s2;
+endmodule
+
+// Use synchronous reset in your RTL
+always @(posedge clk) begin
+  if (!rst_sync_n) q <= '0;
+  else if (en)     q <= d;
+end
+
+
 endmodule
 

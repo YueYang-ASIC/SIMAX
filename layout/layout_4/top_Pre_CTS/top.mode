@@ -1,37 +1,57 @@
+catch { setDesignMode -congEffort high }
+catch { setDesignMode -earlyClockFlow true }
 catch { setDesignMode -process 45 }
 catch { setAnalysisMode -analysisType bcwc }
 catch { setAnalysisMode -checkType setup }
 catch { setAnalysisMode -clkSrcPath true }
 catch { setAnalysisMode -clockPropagation forcedIdeal }
+catch { setAnalysisMode -skew true }
 catch { setAnalysisMode -usefulSkew true }
 catch { setOptMode -activeHoldViews { nangate_view_hold } }
 catch { setOptMode -activeSetupViews { nangate_view_setup } }
 catch { setOptMode -autoSetupViews { nangate_view_setup} }
 catch { setOptMode -autoTDGRSetupViews { nangate_view_setup} }
+catch { setOptMode -autoViewHoldTargetSlack 0 }
 catch { setOptMode -drcMargin 0 }
+catch { setOptMode -exp2DCongestionAwareBufferingInDrv1 true }
+catch { setOptMode -expExtremeCongestionAwareBuffering true }
 catch { setOptMode -fixCap true }
 catch { setOptMode -fixDrc true }
 catch { setOptMode -fixFanoutLoad true }
 catch { setOptMode -fixTran true }
 catch { setOptMode -optimizeFF true }
+catch { setOptMode -preserveAllSequential false }
 catch { setOptMode -setupTargetSlack 0 }
-catch { setPathGroupOptions tdgp_reg2reg_default -effortLevel high }
-catch { setPathGroupOptions tdgp_reg2reg_default -late -slackAdjustment -0 }
-catch { setPathGroupOptions default -late -slackAdjustment -0 }
 catch { setPathGroupOptions reg2reg -effortLevel high -weight 2 }
 catch { setPathGroupOptions reg2reg -late -slackAdjustment -0 }
-catch { setExtractRCMode  -engine preRoute -total_c_th 0 -relative_c_th 1 -coupling_c_th 0.1 }
+catch { setPathGroupOptions default -late -slackAdjustment -0 }
+catch { setPathGroupOptions tdgp_reg2reg_default -effortLevel high }
+catch { setPathGroupOptions tdgp_reg2reg_default -late -slackAdjustment -0 }
+catch { setExtractRCMode  -effortLevel high -engine preRoute -total_c_th 0 -relative_c_th 1 -coupling_c_th 0.1 }
 catch {setNanoRouteMode -quiet -extractThirdPartyCompatible false}
 catch {setNanoRouteMode -quiet -grouteExpTdStdDelay 8.500000}
 
 catch { setIlmMode -keepHighFanoutPorts true -keepLoopBack false -keepInstInSdc false -keepFlatten true }
 catch { setActiveLogicViewMode -keepHighFanoutCriticalInsts false }
+catch { setUsefulSkewMode -ecoRoute false }
 catch { setViaGenMode -ignore_DRC true }
 catch { setSrouteMode -viaConnectToShape stripe }
+catch { set_verify_drc_mode -area {0 0 0 0} }
+catch { set_verify_drc_mode -check_ndr_spacing auto }
+catch { set_verify_drc_mode -check_only default }
+catch { set_verify_drc_mode -check_same_via_cell true }
+catch { set_verify_drc_mode -disable_rules "" }
+catch { set_verify_drc_mode -exclude_pg_net false }
+catch { set_verify_drc_mode -ignore_cell_blockage false }
+catch { set_verify_drc_mode -ignore_trial_route false }
+catch { set_verify_drc_mode -limit 1000 }
+catch { set_verify_drc_mode -report top.drc.rpt }
+catch { set_verify_drc_mode -use_min_spacing_on_block_obs auto }
 catch { setDelayCalMode -enable_high_fanout true }
 catch { setDelayCalMode -engine aae }
 catch { setDelayCalMode -ignoreNetLoad false }
 catch { setDelayCalMode -socv_accuracy_mode low }
+catch { setPinAssignMode -pinEditInBatch false }
 catch { setAddRingMode -avoid_short false }
 catch { setAddRingMode -extend_over_row false }
 catch { setAddRingMode -ignore_rows false }
@@ -43,12 +63,13 @@ catch { setAddRingMode -skip_via_on_wire_shape noshape }
 catch { setAddRingMode -stacked_via_bottom_layer metal1 }
 catch { setAddRingMode -stacked_via_top_layer metal10 }
 catch { setAddRingMode -via_using_exact_crossover_size true }
+catch { setImportMode -config true }
 catch { setImportMode -discardFloatingVNets false }
 catch { setImportMode -keepEmptyModule true }
 catch { setSIMode -separate_delta_delay_on_data true }
 catch { setAddStripeMode -ignore_DRC true }
 catch { setRouteMode -earlyGlobalHonorMsvRouteConstraint false }
-catch { setRouteMode -earlyGlobalMaxRouteLayer 10 }
+catch { setRouteMode -earlyGlobalMaxRouteLayer 8 }
 catch { setRouteMode -earlyGlobalMinRouteLayer 2 }
 catch { setRouteMode -earlyGlobalRoutePartitionPinGuide true }
 catch { setFPlanMode -cellsForExtraSites {} }

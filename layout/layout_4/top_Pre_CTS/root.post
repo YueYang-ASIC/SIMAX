@@ -1,3 +1,4 @@
+
 ::db::check_and_set_root_attr extract_rc_engine pre_route
 ::db::check_and_set_root_attr add_rings_avoid_short false
 ::db::check_and_set_root_attr add_rings_extend_over_row false
@@ -11,8 +12,22 @@
 ::db::check_and_set_root_attr add_rings_target default
 ::db::check_and_set_root_attr add_rings_via_using_exact_crossover_size true
 ::db::check_and_set_root_attr add_stripes_ignore_drc true
+::db::check_and_set_root_attr assign_pins_edit_in_batch false
+::db::check_and_set_root_attr check_drc_area {0.0 0.0 0.0 0.0}
+::db::check_and_set_root_attr check_drc_check_only default
+::db::check_and_set_root_attr check_drc_disable_rules {}
+::db::check_and_set_root_attr check_drc_exclude_pg_net false
+::db::check_and_set_root_attr check_drc_ignore_cell_blockage false
+::db::check_and_set_root_attr check_drc_ignore_trial_route false
+::db::check_and_set_root_attr check_drc_inside_via_def true
+::db::check_and_set_root_attr check_drc_limit 1000
+::db::check_and_set_root_attr check_drc_ndr_spacing auto
+::db::check_and_set_root_attr check_drc_report ${::IMEX::libVar}/misc/top.drc.rpt
+::db::check_and_set_root_attr check_drc_use_min_spacing_on_block_obs auto
 ::db::check_and_set_root_attr delaycal_enable_high_fanout true
 ::db::check_and_set_root_attr delaycal_ignore_net_load false
+::db::check_and_set_root_attr design_cong_effort high
+::db::check_and_set_root_attr design_early_clock_flow true
 ::db::check_and_set_root_attr extract_rc_coupling_cap_threshold 0.1
 ::db::check_and_set_root_attr extract_rc_relative_cap_threshold 1.0
 ::db::check_and_set_root_attr extract_rc_total_cap_threshold 0.0
@@ -30,10 +45,15 @@
 ::db::check_and_set_root_attr opt_drv_fix_max_cap true
 ::db::check_and_set_root_attr opt_drv_fix_max_tran true
 ::db::check_and_set_root_attr opt_drv_margin 0.0
+::db::check_and_set_root_attr opt_exp_buffer_congestion_aware_extreme true
+::db::check_and_set_root_attr opt_exp_buffer_drv1_2d_congestion_aware true
 ::db::check_and_set_root_attr opt_fix_drv true
 ::db::check_and_set_root_attr opt_fix_fanout_load true
+::db::check_and_set_root_attr opt_preserve_all_sequential false
 ::db::check_and_set_root_attr opt_resize_flip_flops true
 ::db::check_and_set_root_attr opt_setup_target_slack 0.0
+::db::check_and_set_root_attr opt_useful_skew_eco_route false
+::db::check_and_set_root_attr opt_view_pruning_hold_target_slack_auto_flow 0
 ::db::check_and_set_root_attr opt_view_pruning_hold_views_active_list { nangate_view_hold }
 ::db::check_and_set_root_attr opt_view_pruning_setup_views_active_list { nangate_view_setup }
 ::db::check_and_set_root_attr opt_view_pruning_setup_views_persistent_list { nangate_view_setup}
@@ -65,6 +85,6 @@
 ::db::check_and_set_root_attr route_early_global_bottom_routing_layer 2
 ::db::check_and_set_root_attr route_early_global_honor_partition_pin_guide true
 ::db::check_and_set_root_attr route_early_global_honor_power_domain false
-::db::check_and_set_root_attr route_early_global_top_routing_layer 10
+::db::check_and_set_root_attr route_early_global_top_routing_layer 8
 ::db::check_and_set_root_attr route_special_via_connect_to_shape stripe
 ::db::check_and_set_root_attr write_def_stream_check_uncolored false
